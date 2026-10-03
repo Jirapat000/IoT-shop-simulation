@@ -49,7 +49,7 @@
       <a href="#products" data-i18n="nav.explore">สำรวจอุปกรณ์</a><a href="#learn"
         data-i18n="nav.learn">เริ่มเรียนรู้</a><a href="#shops" data-i18n="nav.shops">ร้านค้า</a>
     </nav>
-    <div class="nav-actions"><button class="language neu" id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark theme"><span class="theme-icon-moon" aria-hidden="true">☾</span><span class="theme-icon-sun" aria-hidden="true">☀</span></button><button class="language neu" id="bgm-toggle" type="button" aria-pressed="false" aria-label="เปิดเพลงประกอบ">♫ <span>BGM</span></button><button class="language neu" id="lang-toggle" aria-label="Switch language">TH
+    <div class="nav-actions"><button class="language neu auth-nav-btn" id="auth-btn" type="button" aria-label="เข้าสู่ระบบ"><span>🔑</span> <span>เข้าสู่ระบบ</span></button><button class="language neu" id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark theme"><span class="theme-icon-moon" aria-hidden="true">☾</span><span class="theme-icon-sun" aria-hidden="true">☀</span></button><button class="language neu" id="bgm-toggle" type="button" aria-pressed="false" aria-label="เปิดเพลงประกอบ">♫ <span>BGM</span></button><button class="language neu" id="lang-toggle" aria-label="Switch language">TH
         <span>·</span> EN</button><a class="button button-dark nav-cta" href="#products"><span
           data-i18n="nav.cta">เลือกบอร์ดของคุณ</span><span>↗</span></a><button class="menu-toggle neu" id="menu-toggle"
         aria-label="Open menu">☰</button></div>
@@ -228,6 +228,116 @@
     <h2 data-i18n="compare.title">เลือกอุปกรณ์ที่ใช่สำหรับคุณ</h2>
     <div class="compare-table-wrap" id="compare-table"></div>
   </dialog>
+
+  <!-- Supabase Auth Modal (IoT888 - sign-in-card-2 / OnlyPipe style) -->
+  <div class="auth-modal-backdrop" id="auth-modal" hidden aria-hidden="true" role="dialog" aria-labelledby="auth-modal-title">
+    <div class="auth-card-3d-wrap" id="auth-card-wrap">
+      <div class="auth-card-outer">
+        <!-- Subtle border glow / light beam -->
+        <div class="auth-light-beams" aria-hidden="true">
+          <div class="auth-beam auth-beam-top"></div>
+          <div class="auth-beam auth-beam-right"></div>
+          <div class="auth-beam auth-beam-bottom"></div>
+          <div class="auth-beam auth-beam-left"></div>
+        </div>
+
+        <!-- Glass Card (Palette: #F8FAFC, #D9EAFD, #BCCCDC, #9AA6B2) -->
+        <div class="auth-modal-card" id="auth-card">
+          <button type="button" class="auth-modal-close" id="auth-modal-close" aria-label="Close modal">✕</button>
+
+          <!-- Header with Logo Badge -->
+          <div class="auth-modal-header">
+            <div class="auth-logo-badge">
+              <span id="auth-logo-text">IoT</span>
+            </div>
+            <h2 id="auth-modal-title">Welcome Back</h2>
+            <p id="auth-modal-sub">Sign in to continue to IoT Hub</p>
+          </div>
+
+          <!-- Alert message box -->
+          <div class="auth-msg" id="auth-msg" hidden role="alert"></div>
+
+          <!-- Unified Form: expands username field on Sign Up -->
+          <form class="auth-form" id="auth-form">
+            <!-- Expandable Username Field (Only on Sign Up) -->
+            <div class="auth-field auth-field-username" id="field-username" hidden>
+              <div class="auth-input-wrap">
+                <span class="auth-input-icon">@</span>
+                <input type="text" id="auth-username" placeholder="Username" autocomplete="username">
+              </div>
+            </div>
+
+            <!-- Email Field -->
+            <div class="auth-field">
+              <div class="auth-input-wrap">
+                <span class="auth-input-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                </span>
+                <input type="email" id="auth-email" required placeholder="Email address" autocomplete="email">
+              </div>
+            </div>
+
+            <!-- Password Field -->
+            <div class="auth-field">
+              <div class="auth-input-wrap">
+                <span class="auth-input-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                </span>
+                <input type="password" id="auth-password" required placeholder="Password" autocomplete="current-password">
+                <button type="button" class="auth-pwd-toggle" id="auth-pwd-toggle" aria-label="Toggle password visibility">
+                  <svg class="eye-show" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
+                  <svg class="eye-hide" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" hidden><path d="m15 18-.722-3.25"/><path d="M2 8a10.645 10.645 0 0 0 20 0"/><path d="m20 15-1.726-2.05"/><path d="m4 15 1.726-2.05"/><path d="m9 18 .722-3.25"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Options: Remember me & Forgot password (Visible only on Sign In) -->
+            <div class="auth-options" id="auth-options">
+              <label class="auth-checkbox-label">
+                <input type="checkbox" id="auth-remember" class="auth-checkbox">
+                <span class="auth-custom-checkbox">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </span>
+                <span>Remember me</span>
+              </label>
+              <button type="button" class="auth-forgot-btn" id="auth-forgot-btn">Forgot password?</button>
+            </div>
+
+            <!-- Submit Button: Sign In → / Sign Up → -->
+            <button type="submit" class="auth-submit" id="auth-submit-btn">
+              <span class="auth-submit-shine"></span>
+              <span class="auth-submit-content">
+                <span class="auth-submit-text" id="auth-submit-text">Sign In</span>
+                <span class="auth-submit-arrow">→</span>
+              </span>
+            </button>
+
+            <!-- Divider -->
+            <div class="auth-divider">
+              <div class="auth-divider-line"></div>
+              <span>or</span>
+              <div class="auth-divider-line"></div>
+            </div>
+
+            <!-- Google Sign In Button -->
+            <button type="button" class="auth-google-btn" id="google-auth-btn">
+              <span class="auth-google-icon">G</span>
+              <span>Sign in with Google</span>
+            </button>
+
+            <!-- Mode Toggle Link -->
+            <p class="auth-toggle-link" id="auth-toggle-box">
+              <span id="auth-toggle-prompt">Don't have an account?</span>
+              <button type="button" class="auth-switch-link" id="auth-switch-btn">Sign up</button>
+            </p>
+          </form>
+
+          <p class="auth-footer-note">บันทึกข้อมูลปลอดภัยใน <strong>Supabase · IoT888</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <aside class="iot-buddy" id="iot-buddy" aria-label="IoT Buddy ผู้ช่วยบนเว็บไซต์" data-state="idle">
     <section class="buddy-panel" id="buddy-panel" aria-label="เมนูผู้ช่วย" hidden>
       <header><div><span class="buddy-status-dot"></span><strong>IoT Buddy</strong><small id="buddy-context">เพื่อนคู่ใจสาย IoT</small></div>
@@ -255,7 +365,8 @@
   <script src="theme.js"></script>
   <script src="buddy.js"></script>
   <script src="intro.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="auth.js"></script>
 </body>
 
 </html>

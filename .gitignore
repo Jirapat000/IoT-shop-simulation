@@ -1,5 +1,7 @@
 .vercel
 node_modules/
+**/node_modules/
+**/.next/
 
 # Security: Never commit keys or secrets
 .env
