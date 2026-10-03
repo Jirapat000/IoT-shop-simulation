@@ -1,0 +1,23 @@
+{
+  "id": "esp32-devkit",
+  "name": "ESP32 DevKit V1",
+  "category": "iot",
+  "chip": "ESP32-WROOM-32",
+  "voltage": "3.3V logic",
+  "pins": "34 GPIO",
+  "wireless": "Wi-Fi · Bluetooth",
+  "difficulty": "beginner",
+  "tags": ["Wi-Fi","Bluetooth","Popular"],
+  "visual": "green",
+  "type": "esp32",
+  "shop": "cybertice",
+  "slug": "esp32-devkit-v1",
+  "blurb": {
+    "th": "บอร์ดครบเครื่องพร้อม Wi-Fi และ Bluetooth ในตัว เหมาะกับโปรเจกต์ IoT หลากหลายรูปแบบ",
+    "en": "A versatile development board with built-in Wi-Fi and Bluetooth for connected projects."
+  },
+  "uses": {
+    "th": "เหมาะสำหรับ: สมาร์ทโฮม, IoT, เชื่อมต่ออินเทอร์เน็ต",
+    "en": "Great for: smart home builds, IoT, and internet-connected projects."
+  }
+}

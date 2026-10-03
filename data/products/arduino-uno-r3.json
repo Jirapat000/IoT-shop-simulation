@@ -1,0 +1,23 @@
+{
+  "id": "uno-r3",
+  "name": "Arduino Uno R3",
+  "category": "boards",
+  "chip": "ATmega328P",
+  "voltage": "5V",
+  "pins": "14 digital · 6 analog",
+  "wireless": "—",
+  "difficulty": "beginner",
+  "tags": ["Arduino","USB","Beginner"],
+  "visual": "green",
+  "type": "board",
+  "shop": "cybertice",
+  "slug": "arduino-uno-r3",
+  "blurb": {
+    "th": "บอร์ดยอดนิยมสำหรับเริ่มต้น เรียนรู้วงจรและทดลองไอเดียได้อย่างง่ายดาย",
+    "en": "The classic starter board. Learn circuits and bring your first ideas to life."
+  },
+  "uses": {
+    "th": "เหมาะสำหรับ: เรียนรู้พื้นฐาน, ควบคุม LED, อ่านค่าเซ็นเซอร์",
+    "en": "Great for: learning the basics, controlling LEDs, reading sensors."
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "id": "arduino-nano",
+  "name": "Arduino Nano",
+  "category": "boards",
+  "chip": "ATmega328P",
+  "voltage": "5V",
+  "pins": "14 digital · 8 analog",
+  "wireless": "—",
+  "difficulty": "beginner",
+  "tags": ["Arduino","Compact","USB"],
+  "visual": "blue",
+  "type": "nano",
+  "shop": "allnewstep",
+  "slug": "arduino-nano",
+  "blurb": {
+    "th": "พลัง Arduino ในขนาดกะทัดรัด เสียบลงเบรดบอร์ดได้ เหมาะกับโปรเจกต์พื้นที่จำกัด",
+    "en": "Arduino power in a compact, breadboard-friendly size for space-conscious projects."
+  },
+  "uses": {
+    "th": "เหมาะสำหรับ: โปรเจกต์ขนาดเล็ก, งานสวมใส่, ต้นแบบ",
+    "en": "Great for: compact builds, wearables, and prototypes."
+  }
+}

@@ -1,0 +1,22 @@
+.vercel
+node_modules/
+
+# Security: Never commit keys or secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.cert
+*.crt
+id_rsa*
+*.pfx
+*.p12
+
+# OS & Temp
+.DS_Store
+Thumbs.db
+*.log
+*.zip
+ECC/
+.freebuff/

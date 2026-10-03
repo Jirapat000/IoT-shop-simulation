@@ -1,0 +1,23 @@
+{
+  "id": "esp8266-nodemcu",
+  "name": "ESP8266 NodeMCU",
+  "category": "iot",
+  "chip": "ESP8266EX",
+  "voltage": "3.3V logic",
+  "pins": "11 GPIO",
+  "wireless": "Wi-Fi 2.4 GHz",
+  "difficulty": "beginner",
+  "tags": ["Wi-Fi","IoT","USB"],
+  "visual": "blue",
+  "type": "esp",
+  "shop": "allnewstep",
+  "slug": "esp8266-nodemcu",
+  "blurb": {
+    "th": "บอร์ด Wi-Fi ขนาดกะทัดรัดสำหรับทดลองสร้างอุปกรณ์เชื่อมต่ออินเทอร์เน็ต",
+    "en": "A compact Wi-Fi board for experimenting with connected devices."
+  },
+  "uses": {
+    "th": "เหมาะสำหรับ: เซ็นเซอร์ Wi-Fi, เว็บเซิร์ฟเวอร์ขนาดเล็ก",
+    "en": "Great for: Wi-Fi sensors and small web servers."
+  }
+}
