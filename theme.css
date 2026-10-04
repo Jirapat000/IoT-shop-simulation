@@ -353,79 +353,199 @@ body { background: radial-gradient(ellipse at 10% 8%, var(--bg-glow-1), transpar
    Product Detail Modal Enhancements (Tabs, Features, Wiring, Code)
    ========================================================================== */
 .detail-dialog {
-  max-width: min(880px, calc(100% - 24px)) !important;
+  max-width: min(1040px, calc(100% - 24px)) !important;
   width: 100%;
-  padding: 28px 24px;
+  padding: 32px 28px;
   overflow-y: auto;
-  border-radius: 24px;
+  border-radius: 26px;
 }
 
 .detail-container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
+}
+
+.detail-layout {
+  display: grid;
+  grid-template-columns: 270px 1fr;
+  gap: 28px;
+  align-items: start;
 }
 
 .detail-summary-pane {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
+}
+
+.detail-summary-pane .eyebrow {
+  font-size: 17px !important;
+  letter-spacing: 0.5px;
+}
+
+.detail-layout h2 {
+  font-size: 40px !important;
+  line-height: 1.25;
+  margin: 0;
+  font-weight: 700;
+  color: var(--ink);
 }
 
 .detail-blurb {
-  font-size: 13px !important;
-  line-height: 1.6;
+  font-size: 22px !important;
+  line-height: 1.65;
+  color: var(--ink-2);
+}
+
+.detail-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 4px 0;
+}
+
+.detail-chips span {
+  font-size: 19.5px !important;
+  padding: 6px 14px !important;
+  border-radius: 10px !important;
+  font-weight: 600;
+  background: var(--tint-2);
+  color: var(--ink-2);
 }
 
 .detail-uses {
-  font-size: 11.5px;
+  font-size: 20px !important;
+  line-height: 1.65;
   background: var(--tint-2);
-  padding: 8px 12px;
-  border-radius: 10px;
-  border-left: 3px solid var(--accent);
-  margin: 4px 0 6px;
+  padding: 14px 20px;
+  border-radius: 14px;
+  border-left: 4px solid var(--accent);
+  margin: 4px 0 10px;
   color: var(--ink-2);
 }
 
 .detail-uses .uses-label {
   color: var(--ink);
   font-weight: 700;
+  font-size: 20.5px;
+}
+
+.spec-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.spec-row {
+  border-radius: 12px;
+  padding: 14px 18px;
+  background: var(--tint-2);
+  border: 1px solid var(--line);
+}
+
+.spec-row small {
+  display: block;
+  font-size: 19px !important;
+  color: var(--ink-3);
+  margin-bottom: 5px;
+}
+
+.spec-row b {
+  font-size: 23px !important;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.detail-shop {
+  display: flex;
+  gap: 12px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.detail-add-cart-btn {
+  font-size: 20px !important;
+  padding: 14px 24px !important;
+  border-radius: 14px !important;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.detail-add-cart-btn .ui-svg {
+  width: 20px;
+  height: 20px;
+}
+
+.detail-shop a {
+  font-size: 18.5px !important;
+  padding: 14px 20px !important;
+  border-radius: 14px !important;
+  font-weight: 600;
+  background: var(--tint-2);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  transition: all 0.2s ease;
+}
+
+.detail-shop a:hover {
+  background: var(--tint-3);
+  transform: translateY(-2px);
+}
+
+.model-caption {
+  font-size: 15.5px !important;
+  padding: 10px 4px;
+  color: var(--ink-3);
+}
+
+.model-caption span {
+  font-size: 15.5px !important;
+}
+
+.model-caption button {
+  width: 34px !important;
+  height: 32px !important;
+  font-size: 18px !important;
 }
 
 /* Detail Tabs */
 .detail-tabs-wrapper {
-  margin-top: 10px;
+  margin-top: 14px;
   border-top: 1px solid var(--line);
-  padding-top: 18px;
+  padding-top: 22px;
 }
 
 .detail-tab-nav {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   background: var(--tint-2);
-  padding: 5px;
-  border-radius: 14px;
-  margin-bottom: 18px;
+  padding: 7px;
+  border-radius: 18px;
+  margin-bottom: 22px;
   overflow-x: auto;
 }
 
 .detail-tab-btn {
   flex: 1;
-  min-width: 130px;
-  padding: 10px 14px;
+  min-width: 170px;
+  padding: 14px 22px;
   border: 0;
   background: transparent;
   color: var(--ink-2);
-  font-size: 12px;
-  font-weight: 600;
-  border-radius: 10px;
+  font-size: 19.5px !important;
+  font-weight: 700;
+  border-radius: 14px;
   cursor: pointer;
   transition: all 0.2s ease;
   white-space: nowrap;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 8px;
 }
 
 .detail-tab-btn:hover {
@@ -440,8 +560,9 @@ body { background: radial-gradient(ellipse at 10% 8%, var(--bg-glow-1), transpar
 .detail-tab-btn.active {
   background: var(--accent);
   color: #ffffff;
-  box-shadow: 0 4px 12px var(--accent-ring);
+  box-shadow: 0 4px 14px var(--accent-ring);
 }
+
 
 /* Tab Panes */
 .detail-tab-pane {
@@ -463,19 +584,24 @@ body { background: radial-gradient(ellipse at 10% 8%, var(--bg-glow-1), transpar
 .section-box {
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 18px 20px;
+  border-radius: 20px;
+  padding: 24px 28px;
   box-shadow: 0 4px 16px rgba(17, 45, 78, 0.04);
 }
 
 .section-title {
-  font-size: 14px;
+  font-size: 22.5px !important;
   font-weight: 700;
   color: var(--ink);
-  margin: 0 0 12px 0;
+  margin: 0 0 16px 0;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+}
+
+.section-title .ui-svg {
+  width: 22px;
+  height: 22px;
 }
 
 /* Features List */
@@ -484,35 +610,35 @@ body { background: radial-gradient(ellipse at 10% 8%, var(--bg-glow-1), transpar
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 10px 16px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 14px 20px;
 }
 
 .features-list li {
   display: flex;
   align-items: flex-start;
-  gap: 9px;
-  font-size: 12px;
-  line-height: 1.5;
+  gap: 12px;
+  font-size: 19.5px !important;
+  line-height: 1.6;
   color: var(--ink);
 }
 
 .feat-bullet {
   color: #10b981;
   font-weight: 800;
-  font-size: 13px;
+  font-size: 20px !important;
   line-height: 1.3;
 }
 
 /* Principle Card */
 .principle-box {
   background: var(--accent-soft);
-  border-left: 4px solid var(--accent);
+  border-left: 5px solid var(--accent);
 }
 
 .principle-desc {
-  font-size: 12.5px;
-  line-height: 1.7;
+  font-size: 20px !important;
+  line-height: 1.75;
   color: var(--ink);
   margin: 0;
 }
@@ -520,29 +646,31 @@ body { background: radial-gradient(ellipse at 10% 8%, var(--bg-glow-1), transpar
 /* Wiring Table */
 .table-responsive {
   overflow-x: auto;
-  border-radius: 12px;
+  border-radius: 14px;
   border: 1px solid var(--line);
 }
 
 .wiring-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 12px;
+  font-size: 19.5px !important;
   text-align: left;
 }
 
 .wiring-table th {
   background: var(--tint-2);
   color: var(--ink);
-  padding: 10px 14px;
-  font-weight: 600;
+  padding: 14px 18px;
+  font-weight: 700;
+  font-size: 20px !important;
   border-bottom: 1px solid var(--line);
 }
 
 .wiring-table td {
-  padding: 10px 14px;
+  padding: 14px 18px;
   border-bottom: 1px solid var(--line);
   color: var(--ink-2);
+  font-size: 19.5px !important;
 }
 
 .wiring-table tr:last-child td {
@@ -554,9 +682,9 @@ body { background: radial-gradient(ellipse at 10% 8%, var(--bg-glow-1), transpar
   background: #112d4e;
   color: #fff;
   font-weight: 700;
-  font-size: 11px;
-  padding: 3px 8px;
-  border-radius: 6px;
+  font-size: 17.5px !important;
+  padding: 4px 12px;
+  border-radius: 8px;
   font-family: monospace;
 }
 
@@ -569,72 +697,74 @@ body { background: radial-gradient(ellipse at 10% 8%, var(--bg-glow-1), transpar
   background: var(--accent-soft);
   color: var(--accent);
   font-weight: 700;
-  font-size: 11px;
-  padding: 3px 8px;
-  border-radius: 6px;
+  font-size: 17.5px !important;
+  padding: 4px 12px;
+  border-radius: 8px;
   font-family: monospace;
 }
 
 .wiring-notice {
-  margin-top: 14px;
+  margin-top: 18px;
   display: flex;
-  gap: 12px;
+  gap: 14px;
   background: rgba(245, 158, 11, 0.12);
   border: 1px solid rgba(245, 158, 11, 0.3);
-  border-radius: 12px;
-  padding: 12px 16px;
-  font-size: 11.5px;
+  border-radius: 14px;
+  padding: 16px 20px;
+  font-size: 18.5px !important;
   color: var(--ink);
 }
 
 .notice-icon {
-  font-size: 18px;
+  font-size: 24px;
   flex-shrink: 0;
 }
 
 .wiring-notice strong {
   display: block;
-  margin-bottom: 3px;
+  margin-bottom: 5px;
+  font-size: 19.5px !important;
   color: #d97706;
 }
 
 .wiring-notice p {
   margin: 0;
   color: var(--ink-2);
-  line-height: 1.5;
+  font-size: 18.5px !important;
+  line-height: 1.6;
 }
 
 /* Libraries */
 .lib-container {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 14px;
 }
 
 .lib-card {
   background: var(--tint-2);
-  border-radius: 12px;
-  padding: 12px 16px;
+  border-radius: 14px;
+  padding: 16px 20px;
   border: 1px solid var(--line);
 }
 
 .lib-header {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 4px;
+  gap: 10px;
+  margin-bottom: 6px;
 }
 
 .lib-header strong {
-  font-size: 13px;
+  font-size: 21px !important;
   color: var(--ink);
   font-family: monospace;
 }
 
 .lib-tag {
-  font-size: 10px;
-  padding: 2px 7px;
-  border-radius: 5px;
+  font-size: 16px !important;
+  padding: 4px 10px;
+  border-radius: 7px;
   font-weight: 600;
   margin-left: auto;
 }
@@ -650,8 +780,9 @@ body { background: radial-gradient(ellipse at 10% 8%, var(--bg-glow-1), transpar
 }
 
 .lib-guide {
-  font-size: 11.5px;
+  font-size: 18.5px !important;
   color: var(--ink-2);
+  line-height: 1.6;
   margin: 0;
 }
 
@@ -661,37 +792,38 @@ body { background: radial-gradient(ellipse at 10% 8%, var(--bg-glow-1), transpar
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 8px;
+  gap: 12px;
+  margin-bottom: 12px;
 }
 
 .conf-pin-tag {
   display: inline-block;
-  font-size: 11px;
+  font-size: 17.5px !important;
   color: var(--ink-3);
-  margin-top: 2px;
+  margin-top: 4px;
 }
 
 .conf-pin-tag code {
   background: var(--tint-2);
-  padding: 2px 5px;
-  border-radius: 4px;
+  padding: 3px 8px;
+  border-radius: 6px;
   color: var(--accent);
   font-weight: 700;
+  font-size: 17.5px !important;
 }
 
 .copy-code-btn {
   background: var(--accent);
   color: #fff;
   border: 0;
-  padding: 7px 14px;
-  border-radius: 8px;
-  font-size: 11px;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 18px !important;
   font-weight: 600;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   transition: all 0.2s ease;
   box-shadow: 0 2px 8px var(--accent-ring);
 }
@@ -706,18 +838,18 @@ body { background: radial-gradient(ellipse at 10% 8%, var(--bg-glow-1), transpar
 }
 
 .code-tip {
-  font-size: 11.5px;
+  font-size: 18.5px !important;
   color: var(--ink-2);
   background: var(--tint-2);
-  padding: 8px 12px;
-  border-radius: 8px;
-  margin: 0 0 10px 0;
-  line-height: 1.5;
+  padding: 12px 18px;
+  border-radius: 10px;
+  margin: 0 0 12px 0;
+  line-height: 1.6;
 }
 
 .code-block-wrap {
   background: #121926;
-  border-radius: 12px;
+  border-radius: 14px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   overflow: hidden;
   box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
@@ -725,20 +857,20 @@ body { background: radial-gradient(ellipse at 10% 8%, var(--bg-glow-1), transpar
 
 .code-pre {
   margin: 0;
-  padding: 16px 18px;
+  padding: 20px 24px;
   overflow-x: auto;
   font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
-  font-size: 12px;
-  line-height: 1.6;
+  font-size: 19px !important;
+  line-height: 1.65;
   color: #e2e8f0;
-  max-height: 380px;
+  max-height: 420px;
 }
 
 .code-explanation {
-  margin-top: 10px;
-  font-size: 11.5px;
+  margin-top: 14px;
+  font-size: 18.5px !important;
   color: var(--ink-2);
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 /* ==========================================================================
@@ -4300,18 +4432,325 @@ body {
 .shop-link small { font-size: 12px; }
 .shop-note { font-size: 12.5px; }
 
-/* Compare Tray & Dialog */
-.compare-tray b { font-size: 13.5px; }
-.compare-tray small { font-size: 11.5px; }
-.compare-chip { font-size: 12.5px; }
-.compare-table { font-size: 13px; }
-.compare-table th { font-size: 14px; }
-.compare-table small { font-size: 11px; }
-.spec-row small { font-size: 12px; }
-.spec-row b { font-size: 14px; }
-.detail-layout h2 { font-size: 26px; }
-.detail-layout p { font-size: 14.5px; }
-.detail-chips span { font-size: 12.5px; }
+/* ==========================================================================
+   Comprehensive Details Typography Scale (+60% on all detail & modal views)
+   ========================================================================== */
+
+/* 1. Product Detail Modal & Summary Pane */
+.detail-dialog {
+  max-width: min(1040px, calc(100% - 24px)) !important;
+}
+
+.detail-layout h2 {
+  font-size: 40px !important;
+  line-height: 1.25 !important;
+}
+
+.detail-layout p,
+.detail-blurb {
+  font-size: 22px !important;
+  line-height: 1.65 !important;
+}
+
+.detail-chips span {
+  font-size: 19.5px !important;
+  padding: 6px 14px !important;
+}
+
+.detail-uses {
+  font-size: 20px !important;
+  line-height: 1.65 !important;
+}
+
+.detail-uses .uses-label {
+  font-size: 20.5px !important;
+}
+
+.spec-row small {
+  font-size: 19px !important;
+}
+
+.spec-row b {
+  font-size: 23px !important;
+}
+
+.detail-shop a {
+  font-size: 18.5px !important;
+  padding: 13px 20px !important;
+}
+
+.detail-add-cart-btn {
+  font-size: 20px !important;
+  padding: 14px 24px !important;
+}
+
+.detail-tab-btn {
+  font-size: 19.5px !important;
+  padding: 14px 22px !important;
+}
+
+.section-title {
+  font-size: 22.5px !important;
+}
+
+.features-list li {
+  font-size: 19.5px !important;
+  line-height: 1.6 !important;
+}
+
+.feat-bullet {
+  font-size: 20px !important;
+}
+
+.principle-desc {
+  font-size: 20px !important;
+  line-height: 1.75 !important;
+}
+
+.wiring-table th {
+  font-size: 20px !important;
+  padding: 14px 18px !important;
+}
+
+.wiring-table td {
+  font-size: 19.5px !important;
+  padding: 14px 18px !important;
+}
+
+.pin-badge,
+.mcu-badge {
+  font-size: 17.5px !important;
+}
+
+.wiring-notice,
+.wiring-notice p {
+  font-size: 18.5px !important;
+}
+
+.wiring-notice strong {
+  font-size: 19.5px !important;
+}
+
+.lib-header strong {
+  font-size: 21px !important;
+}
+
+.lib-tag {
+  font-size: 16px !important;
+}
+
+.lib-guide {
+  font-size: 18.5px !important;
+}
+
+.conf-pin-tag,
+.conf-pin-tag code {
+  font-size: 17.5px !important;
+}
+
+.copy-code-btn {
+  font-size: 18px !important;
+}
+
+.code-tip {
+  font-size: 18.5px !important;
+}
+
+.code-pre {
+  font-size: 19px !important;
+}
+
+.code-explanation {
+  font-size: 18.5px !important;
+}
+
+/* 2. Compare Tray & Dialog */
+.compare-tray b {
+  font-size: 21.5px !important;
+}
+
+.compare-tray small {
+  font-size: 18px !important;
+}
+
+.compare-chip {
+  font-size: 20px !important;
+  padding: 8px 12px !important;
+}
+
+.compare-dialog h2 {
+  font-size: 38px !important;
+}
+
+.compare-dialog .eyebrow {
+  font-size: 18px !important;
+}
+
+.compare-table {
+  font-size: 20px !important;
+}
+
+.compare-table th {
+  font-size: 21.5px !important;
+  padding: 15px 16px !important;
+}
+
+.compare-table td {
+  font-size: 20px !important;
+  padding: 15px 16px !important;
+}
+
+.compare-table small {
+  font-size: 16.5px !important;
+}
+
+.compare-empty {
+  font-size: 20px !important;
+}
+
+/* 3. Lesson & Simulator Dialog */
+.lesson-pill {
+  font-size: 19px !important;
+  padding: 12px 20px !important;
+}
+
+.lesson-pill .pill-num {
+  font-size: 16px !important;
+}
+
+.lesson-meta-tag {
+  font-size: 16px !important;
+  padding: 5px 12px !important;
+}
+
+.lesson-hero-header h2 {
+  font-size: 38px !important;
+}
+
+.lesson-lead {
+  font-size: 20px !important;
+}
+
+.sim-title-wrap h4 {
+  font-size: 22px !important;
+}
+
+.sim-badge {
+  font-size: 14px !important;
+}
+
+.lesson-guide-card h3 {
+  font-size: 22px !important;
+}
+
+.lesson-guide-text {
+  font-size: 19.5px !important;
+  line-height: 1.65 !important;
+}
+
+.lesson-step-item {
+  font-size: 20px !important;
+}
+
+.lesson-step-content p {
+  font-size: 19px !important;
+}
+
+.lesson-quiz-wrap h4 {
+  font-size: 22px !important;
+}
+
+.quiz-question {
+  font-size: 21px !important;
+}
+
+.quiz-option {
+  font-size: 19.5px !important;
+}
+
+/* 4. Cart Drawer & Checkout Dialog */
+.cart-header-title h2 {
+  font-size: 27px !important;
+}
+
+.cart-count-pill {
+  font-size: 17.5px !important;
+}
+
+.cart-clear-btn {
+  font-size: 18px !important;
+}
+
+.cart-shipping-banner {
+  font-size: 18.5px !important;
+}
+
+.cart-item-title {
+  font-size: 21px !important;
+}
+
+.cart-item-chip {
+  font-size: 17.5px !important;
+}
+
+.cart-item-price {
+  font-size: 21.5px !important;
+}
+
+.cart-subtotal-row {
+  font-size: 20px !important;
+}
+
+.cart-total-row {
+  font-size: 25.5px !important;
+}
+
+.checkout-btn {
+  font-size: 22.5px !important;
+  padding: 16px 24px !important;
+}
+
+.checkout-modal h2 {
+  font-size: 35px !important;
+}
+
+.checkout-field label {
+  font-size: 19px !important;
+}
+
+.checkout-field input,
+.checkout-field select {
+  font-size: 20px !important;
+}
+
+.checkout-submit-btn {
+  font-size: 22.5px !important;
+}
+
+/* 5. Auth Modal */
+.auth-modal-card h2 {
+  font-size: 35px !important;
+}
+
+.auth-field label {
+  font-size: 19px !important;
+}
+
+.auth-field input {
+  font-size: 20px !important;
+}
+
+.auth-submit {
+  font-size: 21.5px !important;
+}
+
+.auth-switch {
+  font-size: 19px !important;
+}
+
+.auth-google-btn {
+  font-size: 19.5px !important;
+}
 
 /* Footer */
 .footer-top>p { font-size: 13.5px; }

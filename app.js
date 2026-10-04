@@ -1342,7 +1342,7 @@ function openDetail(id) {
           <h2>${p.name}</h2>
           <p class="detail-blurb">${localized(p.blurb)}</p>
           <div class="detail-chips">${p.tags.map(x => `<span>${x}</span>`).join('')}</div>
-          <p class="detail-uses"><strong class="uses-label">${curLocale === 'th' ? 'เหมาะสำหรับ:' : 'Best for:'}</strong> ${localized(p.uses)}</p>
+          <p class="detail-uses"><strong class="uses-label">${curLocale === 'th' ? 'เหมาะสำหรับ:' : 'Best for:'}</strong> ${(localized(p.uses) || '').replace(/^(เหมาะสำหรับ:\s*|Great for:\s*|Best for:\s*)/i, '')}</p>
           <div class="spec-list">
             <div class="spec-row"><small>${t('compare.chip')}</small><b>${p.chip}</b></div>
             <div class="spec-row"><small>${t('compare.voltage')}</small><b>${p.voltage}</b></div>
