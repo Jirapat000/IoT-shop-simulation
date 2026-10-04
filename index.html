@@ -32,7 +32,45 @@
 </head>
 
 <body>
-  <button id="startIntro" class="iot-button" hidden></button>
+  <button id="startIntro" class="iot-button" hidden aria-label="Start Intro — เริ่มเปิดตัวเว็บไซต์">
+    <span class="gate-sky" aria-hidden="true">
+      <span class="gate-orb" style="--gx:-12%;--gy:-16%;--gs:1.15"></span>
+      <span class="gate-orb" style="--gx:112%;--gy:114%;--gs:.9"></span>
+      <span class="gate-orb" style="--gx:110%;--gy:-6%;--gs:.7"></span>
+      <span class="gate-star" style="--x:10%;--y:20%;--d:.3s"></span>
+      <span class="gate-star" style="--x:22%;--y:66%;--d:1.1s"></span>
+      <span class="gate-star" style="--x:34%;--y:12%;--d:2s"></span>
+      <span class="gate-star" style="--x:44%;--y:84%;--d:.7s"></span>
+      <span class="gate-star" style="--x:56%;--y:24%;--d:1.6s"></span>
+      <span class="gate-star" style="--x:63%;--y:76%;--d:2.6s"></span>
+      <span class="gate-star" style="--x:72%;--y:12%;--d:.5s"></span>
+      <span class="gate-star" style="--x:80%;--y:60%;--d:1.9s"></span>
+      <span class="gate-star" style="--x:88%;--y:26%;--d:3s"></span>
+      <span class="gate-star" style="--x:91%;--y:68%;--d:1.3s"></span>
+      <span class="gate-star" style="--x:18%;--y:38%;--d:2.3s"></span>
+      <span class="gate-star" style="--x:36%;--y:90%;--d:.9s"></span>
+      <span class="gate-star gate-star-big" style="--x:66%;--y:16%;--d:.4s"></span>
+      <span class="gate-star gate-star-big" style="--x:84%;--y:44%;--d:1.7s"></span>
+      <span class="gate-star gate-star-big" style="--x:13%;--y:72%;--d:2.8s"></span>
+      <span class="gate-star gate-star-big" style="--x:48%;--y:94%;--d:1.2s"></span>
+    </span>
+    <span class="gate-fleet" aria-hidden="true">
+      <span class="gate-device" style="--gd-x:7%;--gd-y:18%;--gd-s:.58;--gd-dur:13s;--gd-amp:16px;--gd-rot:-7deg"></span>
+      <span class="gate-device" style="--gd-x:81%;--gd-y:15%;--gd-s:.5;--gd-dur:11s;--gd-amp:12px;--gd-rot:6deg;--gd-delay:-3s"></span>
+      <span class="gate-device" style="--gd-x:13%;--gd-y:70%;--gd-s:.55;--gd-dur:12s;--gd-amp:18px;--gd-rot:5deg;--gd-delay:-6s"></span>
+      <span class="gate-device" style="--gd-x:73%;--gd-y:75%;--gd-s:.6;--gd-dur:14s;--gd-amp:14px;--gd-rot:-5deg;--gd-delay:-2s"></span>
+      <span class="gate-device" style="--gd-x:88%;--gd-y:44%;--gd-s:.45;--gd-dur:10s;--gd-amp:12px;--gd-rot:8deg;--gd-delay:-5s"></span>
+      <span class="gate-device" style="--gd-x:5%;--gd-y:42%;--gd-s:.48;--gd-dur:12.5s;--gd-amp:14px;--gd-rot:-9deg;--gd-delay:-8s"></span>
+      <span class="gate-device" style="--gd-x:31%;--gd-y:9%;--gd-s:.42;--gd-dur:13.5s;--gd-amp:12px;--gd-rot:4deg;--gd-delay:-4s"></span>
+      <span class="gate-device" style="--gd-x:52%;--gd-y:89%;--gd-s:.46;--gd-dur:11.5s;--gd-amp:13px;--gd-rot:-6deg;--gd-delay:-7s"></span>
+    </span>
+    <span class="gate-halo" aria-hidden="true"></span>
+    <span class="gate-btn" aria-hidden="true">
+      <span class="gate-streak"></span>
+      <span class="gate-dome"></span>
+      <span class="gate-label"><span class="st1">✧</span><span class="st2">✦</span><span class="gate-text">Start Intro</span></span>
+    </span>
+  </button>
   <div class="intro" id="intro" hidden>
     <div class="intro-clip" id="intro-clip">
       <div class="intro-stage" id="intro-stage"></div>
@@ -161,9 +199,13 @@
         <!-- View Mode Switcher -->
         <div class="catalog-view-bar">
           <div class="catalog-view-toggle neu" role="tablist" aria-label="รูปแบบมุมมองอุปกรณ์">
+            <button type="button" class="view-toggle-btn" id="view-stream-btn" role="tab" aria-selected="false" aria-controls="catalog-stream-stage">
+              <svg class="ui-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m8 17 4 4 4-4"/></svg>
+              <span>1. แอนิเมชันเปิดตัว</span>
+            </button>
             <button type="button" class="view-toggle-btn active" id="view-coverflow-btn" role="tab" aria-selected="true" aria-controls="coverflow-wrap">
               <svg class="ui-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="14" x="3" y="5" rx="2"/><path d="M7 5V3M17 5V3M7 19v2M17 19v2"/></svg>
-              <span>3D Coverflow</span>
+              <span>2. 3D Coverflow</span>
             </button>
             <button type="button" class="view-toggle-btn" id="view-grid-btn" role="tab" aria-selected="false" aria-controls="product-list">
               <svg class="ui-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
@@ -172,8 +214,32 @@
           </div>
         </div>
 
-        <!-- 3D Coverflow Carousel Section (@ruixen.ui/components/coverflow-carousel) -->
-        <div class="coverflow-wrap" id="coverflow-wrap">
+        <!-- Showcase Zone (Dual Animation Sequence) -->
+        <div class="showcase-zone" id="showcase-zone">
+          <!-- Animation 1: Stream Corridor Intro (@ruixen.ui/components/image-stream-hero) -->
+          <div class="stream-corridor-intro" id="catalog-stream-stage" hidden>
+            <div class="stream-intro-banner">
+              <div class="stream-pulse"></div>
+              <span class="stream-intro-caption">✦ IoT HARDWARE STREAM — กำลังเปิดระบบโมเดลอุปกรณ์ 3D...</span>
+              <button type="button" class="stream-skip-btn" id="stream-skip-btn">ข้ามไปยัง 3D Coverflow ➔</button>
+            </div>
+            <div class="stream-intro-corridor" id="stream-intro-corridor">
+              <div class="stream-rail stream-rail-left" id="catalog-stream-rail-left"></div>
+              <div class="stream-vanishing-hub">
+                <div class="vanishing-core">
+                  <svg class="ui-svg core-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2"/></svg>
+                  <span class="core-label">IoT CORE</span>
+                </div>
+              </div>
+              <div class="stream-rail stream-rail-right" id="catalog-stream-rail-right"></div>
+            </div>
+            <div class="stream-progress-track">
+              <div class="stream-progress-fill" id="stream-progress-fill"></div>
+            </div>
+          </div>
+
+          <!-- 3D Coverflow Carousel Section (@ruixen.ui/components/coverflow-carousel) -->
+          <div class="coverflow-wrap" id="coverflow-wrap">
           <div class="coverflow-stage" id="coverflow-stage" tabindex="0" role="region" aria-label="3D Coverflow Carousel เลือกอุปกรณ์">
             <button class="coverflow-nav-btn prev-btn" id="coverflow-prev" type="button" aria-label="อุปกรณ์ก่อนหน้า">
               <svg class="ui-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
@@ -212,6 +278,7 @@
           <!-- Coverflow Pagination Indicators -->
           <div class="coverflow-dots" id="coverflow-dots"></div>
         </div>
+      </div>
 
         <div class="product-grid" id="product-list" hidden></div>
         <div class="empty-state neu" id="empty-state" hidden><svg class="ui-svg empty-search-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>

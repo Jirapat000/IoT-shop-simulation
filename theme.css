@@ -84,6 +84,7 @@
   /* surfaces: the brand navy, deepened, so off-white can serve as ink */
   --bg-start: #0d1c31; --bg-mid: #101f36; --bg-end: #0b1728;
   --bg-glow-1: rgba(63, 114, 175, .16); --bg-glow-2: rgba(143, 175, 220, .10);
+  --surface: #132238;
   --tint: #16263d; --tint-2: #1b2c46; --tint-3: #22354f;
   --glass: rgba(22, 38, 61, .72); --glass-strong: rgba(24, 41, 66, .94);
   --card: rgba(27, 44, 70, .82); --card-hover: rgba(34, 53, 82, .9);
@@ -3642,32 +3643,46 @@ body.intro-playing .floating-cart-pill,
 
 .stream-card {
   flex: none;
-  width: 155px;
-  height: 180px;
-  background: var(--surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: 18px;
-  padding: 12px 10px;
+  width: 175px;
+  height: 220px;
+  border-radius: 20px;
+  background: var(--surface, #132238);
+  border: 1px solid var(--border, rgba(123, 167, 221, 0.3));
+  padding: 16px 14px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
   cursor: pointer;
   transition: transform 0.25s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.25s cubic-bezier(0.2, 0, 0, 1), border-color 0.2s;
   text-decoration: none;
   color: var(--ink);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+:root[data-theme="dark"] .stream-card {
+  background: linear-gradient(155deg, rgba(23, 37, 60, 0.96), rgba(13, 23, 38, 0.98));
+  border: 1px solid rgba(123, 167, 221, 0.35);
+  color: #ffffff;
+}
+
+:root:not([data-theme="dark"]) .stream-card {
+  background: linear-gradient(155deg, #ffffff, #f0f4f9);
+  border: 1px solid rgba(63, 114, 175, 0.22);
+  color: #112d4e;
 }
 
 .stream-card:hover {
   transform: scale(1.08) translateZ(30px);
-  border-color: var(--accent);
-  box-shadow: 0 16px 36px rgba(77, 107, 254, 0.2);
+  border-color: #38bdf8;
+  box-shadow: 0 20px 45px rgba(56, 189, 248, 0.3);
 }
 
 .stream-card-art {
-  width: 100px;
-  height: 65px;
+  width: 110px;
+  height: 75px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3676,68 +3691,88 @@ body.intro-playing .floating-cart-pill,
 .stream-card-art svg {
   width: 100%;
   height: 100%;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25));
 }
 
-.stream-card-info {
+.stream-card-body {
   width: 100%;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
 }
 
 .stream-card-title {
-  font-size: 11px;
-  font-weight: 700;
+  font-size: 15px;
+  font-weight: 800;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-bottom: 2px;
+  max-width: 100%;
+  color: #ffffff;
 }
 
-.stream-card-chip {
-  font-size: 10px;
-  color: var(--ink-2);
+:root:not([data-theme="dark"]) .stream-card-title {
+  color: #0f172a;
 }
 
-.stream-card-foot {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  font-size: 10px;
-  padding-top: 6px;
-  border-top: 1px solid var(--border-subtle);
+.stream-card-sub {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #94a3b8;
+}
+
+:root:not([data-theme="dark"]) .stream-card-sub {
+  color: #64748b;
 }
 
 .stream-card-badge {
-  font-size: 8px;
-  font-weight: 700;
-  padding: 2px 6px;
+  align-self: flex-start;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 3px 8px;
   border-radius: 6px;
-  background: var(--tint);
-  color: var(--accent);
+  background: rgba(56, 189, 248, 0.2);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  letter-spacing: 0.5px;
+}
+
+:root:not([data-theme="dark"]) .stream-card-badge {
+  background: rgba(63, 114, 175, 0.12);
+  color: #1d4ed8;
+  border-color: rgba(29, 78, 216, 0.25);
 }
 
 .stream-card-price {
+  font-size: 15px;
   font-weight: 800;
-  color: var(--accent);
+  color: #4ade80;
+  margin-top: 2px;
+}
+
+:root:not([data-theme="dark"]) .stream-card-price {
+  color: #16a34a;
 }
 
 /* ==========================================================================
-   COVERFLOW CAROUSEL (@ruixen.ui/components/coverflow-carousel)
+   SHOWCASE ZONE & DUAL ANIMATION SEQUENCE
    ========================================================================== */
 .catalog-view-bar {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 18px 0 24px;
+  margin: 22px 0 28px;
 }
 
 .catalog-view-toggle {
   display: inline-flex;
-  padding: 4px;
-  border-radius: 14px;
-  background: var(--surface);
-  border: 1px solid var(--border-subtle);
-  gap: 4px;
+  padding: 5px;
+  border-radius: 16px;
+  background: var(--surface, #132238);
+  border: 1px solid var(--border-medium, rgba(123, 167, 221, 0.25));
+  gap: 6px;
   box-shadow: var(--shadow-sm);
 }
 
@@ -3745,42 +3780,134 @@ body.intro-playing .floating-cart-pill,
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 16px;
-  border-radius: 10px;
+  padding: 10px 18px;
+  border-radius: 12px;
   border: none;
   background: transparent;
   color: var(--ink-2);
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 13.5px;
+  font-weight: 700;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
 }
 
 .view-toggle-btn:hover {
   color: var(--ink);
+  background: rgba(123, 167, 221, 0.1);
 }
 
 .view-toggle-btn.active {
   background: var(--accent);
   color: #ffffff;
-  box-shadow: 0 4px 12px rgba(63, 114, 175, 0.25);
+  box-shadow: 0 4px 16px rgba(63, 114, 175, 0.35);
 }
 
+.showcase-zone {
+  position: relative;
+  width: 100%;
+  min-height: 480px;
+}
+
+/* Phase 1: Stream Corridor Intro inside Catalog */
+.stream-corridor-intro {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto 36px;
+  border-radius: 28px;
+  background: radial-gradient(ellipse at 50% 50%, rgba(56, 189, 248, 0.08), transparent 70%), var(--surface, #0f1c30);
+  border: 1px solid var(--border-medium, rgba(123, 167, 221, 0.25));
+  padding: 24px 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.stream-intro-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 18px;
+  margin-bottom: 14px;
+  border-radius: 14px;
+  background: rgba(18, 30, 48, 0.7);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+}
+
+.stream-intro-caption {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #38bdf8;
+  letter-spacing: 0.4px;
+}
+
+.stream-skip-btn {
+  background: var(--accent);
+  color: #ffffff;
+  border: none;
+  padding: 7px 15px;
+  border-radius: 10px;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  white-space: nowrap;
+}
+
+.stream-skip-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(63, 114, 175, 0.4);
+}
+
+.stream-intro-corridor {
+  position: relative;
+  height: 250px;
+  width: 100%;
+  perspective: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transform-style: preserve-3d;
+}
+
+.stream-progress-track {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  margin-top: 18px;
+  overflow: hidden;
+}
+
+.stream-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #38bdf8, #818cf8);
+  border-radius: 9999px;
+  transition: width 0.1s linear;
+}
+
+/* ==========================================================================
+   COVERFLOW CAROUSEL (@ruixen.ui/components/coverflow-carousel)
+   ========================================================================== */
 .coverflow-wrap {
   width: 100%;
-  max-width: 1050px;
+  max-width: 1100px;
   margin: 0 auto 36px;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
+  transition: opacity 0.45s ease, transform 0.45s ease;
 }
 
 .coverflow-stage {
   position: relative;
   width: 100%;
-  height: 380px;
-  perspective: 1100px;
+  height: 420px;
+  perspective: 1200px;
   transform-style: preserve-3d;
   display: flex;
   align-items: center;
@@ -3805,16 +3932,17 @@ body.intro-playing .floating-cart-pill,
   transform-style: preserve-3d;
 }
 
-/* Individual Coverflow Card */
+/* Individual Coverflow Card - CENTERED BY DEFAULT */
 .coverflow-card {
   position: absolute;
-  width: 250px;
-  height: 330px;
-  border-radius: 24px;
-  background: var(--surface);
-  border: 1px solid var(--border-subtle);
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
-  padding: 20px 18px 18px;
+  left: 50%;
+  top: 50%;
+  width: 270px;
+  height: 360px;
+  margin-left: -135px;
+  margin-top: -180px;
+  border-radius: 26px;
+  padding: 22px 20px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -3824,64 +3952,95 @@ body.intro-playing .floating-cart-pill,
   transform-style: preserve-3d;
   will-change: transform, opacity;
   backface-visibility: hidden;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+:root[data-theme="dark"] .coverflow-card {
+  background: linear-gradient(155deg, rgba(23, 37, 60, 0.96), rgba(13, 23, 38, 0.98));
+  border: 1px solid rgba(123, 167, 221, 0.35);
+  box-shadow: 0 25px 55px rgba(0, 0, 0, 0.55), 0 0 30px rgba(63, 114, 175, 0.18);
+  color: #ffffff;
+}
+
+:root:not([data-theme="dark"]) .coverflow-card {
+  background: linear-gradient(155deg, #ffffff, #f0f4f9);
+  border: 1px solid rgba(63, 114, 175, 0.22);
+  box-shadow: 0 20px 45px rgba(17, 45, 78, 0.12);
+  color: #112d4e;
 }
 
 .coverflow-card.active {
-  border-color: rgba(77, 107, 254, 0.5);
-  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.18), 0 0 35px rgba(77, 107, 254, 0.22);
+  border-color: #38bdf8 !important;
+  box-shadow: 0 32px 75px rgba(0, 0, 0, 0.65), 0 0 45px rgba(56, 189, 248, 0.45) !important;
+}
+
+.coverflow-card-cat {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 8px;
+  background: rgba(56, 189, 248, 0.2);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.35);
+}
+
+:root:not([data-theme="dark"]) .coverflow-card-cat {
+  background: rgba(63, 114, 175, 0.12);
+  color: #1d4ed8;
+  border-color: rgba(29, 78, 216, 0.25);
 }
 
 .coverflow-card-art {
-  width: 170px;
-  height: 120px;
+  width: 155px;
+  height: 105px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 6px;
+  margin: 6px 0;
 }
 
 .coverflow-card-art svg {
   width: 100%;
   height: 100%;
-  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.1));
-}
-
-.coverflow-card-badge {
-  align-self: flex-start;
-  font-size: 10px;
-  font-weight: 700;
-  padding: 3px 8px;
-  border-radius: 8px;
-  background: var(--tint);
-  color: var(--accent);
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.35));
 }
 
 .coverflow-card-name {
-  font-size: 15px;
-  font-weight: 700;
-  text-align: center;
-  margin: 8px 0 2px;
-}
-
-.coverflow-card-chip {
-  font-size: 11px;
-  color: var(--ink-2);
-  margin-bottom: 6px;
-}
-
-.coverflow-card-foot {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding-top: 10px;
-  border-top: 1px solid var(--border-subtle);
-}
-
-.coverflow-card-price {
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 800;
-  color: var(--accent);
+  text-align: center;
+  margin: 6px 0 2px;
+  color: #ffffff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+:root:not([data-theme="dark"]) .coverflow-card-name {
+  color: #0f172a;
+  text-shadow: none;
+}
+
+.coverflow-card.active .coverflow-card-name {
+  color: #38bdf8;
+  text-shadow: 0 0 15px rgba(56, 189, 248, 0.45);
+}
+
+:root:not([data-theme="dark"]) .coverflow-card.active .coverflow-card-name {
+  color: #1d4ed8;
+  text-shadow: none;
+}
+
+.coverflow-card-sub {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #cbd5e1;
+  text-align: center;
+}
+
+:root:not([data-theme="dark"]) .coverflow-card-sub {
+  color: #475569;
 }
 
 /* Nav Buttons */
@@ -3889,17 +4048,17 @@ body.intro-playing .floating-cart-pill,
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  background: var(--surface);
-  border: 1px solid var(--border-subtle);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+  background: var(--surface, #132238);
+  border: 1px solid var(--border-medium, rgba(123, 167, 221, 0.3));
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 30;
+  z-index: 35;
   color: var(--ink);
   transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), background-color 0.2s, box-shadow 0.2s;
 }
@@ -3908,109 +4067,119 @@ body.intro-playing .floating-cart-pill,
   transform: translateY(-50%) scale(1.1);
   background: var(--accent);
   color: #ffffff;
-  box-shadow: 0 14px 30px rgba(63, 114, 175, 0.3);
+  box-shadow: 0 16px 36px rgba(63, 114, 175, 0.4);
 }
 
 .coverflow-nav-btn.prev-btn {
-  left: 10px;
+  left: 15px;
 }
 
 .coverflow-nav-btn.next-btn {
-  right: 10px;
+  right: 15px;
 }
 
 /* Spotlight metadata panel below the Coverflow */
 .coverflow-spotlight {
   width: 100%;
-  max-width: 620px;
-  border-radius: 20px;
-  padding: 20px 26px;
-  margin-top: 16px;
+  max-width: 660px;
+  border-radius: 22px;
+  padding: 24px 30px;
+  margin-top: 20px;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: var(--surface);
-  border: 1px solid var(--border-subtle);
-  box-shadow: var(--shadow-md);
+  background: var(--surface, #132238);
+  border: 1px solid var(--border-medium, rgba(123, 167, 221, 0.25));
+  box-shadow: var(--shadow-md, 0 20px 50px rgba(0, 0, 0, 0.3));
 }
 
 .spotlight-header {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 4px;
+  gap: 12px;
+  margin-bottom: 6px;
 }
 
 .spotlight-cat {
-  font-size: 11px;
-  font-weight: 700;
+  font-size: 13px;
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.8px;
-  color: var(--ink-2);
+  color: #38bdf8;
+}
+
+:root:not([data-theme="dark"]) .spotlight-cat {
+  color: #1d4ed8;
 }
 
 .spotlight-badge {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
-  padding: 2px 8px;
+  padding: 3px 10px;
   border-radius: 6px;
-  background: var(--tint);
+  background: var(--tint-2, rgba(63, 114, 175, 0.15));
   color: var(--accent);
 }
 
 .spotlight-title {
-  font-size: 22px;
+  font-size: 26px;
   font-weight: 800;
-  margin: 4px 0 6px;
+  margin: 6px 0 8px;
   color: var(--ink);
 }
 
 .spotlight-blurb {
-  font-size: 13px;
+  font-size: 15.5px;
   color: var(--ink-2);
-  line-height: 1.6;
-  margin: 0 0 14px;
-  max-width: 480px;
+  line-height: 1.65;
+  margin: 0 0 16px;
+  max-width: 520px;
 }
 
 .spotlight-meta {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 18px;
+  gap: 14px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .spotlight-chip,
 .spotlight-voltage {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
-  padding: 4px 10px;
-  background: var(--tint-2);
-  border-radius: 8px;
+  padding: 5px 12px;
+  background: var(--tint-2, rgba(123, 167, 221, 0.12));
+  border-radius: 9px;
   color: var(--ink);
 }
 
 .spotlight-price {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 800;
-  color: var(--accent);
+  color: #4ade80;
+}
+
+:root:not([data-theme="dark"]) .spotlight-price {
+  color: #16a34a;
 }
 
 .spotlight-actions {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
 
 .spotlight-detail-btn,
 .spotlight-cart-btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 18px;
-  border-radius: 12px;
-  font-size: 13px;
+  gap: 9px;
+  padding: 12px 22px;
+  border-radius: 14px;
+  font-size: 15px;
   font-weight: 700;
   cursor: pointer;
   transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.2s;
@@ -4024,7 +4193,7 @@ body.intro-playing .floating-cart-pill,
 
 .spotlight-cart-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(63, 114, 175, 0.35);
+  box-shadow: 0 8px 24px rgba(63, 114, 175, 0.4);
 }
 
 /* Pagination Dots */
@@ -4032,14 +4201,14 @@ body.intro-playing .floating-cart-pill,
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-top: 18px;
+  margin-top: 20px;
 }
 
 .coverflow-dot {
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-  background: var(--border-medium);
+  background: var(--border-medium, rgba(123, 167, 221, 0.3));
   border: none;
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.2, 0, 0, 1);
@@ -4047,36 +4216,147 @@ body.intro-playing .floating-cart-pill,
 }
 
 .coverflow-dot.active {
-  width: 26px;
+  width: 28px;
   border-radius: 9999px;
   background: var(--accent);
 }
 
+/* ==========================================================================
+   GLOBAL FONT SCALING & READABILITY (PrintAble4U)
+   ========================================================================== */
+html {
+  font-size: 16px;
+}
+
+body {
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* Topbar & Nav */
+.brand { font-size: 22px; }
+.brand small { font-size: 11px; letter-spacing: 1.2px; }
+.nav-links a, .text-link { font-size: 15px; font-weight: 600; }
+.language { font-size: 13.5px; }
+.button, .nav-cta { font-size: 14px; }
+
+/* Hero */
+.eyebrow { font-size: 13px; letter-spacing: 0.4px; }
+.hero-lede { font-size: 17px; line-height: 1.85; max-width: 480px; }
+.hero-proof { font-size: 13px; }
+.hero-proof strong { font-size: 14px; }
+.hero-proof small { font-size: 12px; }
+.hero-proof .proof-count { font-size: 24px; }
+.hero-scroll { font-size: 13px; }
+
+/* Section Headings */
+.section-heading h2, .learn-copy h2, .shops-card h2 { font-size: 32px; }
+.section-heading p { font-size: 15px; }
+.eyebrow.muted { font-size: 12.5px; letter-spacing: 1px; }
+
+/* Category Bento */
+.category-card b { font-size: 16px; }
+.category-card small { font-size: 13px; }
+.category-index { font-size: 13px; }
+
+/* Catalog Tools & Filters */
+.catalog-count { font-size: 14px; }
+.catalog-count #result-count { font-size: 24px; }
+.search input { font-size: 15px; }
+.search kbd { font-size: 11.5px; }
+.filter-pill { font-size: 13.5px; padding: 9px 15px; }
+.sort-wrap { font-size: 13.5px; }
+.sort-wrap select { font-size: 13.5px; }
+
+/* Product Cards in Grid */
+.product-kind { font-size: 12px; letter-spacing: 0.8px; font-weight: 700; }
+.product-info h3 { font-size: 17px; line-height: 1.4; }
+.product-info p { font-size: 14px; line-height: 1.6; }
+.product-tags span { font-size: 12px; padding: 4px 8px; }
+.visual-badge { font-size: 12px; padding: 4px 8px; }
+.price-info small { font-size: 11px; }
+.price-info strong { font-size: 16px; }
+.compare-check { font-size: 13px; }
+.detail-link { font-size: 13.5px; }
+
+/* Learn Section */
+.learn-copy p { font-size: 16px; }
+.path-step small { font-size: 12px; }
+.path-step h3 { font-size: 16px; }
+.path-step p { font-size: 13.5px; }
+.step-icon { font-size: 13px; }
+
+/* Project Section */
+.project-time { font-size: 12px; }
+.project-card h3 { font-size: 17px; }
+.project-card p { font-size: 14px; }
+.bom-label { font-size: 12px; }
+.bom-items span { font-size: 12.5px; padding: 5px 9px; }
+.project-card .text-link { font-size: 13px; }
+
+/* Shops Section */
+.shops-card>div:first-child p { font-size: 14.5px; }
+.shop-link b { font-size: 14px; }
+.shop-link small { font-size: 12px; }
+.shop-note { font-size: 12.5px; }
+
+/* Compare Tray & Dialog */
+.compare-tray b { font-size: 13.5px; }
+.compare-tray small { font-size: 11.5px; }
+.compare-chip { font-size: 12.5px; }
+.compare-table { font-size: 13px; }
+.compare-table th { font-size: 14px; }
+.compare-table small { font-size: 11px; }
+.spec-row small { font-size: 12px; }
+.spec-row b { font-size: 14px; }
+.detail-layout h2 { font-size: 26px; }
+.detail-layout p { font-size: 14.5px; }
+.detail-chips span { font-size: 12.5px; }
+
+/* Footer */
+.footer-top>p { font-size: 13.5px; }
+.back-top { font-size: 13.5px; }
+.footer-bottom { font-size: 12px; }
+
 /* Mobile responsiveness */
 @media (max-width: 650px) {
+  html {
+    font-size: 15px;
+  }
   .stream-corridor {
     height: 190px;
   }
   .stream-card {
-    width: 130px;
-    height: 155px;
+    width: 140px;
+    height: 175px;
     padding: 10px 8px;
   }
   .stream-card-art {
-    width: 80px;
-    height: 52px;
+    width: 85px;
+    height: 55px;
+  }
+  .stream-card-title {
+    font-size: 13px;
+  }
+  .stream-card-price {
+    font-size: 13.5px;
   }
   .coverflow-stage {
-    height: 330px;
+    height: 350px;
   }
   .coverflow-card {
-    width: 210px;
-    height: 290px;
+    width: 220px;
+    height: 310px;
+    margin-left: -110px;
+    margin-top: -155px;
     padding: 16px 14px 14px;
   }
   .coverflow-card-art {
-    width: 140px;
-    height: 95px;
+    width: 150px;
+    height: 105px;
+  }
+  .coverflow-card-name {
+    font-size: 16px;
   }
   .spotlight-actions {
     flex-direction: column;
@@ -4086,5 +4366,11 @@ body.intro-playing .floating-cart-pill,
   .spotlight-cart-btn {
     width: 100%;
     justify-content: center;
+  }
+  .spotlight-title {
+    font-size: 22px;
+  }
+  .spotlight-blurb {
+    font-size: 14px;
   }
 }
