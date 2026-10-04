@@ -973,15 +973,226 @@ const products = [
   }
 ];
 window.products = products;
-const categories=['all','boards','iot','sensors','modules'];let locale=localStorage.getItem('iothub-locale')||'th';let activeCategory='all';let query='';let selected=[];const $=s=>document.querySelector(s);const $$=s=>[...document.querySelectorAll(s)];const t=(key)=>copy[locale][key]||copy.en[key]||key;const name=(p)=>p.name;const localized=(x)=>typeof x==='string'?x:x[locale];
+const categories=['all','boards','iot','sensors','modules'];let locale=localStorage.getItem('iothub-locale')||'th';let activeCategory='all';let query='';let selected=[];let coverflowIndex=0;let coverflowList=[];let catalogView='coverflow';let coverflowEventsBound=false;const $=s=>document.querySelector(s);const $$=s=>[...document.querySelectorAll(s)];const t=(key)=>copy[locale][key]||copy.en[key]||key;const name=(p)=>p.name;const localized=(x)=>typeof x==='string'?x:x[locale];
 function boardSvg(type){const base=(inner,w='100',h='66')=>`<svg viewBox="0 0 120 82" aria-hidden="true"><rect x="10" y="10" width="100" height="62" rx="7" fill="${inner}" stroke="#f2f0de" stroke-width="2"/><circle cx="17" cy="17" r="2.5" fill="#ddd3a0"/><circle cx="103" cy="17" r="2.5" fill="#ddd3a0"/><circle cx="17" cy="65" r="2.5" fill="#ddd3a0"/><circle cx="103" cy="65" r="2.5" fill="#ddd3a0"/>${type==='esp32'?'<rect x="40" y="24" width="40" height="31" rx="3" fill="#222b31" stroke="#b8b8ae"/><path d="M44 29h32M44 34h32M44 39h32" stroke="#596466"/><text x="60" y="49" fill="#d7ddda" font-size="6" text-anchor="middle">ESP32</text>':type==='sensor'?'<rect x="43" y="22" width="34" height="40" rx="5" fill="#f0f0e8" stroke="#bbb9aa"/><path d="M48 32h24M48 38h24M48 44h24M48 50h24" stroke="#b7b5a6"/><text x="60" y="59" fill="#89877b" font-size="5" text-anchor="middle">DHT22</text>':type==='ultra'?'<circle cx="43" cy="40" r="13" fill="#bcc4c6" stroke="#eef0eb" stroke-width="2"/><circle cx="77" cy="40" r="13" fill="#bcc4c6" stroke="#eef0eb" stroke-width="2"/><circle cx="43" cy="40" r="8" fill="#67777a"/><circle cx="77" cy="40" r="8" fill="#67777a"/><path d="M27 61h66" stroke="#d2bb77" stroke-width="3"/>':type==='relay'?'<rect x="27" y="22" width="66" height="39" rx="3" fill="#2e384b"/><rect x="34" y="29" width="24" height="24" rx="3" fill="#ccd0d0"/><rect x="63" y="29" width="24" height="24" rx="3" fill="#ccd0d0"/><circle cx="42" cy="41" r="4" fill="#697689"/><circle cx="71" cy="41" r="4" fill="#697689"/>':type==='servo'?'<rect x="42" y="19" width="37" height="43" rx="7" fill="#17232e"/><rect x="47" y="25" width="27" height="25" rx="4" fill="#242f39"/><path d="M60 19V10M43 11h34" stroke="#e8e9e4" stroke-width="3" stroke-linecap="round"/><path d="M60 12v7" stroke="#d7b768" stroke-width="3"/>':`<rect x="37" y="25" width="46" height="32" rx="3" fill="#1c242a" stroke="#909897"/><rect x="48" y="32" width="24" height="17" rx="2" fill="#30383a"/><path d="M14 24h-5m5 7h-5m5 7h-5m5 7h-5m5 7h-5m102-29h5m-5 7h5m-5 7h5m-5 7h5m-5 7h5" stroke="#d2b869" stroke-width="2"/>`}</svg>`;return base(type==='esp32'||type==='relay'?'#397261':type==='nano'?'#456b97':'#356e62')}
-function render(){document.documentElement.lang=locale;$$('[data-i18n]').forEach(el=>el.textContent=t(el.dataset.i18n));$$('[data-i18n-placeholder]').forEach(el=>el.placeholder=t(el.dataset.i18nPlaceholder));$$('[data-i18n-html]').forEach(el=>{let html=t(el.dataset.i18nHtml).replaceAll('< br>','<br>');if(el.matches('.hero h1')){const split=html.indexOf('<br>');if(split>=0)html=`<span class="hero-title-primary">${html.slice(0,split)}</span><span class="hero-title-secondary">${html.slice(split+4)}</span>`}el.innerHTML=html});$('#lang-toggle').innerHTML=locale==='th'?'TH <span>·</span> EN':'TH <span>·</span> EN';renderCategories();renderFilters();renderProducts();renderCompareTray()}
-function renderCategories(){const groups=[['boards','<svg class="ui-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2"/></svg>','uno-r3'],['iot','<svg class="ui-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13a10 10 0 0 1 14 0"/><path d="M8.5 16.5a5 5 0 0 1 7 0"/><path d="M2 8.82a15 15 0 0 1 20 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>','esp32-devkit'],['sensors','<svg class="ui-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>','dht22'],['modules','<svg class="ui-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>','relay-4ch']];$('#category-grid').innerHTML=groups.map(([key,icon,id],i)=>{const p=products.find(x=>x.id===id);return `<button class="category-card bento-${key}" data-cat="${key}" aria-label="${t('category.'+key)}: ${t('category.'+key+'Sub')}"><span class="category-card-top"><span class="category-icon">${icon}</span><span class="category-arrow"><svg class="ui-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span></span><span class="category-card-copy"><b>${t('category.'+key)}</b><small>${t('category.'+key+'Sub')}</small></span><span class="category-card-art">${productSvg(p)}</span><span class="category-index">0${i+1} <i> / 04</i></span></button>`}).join('');$$('.category-card').forEach(el=>el.onclick=()=>{activeCategory=el.dataset.cat;renderFilters();renderProducts();$('#products').scrollIntoView({behavior:'smooth'})})}
-function renderFilters(){const keys=categories.map(k=>`<button class="filter-pill ${k===activeCategory?'active':''}" data-cat="${k}">${t('catalog.'+k)}</button>`);$('#filter-pills').innerHTML=keys.join('');$$('.filter-pill').forEach(el=>el.onclick=()=>{activeCategory=el.dataset.cat;renderFilters();renderProducts()})}
+function render(){document.documentElement.lang=locale;$$('[data-i18n]').forEach(el=>el.textContent=t(el.dataset.i18n));$$('[data-i18n-placeholder]').forEach(el=>el.placeholder=t(el.dataset.i18nPlaceholder));$$('[data-i18n-html]').forEach(el=>{let html=t(el.dataset.i18nHtml).replaceAll('< br>','<br>');if(el.matches('.hero h1')){const split=html.indexOf('<br>');if(split>=0)html=`<span class="hero-title-primary">${html.slice(0,split)}</span><span class="hero-title-secondary">${html.slice(split+4)}</span>`}el.innerHTML=html});$('#lang-toggle').innerHTML=locale==='th'?'TH <span>·</span> EN':'TH <span>·</span> EN';renderCategories();renderFilters();renderProducts();renderHardwareStream();renderCoverflow();setupCoverflowEvents();renderCompareTray()}
+function renderCategories(){const groups=[['boards','<svg class="ui-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2"/></svg>','uno-r3'],['iot','<svg class="ui-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13a10 10 0 0 1 14 0"/><path d="M8.5 16.5a5 5 0 0 1 7 0"/><path d="M2 8.82a15 15 0 0 1 20 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>','esp32-devkit'],['sensors','<svg class="ui-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>','dht22'],['modules','<svg class="ui-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>','relay-4ch']];$('#category-grid').innerHTML=groups.map(([key,icon,id],i)=>{const p=products.find(x=>x.id===id);return `<button class="category-card bento-${key}" data-cat="${key}" aria-label="${t('category.'+key)}: ${t('category.'+key+'Sub')}"><span class="category-card-top"><span class="category-icon">${icon}</span><span class="category-arrow"><svg class="ui-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span></span><span class="category-card-copy"><b>${t('category.'+key)}</b><small>${t('category.'+key+'Sub')}</small></span><span class="category-card-art">${productSvg(p)}</span><span class="category-index">0${i+1} <i> / 04</i></span></button>`}).join('');$$('.category-card').forEach(el=>el.onclick=()=>{activeCategory=el.dataset.cat;renderFilters();renderProducts();renderCoverflow();$('#products').scrollIntoView({behavior:'smooth'})})}
+function renderFilters(){const keys=categories.map(k=>`<button class="filter-pill ${k===activeCategory?'active':''}" data-cat="${k}">${t('catalog.'+k)}</button>`);$('#filter-pills').innerHTML=keys.join('');$$('.filter-pill').forEach(el=>el.onclick=()=>{activeCategory=el.dataset.cat;renderFilters();renderProducts();renderCoverflow();})}
 function productSvg(p){return boardSvg(p.type)}
 function renderProducts(){let list=products.filter(p=>(activeCategory==='all'||p.category===activeCategory)&&`${p.name} ${p.chip} ${p.tags.join(' ')}`.toLowerCase().includes(query.toLowerCase()));const mode=$('#sort').value;if(mode==='name')list.sort((a,b)=>a.name.localeCompare(b.name));if(mode==='difficulty')list.sort((a,b)=>['beginner','intermediate','advanced'].indexOf(a.difficulty)-['beginner','intermediate','advanced'].indexOf(b.difficulty));$('#result-count').textContent=list.length;$('#empty-state').hidden=!!list.length;$('#product-list').innerHTML=list.map(p=>`<article class="product-card"><div class="product-visual visual-${p.visual}" data-detail="${p.id}"><span class="visual-badge">${p.difficulty==='beginner'?t('catalog.beginner'):p.difficulty==='intermediate'?t('catalog.intermediate'):t('catalog.advanced')}</span><button class="visual-save ${selected.includes(p.id)?'selected':''}" data-compare="${p.id}" aria-label="${t('catalog.compare')} ${p.name}">${selected.includes(p.id)?'✓':'+'}</button><div class="product-illustration">${productSvg(p)}</div></div><div class="product-info"><div class="product-kind">${p.category==='boards'?'Microcontroller':p.category==='iot'?'IoT & Wireless':p.category==='sensors'?'Sensor':'Module & Actuator'}</div><h3>${p.name}</h3><p>${localized(p.blurb)}</p><div class="product-tags">${p.tags.map(x=>`<span>${x}</span>`).join('')}</div><div class="product-foot"><div class="price-info"><small>${t('catalog.priceAsOf')}</small><strong class="product-price">฿${(p.price||99).toLocaleString()}</strong></div><div class="card-actions"><label class="compare-check"><input type="checkbox" data-compare="${p.id}" ${selected.includes(p.id)?'checked':''}>${t('catalog.compare')}</label><button class="detail-link" data-detail="${p.id}">${t('catalog.details')}</button></div></div></div></article>`).join('');$$('[data-detail]').forEach(el=>el.onclick=()=>openDetail(el.dataset.detail));$$('[data-compare]').forEach(el=>el.onchange=el.onclick=e=>{if(el.type==='checkbox')toggleCompare(el.dataset.compare,el.checked);else{e.preventDefault();e.stopPropagation();toggleCompare(el.dataset.compare,!selected.includes(el.dataset.compare))}});}
 function toggleCompare(id,add){if(add&&!selected.includes(id)){if(selected.length>=4){selected.shift()}selected.push(id)}else if(!add)selected=selected.filter(x=>x!==id);renderProducts();renderCompareTray()}
 function renderCompareTray(){$('#compare-tray').hidden=!selected.length;$('#compare-count').textContent=selected.length;$('#compare-items').innerHTML=selected.map(id=>`<span class="compare-chip">${name(products.find(p=>p.id===id))}</span>`).join('')}
+
+function renderHardwareStream(){
+  const leftRail=$('#stream-rail-left'),rightRail=$('#stream-rail-right');
+  if(!leftRail||!rightRail)return;
+  const evens=products.filter((_,i)=>i%2===0);
+  const odds=products.filter((_,i)=>i%2!==0);
+  const leftItems=[...evens,...evens,...evens];
+  const rightItems=[...odds,...odds,...odds];
+  const cardHtml=(p)=>`<div class="stream-card visual-${p.visual}" data-stream-id="${p.id}" role="button" tabindex="0" title="${p.name}"><span class="stream-card-badge">${p.category.toUpperCase()}</span><div class="stream-card-art">${productSvg(p)}</div><div class="stream-card-body"><div class="stream-card-title">${p.name}</div><div class="stream-card-sub">${p.chip||''}</div><div class="stream-card-price">฿${(p.price||99).toLocaleString()}</div></div></div>`;
+  leftRail.innerHTML=leftItems.map(cardHtml).join('');
+  rightRail.innerHTML=rightItems.map(cardHtml).join('');
+  $$('.stream-card').forEach(card=>{
+    card.onclick=()=>{
+      const id=card.dataset.streamId;
+      if(id)onStreamItemClick(id);
+    };
+  });
+}
+
+function onStreamItemClick(id){
+  activeCategory='all';
+  query='';
+  if($('#search'))$('#search').value='';
+  renderFilters();
+  setCatalogView('coverflow');
+  renderProducts();
+  renderCoverflow();
+  const idx=coverflowList.findIndex(p=>p.id===id);
+  if(idx!==-1)focusCoverflowItem(idx);
+  const target=document.getElementById('products');
+  if(target)target.scrollIntoView({behavior:'smooth'});
+}
+
+function setCatalogView(mode){
+  catalogView=mode;
+  const coverflowWrap=$('#coverflow-wrap');
+  const productList=$('#product-list');
+  const viewCoverflowBtn=$('#view-coverflow-btn');
+  const viewGridBtn=$('#view-grid-btn');
+  if(mode==='coverflow'){
+    if(coverflowWrap)coverflowWrap.hidden=false;
+    if(productList)productList.hidden=true;
+    if(viewCoverflowBtn)viewCoverflowBtn.classList.add('active');
+    if(viewGridBtn)viewGridBtn.classList.remove('active');
+    updateCoverflow();
+  }else{
+    if(coverflowWrap)coverflowWrap.hidden=true;
+    if(productList)productList.hidden=false;
+    if(viewCoverflowBtn)viewCoverflowBtn.classList.remove('active');
+    if(viewGridBtn)viewGridBtn.classList.add('active');
+  }
+}
+
+function renderCoverflow(){
+  const track=$('#coverflow-track');
+  const dotsContainer=$('#coverflow-dots');
+  if(!track)return;
+  coverflowList=products.filter(p=>(activeCategory==='all'||p.category===activeCategory)&&`${p.name} ${p.chip} ${p.tags.join(' ')}`.toLowerCase().includes(query.toLowerCase()));
+  const mode=$('#sort')?$('#sort').value:'default';
+  if(mode==='name')coverflowList.sort((a,b)=>a.name.localeCompare(b.name));
+  if(mode==='difficulty')coverflowList.sort((a,b)=>['beginner','intermediate','advanced'].indexOf(a.difficulty)-['beginner','intermediate','advanced'].indexOf(b.difficulty));
+  if(!coverflowList.length){
+    track.innerHTML='';
+    if(dotsContainer)dotsContainer.innerHTML='';
+    const spotlight=$('#coverflow-spotlight');
+    if(spotlight)spotlight.style.opacity='0';
+    return;
+  }
+  const spotlight=$('#coverflow-spotlight');
+  if(spotlight)spotlight.style.opacity='1';
+  if(coverflowIndex>=coverflowList.length){
+    coverflowIndex=Math.max(0,coverflowList.length-1);
+  }
+  track.innerHTML=coverflowList.map((p,idx)=>`
+    <div class="coverflow-card visual-${p.visual} ${idx===coverflowIndex?'active':''}" data-idx="${idx}" data-id="${p.id}" role="button" tabindex="0" aria-label="${p.name}">
+      <span class="coverflow-card-cat">${p.category.toUpperCase()}</span>
+      <div class="coverflow-card-art">${productSvg(p)}</div>
+      <div class="coverflow-card-name">${p.name}</div>
+      <div class="coverflow-card-sub">${p.chip||''}</div>
+    </div>
+  `).join('');
+  if(dotsContainer){
+    dotsContainer.innerHTML=coverflowList.map((_,idx)=>`
+      <button class="coverflow-dot ${idx===coverflowIndex?'active':''}" data-idx="${idx}" aria-label="Slide ${idx+1}"></button>
+    `).join('');
+    dotsContainer.querySelectorAll('.coverflow-dot').forEach(dot=>{
+      dot.onclick=()=>focusCoverflowItem(parseInt(dot.dataset.idx,10));
+    });
+  }
+  track.querySelectorAll('.coverflow-card').forEach(card=>{
+    card.onclick=()=>{
+      const idx=parseInt(card.dataset.idx,10);
+      if(idx===coverflowIndex)openDetail(card.dataset.id);
+      else focusCoverflowItem(idx);
+    };
+  });
+  updateCoverflow();
+}
+
+function focusCoverflowItem(index){
+  if(index<0||index>=coverflowList.length)return;
+  coverflowIndex=index;
+  updateCoverflow();
+}
+
+function updateCoverflow(){
+  const cards=$$('.coverflow-card');
+  const dots=$$('.coverflow-dot');
+  if(!cards.length)return;
+  cards.forEach((card,i)=>{
+    const offset=i-coverflowIndex;
+    const abs=Math.abs(offset);
+    if(offset===0){
+      card.style.transform=`translateX(-50%) translate3d(0, 0, 80px) rotateY(0deg) scale(1.05)`;
+      card.style.zIndex='30';
+      card.style.opacity='1';
+      card.classList.add('active');
+    }else{
+      const sign=Math.sign(offset);
+      const translateX=offset*175+(sign*65);
+      const translateZ=-abs*85;
+      const rotateY=-sign*38;
+      const scale=Math.max(0.68,1-abs*0.12);
+      const opacity=Math.max(0.18,1-abs*0.25);
+      card.style.transform=`translateX(calc(-50% + ${translateX}px)) translate3d(0, 0, ${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`;
+      card.style.zIndex=String(20-abs);
+      card.style.opacity=String(opacity);
+      card.classList.remove('active');
+    }
+  });
+  dots.forEach((dot,i)=>{
+    dot.classList.toggle('active',i===coverflowIndex);
+  });
+  const p=coverflowList[coverflowIndex];
+  if(!p)return;
+  const catEl=$('#spotlight-cat');
+  const diffEl=$('#spotlight-diff');
+  const titleEl=$('#spotlight-title');
+  const blurbEl=$('#spotlight-blurb');
+  const chipEl=$('#spotlight-chip');
+  const voltEl=$('#spotlight-voltage');
+  const priceEl=$('#spotlight-price');
+  if(catEl)catEl.textContent=p.category==='boards'?'Microcontroller':p.category==='iot'?'IoT & Wireless':p.category==='sensors'?'Sensor':'Module & Actuator';
+  if(diffEl)diffEl.textContent=p.difficulty==='beginner'?t('catalog.beginner'):p.difficulty==='intermediate'?t('catalog.intermediate'):t('catalog.advanced');
+  if(titleEl)titleEl.textContent=p.name;
+  if(blurbEl)blurbEl.textContent=localized(p.blurb);
+  if(chipEl)chipEl.textContent=(locale==='th'?'ชิป: ':'Chip: ')+(p.chip||'-');
+  if(voltEl)voltEl.textContent=(locale==='th'?'แรงดัน: ':'Voltage: ')+(p.voltage||'-');
+  if(priceEl)priceEl.textContent=`฿${(p.price||99).toLocaleString()}`;
+  const detailBtn=$('#spotlight-detail-btn');
+  if(detailBtn)detailBtn.onclick=()=>openDetail(p.id);
+  const cartBtn=$('#spotlight-cart-btn');
+  if(cartBtn)cartBtn.onclick=()=>{if(window.IoTCart)window.IoTCart.add(p.id,1,true);};
+}
+
+function setupCoverflowEvents(){
+  if(coverflowEventsBound)return;
+  coverflowEventsBound=true;
+  const prevBtn=$('#coverflow-prev');
+  const nextBtn=$('#coverflow-next');
+  if(prevBtn){
+    prevBtn.onclick=(e)=>{
+      e.stopPropagation();
+      if(coverflowIndex>0)focusCoverflowItem(coverflowIndex-1);
+      else focusCoverflowItem(coverflowList.length-1);
+    };
+  }
+  if(nextBtn){
+    nextBtn.onclick=(e)=>{
+      e.stopPropagation();
+      if(coverflowIndex<coverflowList.length-1)focusCoverflowItem(coverflowIndex+1);
+      else focusCoverflowItem(0);
+    };
+  }
+  const viewCoverflowBtn=$('#view-coverflow-btn');
+  const viewGridBtn=$('#view-grid-btn');
+  if(viewCoverflowBtn)viewCoverflowBtn.onclick=()=>setCatalogView('coverflow');
+  if(viewGridBtn)viewGridBtn.onclick=()=>setCatalogView('grid');
+  const stage=$('#coverflow-stage');
+  if(stage){
+    let startX=0,isDragging=false;
+    stage.addEventListener('pointerdown',e=>{
+      if(e.target.closest('.coverflow-nav-btn'))return;
+      startX=e.clientX;
+      isDragging=true;
+    });
+    stage.addEventListener('pointerup',e=>{
+      if(!isDragging)return;
+      isDragging=false;
+      const diff=e.clientX-startX;
+      if(diff>45){
+        if(coverflowIndex>0)focusCoverflowItem(coverflowIndex-1);
+      }else if(diff<-45){
+        if(coverflowIndex<coverflowList.length-1)focusCoverflowItem(coverflowIndex+1);
+      }
+    });
+    stage.addEventListener('pointercancel',()=>{isDragging=false;});
+    stage.addEventListener('keydown',e=>{
+      if(e.key==='ArrowLeft'){
+        e.preventDefault();
+        if(coverflowIndex>0)focusCoverflowItem(coverflowIndex-1);
+      }else if(e.key==='ArrowRight'){
+        e.preventDefault();
+        if(coverflowIndex<coverflowList.length-1)focusCoverflowItem(coverflowIndex+1);
+      }else if(e.key==='Enter'){
+        const p=coverflowList[coverflowIndex];
+        if(p)openDetail(p.id);
+      }
+    });
+  }
+}
 function shopSearchUrl(p,shop){const domain=shop==='cybertice'?'www.cybertice.com':'www.allnewstep.com';return `https://www.google.com/search?q=${encodeURIComponent(`site:${domain}/product/ ${p.name}`)}`}
 function shopSearchLabel(p,shop){const shopName=shop==='cybertice'?'CyberTice':'AllNewStep';return locale==='th'?`ค้นหาที่ร้าน ${shopName}`:`Search at ${shopName}`}
 function escapeHtml(s) {
@@ -1185,6 +1396,6 @@ const sceneToken=(name,fallback)=>{const v=getComputedStyle(document.documentEle
 const hemiGround=sceneToken('--scene-ground','#788091'),keyLight=sceneToken('--scene-key','#ffffff'),fillLight=sceneToken('--scene-fill','#aecbff');
 scene.add(new T.HemisphereLight(0xffffff,hemiGround,2));const key=new T.DirectionalLight(keyLight,3);key.position.set(3,5,4);scene.add(key);const fill=new T.DirectionalLight(fillLight,1.2);fill.position.set(-3,2,-3);scene.add(fill);const model=new T.Group();scene.add(model);const mat=(c,m=0,r=.45)=>new T.MeshStandardMaterial({color:c,metalness:m,roughness:r});const pcb=mat(p.type==='relay'?0x354b60:p.type==='nano'?0x376b91:0x28745f,.14),gold=mat(0xd5b461,.78,.26),dark=mat(0x161d24,.12,.35),steel=mat(0xbac3c5,.8,.24),white=mat(0xe9e9df),blue=mat(0x4b6791);let w=.95,h=.6;if(p.type==='nano'){w=.7;h=.29}else if(p.type==='esp32'||p.type==='esp'){w=.88;h=.5}else if(p.type==='sensor'){w=.52;h=.42}else if(p.type==='ultra'){w=.75;h=.42}else if(p.type==='relay'){w=.95;h=.65}else if(p.type==='servo'){w=.48;h=.42}const box=(x,y,z,sx,sy,sz,m)=>{const o=new T.Mesh(new T.BoxGeometry(sx,sy,sz),m);o.position.set(x,y,z);o.castShadow=true;model.add(o)};const cyl=(x,y,z,r,d,m,rx=0)=>{const o=new T.Mesh(new T.CylinderGeometry(r,r,d,32),m);o.position.set(x,y,z);o.rotation.x=rx;o.castShadow=true;model.add(o)};box(0,0,0,w,.075,h,pcb);for(const side of [-1,1])for(let i=0;i<12;i++)box(-w*.4+i*w*.8/11,.078,side*h*.44,.026,.11,.026,gold);for(const x of [-w*.42,w*.42])for(const z of [-h*.36,h*.36]){cyl(x,.042,z,.038,.009,gold);cyl(x,.05,z,.019,.01,mat(0x88949a))}if(p.type==='ultra'){box(0,.07,0,w*.72,.035,h*.65,blue);for(const x of [-.22,.22]){cyl(x,.13,-.07,.18,.13,steel,Math.PI/2);cyl(x,.14,-.143,.14,.018,mat(0x66767b),Math.PI/2)}box(0,.12,.12,.2,.1,.14,dark)}else if(p.type==='relay'){box(0,.1,-.12,w*.75,.14,.24,blue);box(0,.1,.17,w*.75,.14,.24,blue);for(const x of [-.26,.26]){box(x,.21,-.12,.23,.19,.25,white);box(x,.21,.17,.23,.19,.25,white)}}else if(p.type==='servo'){box(0,.18,0,.46,.3,.42,mat(0x31527a));box(0,.35,0,.29,.05,.28,mat(0x263d59));cyl(0,.42,0,.07,.12,white);box(0,.49,0,.4,.035,.065,white);box(0,.49,0,.065,.035,.28,white)}else if(p.type==='sensor'){box(0,.11,0,.33,.15,.34,white);for(let i=0;i<4;i++)box(-.09+i*.06,.19,0,.02,.012,.27,mat(0xb9b9ae))}else{if(p.type==='esp32'||p.type==='esp'){box(0,.1,-h*.12,w*.69,.1,h*.35,mat(0xb7c0bf,.7,.3));box(0,.16,-h*.12,w*.53,.018,.045,mat(0x828f91,.7,.3));box(0,.12,h*.14,.3,.14,.24,dark)}else{box(0,.11,0,.32,.14,.27,dark);box(-.28,.11,0,.15,.12,.13,mat(0x333b40))}box(0,.055,h*.52,.23,.12,.13,steel);box(0,.057,h*.53,.12,.025,.085,mat(0x647276));box(-w*.3,.11,-h*.26,.12,.1,.09,white)}const d=Math.max(w,h)*4;camera.position.set(d*.78,d*.9,d*1.1);camera.lookAt(0,0,0);let auto=true,drag=false,px=0,py=0,raf;const down=e=>{drag=true;auto=false;px=e.clientX;py=e.clientY;renderer.domElement.setPointerCapture(e.pointerId)},move=e=>{if(!drag)return;model.rotation.y+=(e.clientX-px)*.009;model.rotation.x+=(e.clientY-py)*.009;px=e.clientX;py=e.clientY},up=()=>drag=false;renderer.domElement.addEventListener('pointerdown',down);renderer.domElement.addEventListener('pointermove',move);renderer.domElement.addEventListener('pointerup',up);renderer.domElement.addEventListener('pointercancel',up);$('#model-reset').onclick=()=>{model.rotation.set(0,0,0);auto=true};const resize=new ResizeObserver(()=>{if(!host.clientWidth)return;camera.aspect=host.clientWidth/host.clientHeight;camera.updateProjectionMatrix();renderer.setSize(host.clientWidth,host.clientHeight)});resize.observe(host);const draw=()=>{raf=requestAnimationFrame(draw);if(auto)model.rotation.y+=.002;renderer.render(scene,camera)};draw();modelCleanup=()=>{cancelAnimationFrame(raf);resize.disconnect();renderer.dispose();model.traverse(o=>{o.geometry?.dispose();if(Array.isArray(o.material))o.material.forEach(m=>m.dispose());else o.material?.dispose()});renderer.domElement.remove()}}catch(error){host.innerHTML=`<div class="model-fallback"><div class="product-illustration">${productSvg(p)}</div><span>${locale==='th'?'โมเดล 3D ใช้งานไม่ได้ · แสดงภาพตัวอย่าง':'3D unavailable · showing illustration'}</span></div>`;console.warn('3D viewer unavailable',error)}}function renderProjects(){const ps=[1,2,3];const icons=['<svg class="ui-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 20h10"/><path d="M12 20v-8"/><path d="M12 12c0-3 2.5-5 5-5 0 2.5-2 5-5 5Z"/><path d="M12 15c0-2.5-2-4.5-4.5-4.5 0 2 1.5 4.5 4.5 4.5Z"/></svg>','<svg class="ui-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>','<svg class="ui-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>'];$('#project-grid').innerHTML=ps.map((n,i)=>`<article class="project-card"><div class="project-top"><span class="project-emoji">${icons[i]}</span><span class="project-time">${t('project'+n+'.time')}</span></div><h3>${t('project'+n+'.title')}</h3><p>${t('project'+n+'.body')}</p><span class="bom-label">${t('projects.bom')}</span><div class="bom-items">${t('project'+n+'.bom').split(/,\s*|·\s*/).map(x=>`<span>${x}</span>`).join('')}</div><a class="text-link" href="#products">${t('projects.open')} <svg class="ui-svg text-link-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a></article>`).join('')}
 function openComparison(){const chosen=selected.map(id=>products.find(p=>p.id===id));if(!chosen.length){$('#compare-table').innerHTML=`<div class="compare-empty">${t('compare.hint')}</div>`;return}const rows=[['compare.price',p=>t('compare.noPrice')],['compare.chip',p=>p.chip],['compare.voltage',p=>p.voltage],['compare.pins',p=>p.pins],['compare.wireless',p=>p.wireless],['compare.difficulty',p=>t('catalog.'+p.difficulty)],['compare.shop',p=>p.shop==='cybertice'?'CyberTice':'AllNewStep']];$('#compare-table').innerHTML=`<table class="compare-table"><thead><tr><th>${t('compare.spec')}</th>${chosen.map(p=>`<th>${p.name}<small>${p.category.toUpperCase()}</small></th>`).join('')}</tr></thead><tbody>${rows.map(([key,fn])=>`<tr><td>${t(key)}</td>${chosen.map(p=>`<td>${fn(p)}</td>`).join('')}</tr>`).join('')}</tbody></table>`}
-$('#search').addEventListener('input',e=>{query=e.target.value;renderProducts()});$('#sort').addEventListener('change',renderProducts);$('#clear-filters').onclick=()=>{query='';activeCategory='all';$('#search').value='';renderFilters();renderProducts()};$('#lang-toggle').onclick=()=>{locale=locale==='th'?'en':'th';localStorage.setItem('iothub-locale',locale);render()};$('#compare-clear').onclick=()=>{selected=[];renderProducts();renderCompareTray()};$('#compare-open').onclick=()=>{openComparison();$('#compare-dialog').showModal()};$$('.dialog-close').forEach(b=>b.onclick=()=>b.closest('dialog').close());$$('dialog').forEach(d=>d.addEventListener('click',e=>{if(e.target===d)d.close()}));$('#menu-toggle').onclick=()=>$('.nav-links').classList.toggle('open');$$('.nav-links a').forEach(a=>a.onclick=()=>$('.nav-links').classList.remove('open'));document.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();$('#search').focus()}if(e.key==='Escape')$$('.nav-links').forEach(x=>x.classList.remove('open'))});$('#detail-dialog').addEventListener('close',()=>{if(modelCleanup){modelCleanup();modelCleanup=null}});render();
+$('#search').addEventListener('input',e=>{query=e.target.value;renderProducts();renderCoverflow()});$('#sort').addEventListener('change',()=>{renderProducts();renderCoverflow()});$('#clear-filters').onclick=()=>{query='';activeCategory='all';$('#search').value='';renderFilters();renderProducts();renderCoverflow()};$('#lang-toggle').onclick=()=>{locale=locale==='th'?'en':'th';localStorage.setItem('iothub-locale',locale);render()};$('#compare-clear').onclick=()=>{selected=[];renderProducts();renderCompareTray()};$('#compare-open').onclick=()=>{openComparison();$('#compare-dialog').showModal()};$$('.dialog-close').forEach(b=>b.onclick=()=>b.closest('dialog').close());$$('dialog').forEach(d=>d.addEventListener('click',e=>{if(e.target===d)d.close()}));$('#menu-toggle').onclick=()=>$('.nav-links').classList.toggle('open');$$('.nav-links a').forEach(a=>a.onclick=()=>$('.nav-links').classList.remove('open'));document.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();$('#search').focus()}if(e.key==='Escape')$$('.nav-links').forEach(x=>x.classList.remove('open'))});$('#detail-dialog').addEventListener('close',()=>{if(modelCleanup){modelCleanup();modelCleanup=null}});render();
 
 document.addEventListener('pointermove',e=>{const card=e.target.closest('.product-card,.category-card');if(!card||e.pointerType==='touch')return;const rect=card.getBoundingClientRect();card.style.setProperty('--spot-x',(e.clientX-rect.left)+'px');card.style.setProperty('--spot-y',(e.clientY-rect.top)+'px')});

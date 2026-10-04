@@ -109,6 +109,25 @@
       <div class="hero-scroll"><span></span><small data-i18n="hero.scroll">เลื่อนเพื่อสำรวจ</small></div>
     </section>
 
+    <!-- 3D Perspective Hardware Stream Hero Transition (@ruixen.ui/components/image-stream-hero) -->
+    <section class="stream-hero-section" id="hardware-stream" aria-label="IoT Hardware Stream Transition">
+      <div class="stream-ambient-glow"></div>
+      <div class="stream-header-badge">
+        <span class="stream-pulse"></span>
+        <span class="stream-badge-text">✦ IoT Hardware Stream — เลื่อนลงเพื่อพบกับอุปกรณ์และโมเดล 3D</span>
+      </div>
+      <div class="stream-corridor" id="stream-corridor">
+        <div class="stream-rail stream-rail-left" id="stream-rail-left"></div>
+        <div class="stream-vanishing-hub">
+          <div class="vanishing-core">
+            <svg class="ui-svg core-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2"/></svg>
+            <span class="core-label">IoT CORE</span>
+          </div>
+        </div>
+        <div class="stream-rail stream-rail-right" id="stream-rail-right"></div>
+      </div>
+    </section>
+
     <section class="category-section wrap" aria-labelledby="category-title">
       <div class="section-heading compact">
         <div><span class="eyebrow muted" data-i18n="category.kicker">เลือกเส้นทางของคุณ</span>
@@ -138,7 +157,63 @@
               <option value="difficulty" data-i18n="catalog.sortDifficulty">ระดับเริ่มต้น</option>
             </select></label>
         </div>
-        <div class="product-grid" id="product-list"></div>
+
+        <!-- View Mode Switcher -->
+        <div class="catalog-view-bar">
+          <div class="catalog-view-toggle neu" role="tablist" aria-label="รูปแบบมุมมองอุปกรณ์">
+            <button type="button" class="view-toggle-btn active" id="view-coverflow-btn" role="tab" aria-selected="true" aria-controls="coverflow-wrap">
+              <svg class="ui-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="14" x="3" y="5" rx="2"/><path d="M7 5V3M17 5V3M7 19v2M17 19v2"/></svg>
+              <span>3D Coverflow</span>
+            </button>
+            <button type="button" class="view-toggle-btn" id="view-grid-btn" role="tab" aria-selected="false" aria-controls="product-list">
+              <svg class="ui-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+              <span>ตารางทั้งหมด (Grid)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 3D Coverflow Carousel Section (@ruixen.ui/components/coverflow-carousel) -->
+        <div class="coverflow-wrap" id="coverflow-wrap">
+          <div class="coverflow-stage" id="coverflow-stage" tabindex="0" role="region" aria-label="3D Coverflow Carousel เลือกอุปกรณ์">
+            <button class="coverflow-nav-btn prev-btn" id="coverflow-prev" type="button" aria-label="อุปกรณ์ก่อนหน้า">
+              <svg class="ui-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <div class="coverflow-track" id="coverflow-track"></div>
+            <button class="coverflow-nav-btn next-btn" id="coverflow-next" type="button" aria-label="อุปกรณ์ถัดไป">
+              <svg class="ui-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+          </div>
+
+          <!-- Coverflow Spotlight Panel -->
+          <div class="coverflow-spotlight glass neu" id="coverflow-spotlight">
+            <div class="spotlight-header">
+              <span class="spotlight-cat" id="spotlight-cat">Microcontroller</span>
+              <span class="spotlight-badge" id="spotlight-diff">ระดับเริ่มต้น</span>
+            </div>
+            <h3 class="spotlight-title" id="spotlight-title">Arduino Uno R3</h3>
+            <p class="spotlight-blurb" id="spotlight-blurb">บอร์ดยอดนิยมสำหรับเริ่มต้น เรียนรู้วงจรและทดลองไอเดียได้อย่างง่ายดาย</p>
+            <div class="spotlight-meta">
+              <span class="spotlight-chip" id="spotlight-chip">ชิป: ATmega328P</span>
+              <span class="spotlight-voltage" id="spotlight-voltage">แรงดัน: 5V</span>
+              <strong class="spotlight-price" id="spotlight-price">฿150</strong>
+            </div>
+            <div class="spotlight-actions">
+              <button type="button" class="button button-dark spotlight-detail-btn" id="spotlight-detail-btn">
+                <svg class="ui-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                <span>ดูรายละเอียด & โมเดล 3D</span>
+              </button>
+              <button type="button" class="button spotlight-cart-btn" id="spotlight-cart-btn">
+                <svg class="ui-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                <span>เพิ่มลงตะกร้า</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Coverflow Pagination Indicators -->
+          <div class="coverflow-dots" id="coverflow-dots"></div>
+        </div>
+
+        <div class="product-grid" id="product-list" hidden></div>
         <div class="empty-state neu" id="empty-state" hidden><svg class="ui-svg empty-search-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
           <h3 data-i18n="catalog.emptyTitle">ไม่พบอุปกรณ์ที่ค้นหา</h3>
           <p data-i18n="catalog.emptyBody">ลองเปลี่ยนคำค้นหาหรือตัวกรองดูนะ</p><button class="button button-dark"

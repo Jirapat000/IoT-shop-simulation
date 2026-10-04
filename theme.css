@@ -3486,3 +3486,605 @@ body.intro-playing .floating-cart-pill,
   transition-duration: 0.2s;
   transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
 }
+
+/* ==========================================================================
+   IMAGE STREAM HERO TRANSITION (@ruixen.ui/components/image-stream-hero)
+   ========================================================================== */
+.stream-hero-section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 42px 0 54px;
+  background: linear-gradient(180deg, transparent, rgba(63, 114, 175, 0.05) 50%, transparent 100%);
+  perspective: 1000px;
+}
+
+:root[data-theme="dark"] .stream-hero-section {
+  background: linear-gradient(180deg, transparent, rgba(30, 58, 138, 0.12) 50%, transparent 100%);
+}
+
+.stream-ambient-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(77, 107, 254, 0.18) 0%, rgba(169, 239, 223, 0.1) 40%, transparent 70%);
+  filter: blur(50px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.stream-header-badge {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.stream-badge-text {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  padding: 6px 14px;
+  border-radius: 9999px;
+  box-shadow: var(--shadow-sm);
+}
+
+.stream-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+  animation: pulse-ring 2s infinite;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5); }
+  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+.stream-corridor {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 230px;
+  width: 100%;
+  transform-style: preserve-3d;
+}
+
+.stream-vanishing-hub {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.vanishing-core {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: var(--surface);
+  border: 1px solid var(--border-medium);
+  padding: 10px 14px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12), 0 0 25px rgba(77, 107, 254, 0.25);
+  backdrop-filter: blur(12px);
+  color: var(--accent);
+}
+
+.core-label {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: var(--ink-2);
+}
+
+/* Streaming Rails */
+.stream-rail {
+  position: absolute;
+  top: 50%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.stream-rail-left {
+  right: 50%;
+  margin-right: 45px;
+  transform-origin: right center;
+  transform: translateY(-50%) rotateY(28deg);
+  animation: streamLeftRail 30s linear infinite;
+}
+
+.stream-rail-right {
+  left: 50%;
+  margin-left: 45px;
+  transform-origin: left center;
+  transform: translateY(-50%) rotateY(-28deg);
+  animation: streamRightRail 30s linear infinite;
+}
+
+.stream-corridor:hover .stream-rail {
+  animation-play-state: paused;
+}
+
+@keyframes streamLeftRail {
+  0% { transform: translateY(-50%) rotateY(28deg) translateX(0); }
+  100% { transform: translateY(-50%) rotateY(28deg) translateX(-50%); }
+}
+
+@keyframes streamRightRail {
+  0% { transform: translateY(-50%) rotateY(-28deg) translateX(0); }
+  100% { transform: translateY(-50%) rotateY(-28deg) translateX(50%); }
+}
+
+.stream-card {
+  flex: none;
+  width: 155px;
+  height: 180px;
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 18px;
+  padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.25s cubic-bezier(0.2, 0, 0, 1), border-color 0.2s;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.stream-card:hover {
+  transform: scale(1.08) translateZ(30px);
+  border-color: var(--accent);
+  box-shadow: 0 16px 36px rgba(77, 107, 254, 0.2);
+}
+
+.stream-card-art {
+  width: 100px;
+  height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stream-card-art svg {
+  width: 100%;
+  height: 100%;
+}
+
+.stream-card-info {
+  width: 100%;
+  text-align: center;
+}
+
+.stream-card-title {
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 2px;
+}
+
+.stream-card-chip {
+  font-size: 10px;
+  color: var(--ink-2);
+}
+
+.stream-card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 10px;
+  padding-top: 6px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.stream-card-badge {
+  font-size: 8px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: var(--tint);
+  color: var(--accent);
+}
+
+.stream-card-price {
+  font-weight: 800;
+  color: var(--accent);
+}
+
+/* ==========================================================================
+   COVERFLOW CAROUSEL (@ruixen.ui/components/coverflow-carousel)
+   ========================================================================== */
+.catalog-view-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 18px 0 24px;
+}
+
+.catalog-view-toggle {
+  display: inline-flex;
+  padding: 4px;
+  border-radius: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  gap: 4px;
+  box-shadow: var(--shadow-sm);
+}
+
+.view-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  color: var(--ink-2);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.view-toggle-btn:hover {
+  color: var(--ink);
+}
+
+.view-toggle-btn.active {
+  background: var(--accent);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(63, 114, 175, 0.25);
+}
+
+.coverflow-wrap {
+  width: 100%;
+  max-width: 1050px;
+  margin: 0 auto 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.coverflow-stage {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  perspective: 1100px;
+  transform-style: preserve-3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  user-select: none;
+  outline: none;
+  cursor: grab;
+}
+
+.coverflow-stage:active {
+  cursor: grabbing;
+}
+
+.coverflow-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+}
+
+/* Individual Coverflow Card */
+.coverflow-card {
+  position: absolute;
+  width: 250px;
+  height: 330px;
+  border-radius: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+  padding: 20px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: transform 0.45s cubic-bezier(0.2, 0, 0, 1), opacity 0.45s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.45s cubic-bezier(0.2, 0, 0, 1), border-color 0.3s;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+.coverflow-card.active {
+  border-color: rgba(77, 107, 254, 0.5);
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.18), 0 0 35px rgba(77, 107, 254, 0.22);
+}
+
+.coverflow-card-art {
+  width: 170px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 6px;
+}
+
+.coverflow-card-art svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.1));
+}
+
+.coverflow-card-badge {
+  align-self: flex-start;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 8px;
+  background: var(--tint);
+  color: var(--accent);
+}
+
+.coverflow-card-name {
+  font-size: 15px;
+  font-weight: 700;
+  text-align: center;
+  margin: 8px 0 2px;
+}
+
+.coverflow-card-chip {
+  font-size: 11px;
+  color: var(--ink-2);
+  margin-bottom: 6px;
+}
+
+.coverflow-card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.coverflow-card-price {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+/* Nav Buttons */
+.coverflow-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 30;
+  color: var(--ink);
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), background-color 0.2s, box-shadow 0.2s;
+}
+
+.coverflow-nav-btn:hover {
+  transform: translateY(-50%) scale(1.1);
+  background: var(--accent);
+  color: #ffffff;
+  box-shadow: 0 14px 30px rgba(63, 114, 175, 0.3);
+}
+
+.coverflow-nav-btn.prev-btn {
+  left: 10px;
+}
+
+.coverflow-nav-btn.next-btn {
+  right: 10px;
+}
+
+/* Spotlight metadata panel below the Coverflow */
+.coverflow-spotlight {
+  width: 100%;
+  max-width: 620px;
+  border-radius: 20px;
+  padding: 20px 26px;
+  margin-top: 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-md);
+}
+
+.spotlight-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.spotlight-cat {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--ink-2);
+}
+
+.spotlight-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: var(--tint);
+  color: var(--accent);
+}
+
+.spotlight-title {
+  font-size: 22px;
+  font-weight: 800;
+  margin: 4px 0 6px;
+  color: var(--ink);
+}
+
+.spotlight-blurb {
+  font-size: 13px;
+  color: var(--ink-2);
+  line-height: 1.6;
+  margin: 0 0 14px;
+  max-width: 480px;
+}
+
+.spotlight-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.spotlight-chip,
+.spotlight-voltage {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  background: var(--tint-2);
+  border-radius: 8px;
+  color: var(--ink);
+}
+
+.spotlight-price {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.spotlight-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.spotlight-detail-btn,
+.spotlight-cart-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.2s;
+}
+
+.spotlight-cart-btn {
+  background: var(--accent);
+  color: #ffffff;
+  border: none;
+}
+
+.spotlight-cart-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(63, 114, 175, 0.35);
+}
+
+/* Pagination Dots */
+.coverflow-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.coverflow-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--border-medium);
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.2, 0, 0, 1);
+  padding: 0;
+}
+
+.coverflow-dot.active {
+  width: 26px;
+  border-radius: 9999px;
+  background: var(--accent);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 650px) {
+  .stream-corridor {
+    height: 190px;
+  }
+  .stream-card {
+    width: 130px;
+    height: 155px;
+    padding: 10px 8px;
+  }
+  .stream-card-art {
+    width: 80px;
+    height: 52px;
+  }
+  .coverflow-stage {
+    height: 330px;
+  }
+  .coverflow-card {
+    width: 210px;
+    height: 290px;
+    padding: 16px 14px 14px;
+  }
+  .coverflow-card-art {
+    width: 140px;
+    height: 95px;
+  }
+  .spotlight-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .spotlight-detail-btn,
+  .spotlight-cart-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
