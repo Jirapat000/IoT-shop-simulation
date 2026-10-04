@@ -23,3 +23,5 @@ Thumbs.db
 ECC/
 .freebuff/
 .env*
+__pycache__/
+*.py[cod]
