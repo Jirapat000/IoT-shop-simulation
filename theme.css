@@ -3382,3 +3382,107 @@ body.intro-playing .floating-cart-pill,
   border: 1px solid var(--line);
   background: var(--tint-2);
 }
+
+/* ==========================================================================
+   better-ui Polish Implementation
+   ========================================================================== */
+
+/* 1. Scale on press: Always exactly 0.96 for tactile physical feedback */
+.button:active,
+.language:active,
+.cart-btn:active,
+.auth-nav-btn:active,
+.filter-pill:active,
+.detail-add-cart-btn:active,
+.checkout-btn:active,
+.checkout-submit-btn:active,
+.quantity-btn:active,
+.floating-cart-pill:active,
+.intro-skip:active,
+.category-card:active,
+.auth-submit:active,
+.auth-google-btn:active {
+  transform: scale(0.96) !important;
+  transition: transform 0.1s cubic-bezier(0.2, 0, 0, 1) !important;
+}
+
+/* 2. Concentric border radius: Outer radius = inner radius + padding */
+.product-card {
+  padding: 12px;
+  border-radius: 18px;
+}
+
+.product-visual {
+  /* R_outer (18px) - padding (12px) = 6px concentric radius */
+  border-radius: 6px !important;
+  outline: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="dark"] .product-visual {
+  outline: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cart-item {
+  padding: 12px;
+  border-radius: 16px;
+}
+
+.cart-item-img {
+  /* R_outer (16px) - padding (12px) = 4px concentric radius */
+  border-radius: 4px !important;
+  outline: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="dark"] .cart-item-img {
+  outline: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.model-view {
+  border-radius: 12px;
+  outline: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="dark"] .model-view {
+  outline: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* 3. Optical Alignment: Play button triangle and close buttons */
+.play {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  padding: 0 0 0 2px !important; /* Optical nudge for right-pointing play triangle */
+  line-height: 1;
+}
+
+.dialog-close,
+.cart-drawer-close,
+.auth-modal-close {
+  display: grid !important;
+  place-items: center;
+  line-height: 1;
+}
+
+/* 4. Match icon stroke to text weight */
+.ui-svg {
+  stroke-width: 1.75;
+}
+
+.button .ui-svg,
+.hero-actions .ui-svg,
+.auth-submit .ui-svg {
+  stroke-width: 2; /* 2px stroke beside semibold (600/700) text */
+}
+
+/* 5. Transition Discipline: Specify exact properties, never transition: all */
+.button,
+.filter-pill,
+.category-card,
+.product-card,
+.path-step {
+  transition-property: transform, opacity, background-color, border-color, box-shadow;
+  transition-duration: 0.2s;
+  transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+}

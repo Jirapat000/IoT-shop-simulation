@@ -31,7 +31,25 @@
   };
 
   function apply(theme, persist) {
+    // Better-UI: Suppress transitions on theme switch to prevent multi-element color smearing
+    const css = document.createElement('style');
+    css.appendChild(
+      document.createTextNode(
+        '*,*::before,*::after{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}'
+      )
+    );
+    document.head.appendChild(css);
+
     root.dataset.theme = theme;
+    // Force reflow
+    void window.getComputedStyle(css).opacity;
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        if (css.parentNode) css.parentNode.removeChild(css);
+      });
+    });
+
     if (persist !== undefined) {
       try {
         if (persist === null) localStorage.removeItem(KEY);
@@ -43,7 +61,7 @@
       const dark = theme === 'dark';
       button.setAttribute('aria-pressed', String(dark));
       button.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
-      button.title = dark ? 'สลับเป็นโหมดสว่าง · Light' : 'สลับเป็นโหมดมืด · Dark';
+      button.title = dark ? 'สลับเป็นโหมดสว่าง (Light)' : 'สลับเป็นโหมดมืด (Dark)';
     }
     document.dispatchEvent(new CustomEvent('themechange', { detail: { theme } }));
   }
