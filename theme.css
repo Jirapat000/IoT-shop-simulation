@@ -380,21 +380,21 @@ body { background: radial-gradient(ellipse at 10% 8%, var(--bg-glow-1), transpar
 }
 
 .detail-summary-pane .eyebrow {
-  font-size: 24px !important;
+  font-size: 16px !important;
   letter-spacing: 0.5px;
 }
 
 .detail-layout h2 {
-  font-size: 58px !important;
-  line-height: 1.2;
+  font-size: 38px !important;
+  line-height: 1.25;
   margin: 0;
   font-weight: 700;
   color: var(--ink);
 }
 
 .detail-blurb {
-  font-size: 32px !important;
-  line-height: 1.5;
+  font-size: 21px !important;
+  line-height: 1.55;
   color: var(--ink-2);
 }
 
@@ -406,21 +406,21 @@ body { background: radial-gradient(ellipse at 10% 8%, var(--bg-glow-1), transpar
 }
 
 .detail-chips span {
-  font-size: 28px !important;
-  padding: 8px 18px !important;
-  border-radius: 12px !important;
+  font-size: 18px !important;
+  padding: 6px 14px !important;
+  border-radius: 10px !important;
   font-weight: 600;
   background: var(--tint-2);
   color: var(--ink-2);
 }
 
 .detail-uses {
-  font-size: 30px !important;
+  font-size: 20px !important;
   line-height: 1.55;
   background: var(--tint-2);
-  padding: 18px 26px;
-  border-radius: 16px;
-  border-left: 5px solid var(--accent);
+  padding: 14px 20px;
+  border-radius: 14px;
+  border-left: 4px solid var(--accent);
   margin: 6px 0 14px;
   color: var(--ink-2);
 }
@@ -428,7 +428,7 @@ body { background: radial-gradient(ellipse at 10% 8%, var(--bg-glow-1), transpar
 .detail-uses .uses-label {
   color: var(--ink);
   font-weight: 700;
-  font-size: 31px;
+  font-size: 21px;
 }
 
 .spec-list {
@@ -4393,32 +4393,32 @@ kbd,
 }
 
 html {
-  font-size: 26px;
+  font-size: 18px;
 }
 
 body {
-  font-size: 26px;
-  line-height: 1.55;
+  font-size: 18px;
+  line-height: 1.6;
 }
 
-/* Container Flexibilities for 300% Large Typography */
+/* Container Flexibilities for Balanced Typography */
 .topbar {
   height: auto !important;
-  min-height: 96px;
-  padding: 16px 28px;
+  min-height: 72px;
+  padding: 12px 24px;
 }
 
 .search {
   height: auto !important;
-  min-height: 66px;
-  padding: 10px 20px;
+  min-height: 48px;
+  padding: 8px 16px;
 }
 
 .product-card {
   min-height: auto !important;
   height: auto !important;
   overflow: visible !important;
-  padding: 20px;
+  padding: 16px;
 }
 
 .product-info p {
@@ -4429,432 +4429,432 @@ body {
 .category-card {
   min-height: auto !important;
   height: auto !important;
-  padding: 24px 22px;
+  padding: 18px 16px;
 }
 
 /* Topbar & Nav */
-.brand { font-size: 42px; font-weight: 800; }
-.brand-mark { width: 54px; height: 54px; font-size: 28px; }
-.brand small { font-size: 20px; letter-spacing: 1px; }
-.nav-links a, .text-link { font-size: 28px; font-weight: 700; }
-.language { font-size: 24px; padding: 12px 20px; }
-.button, .nav-cta { font-size: 28px; font-weight: 700; padding: 18px 32px; }
+.brand { font-size: 28px; font-weight: 800; }
+.brand-mark { width: 40px; height: 40px; font-size: 20px; }
+.brand small { font-size: 14px; letter-spacing: 0.5px; }
+.nav-links a, .text-link { font-size: 18px; font-weight: 700; }
+.language { font-size: 16px; padding: 8px 14px; }
+.button, .nav-cta { font-size: 18px; font-weight: 700; padding: 12px 22px; }
 
 /* Hero */
-.eyebrow { font-size: 24px; letter-spacing: 0.5px; }
-.hero-lede { font-size: 32px !important; line-height: 1.6; max-width: 680px; }
-.hero-proof { font-size: 24px; }
-.hero-proof strong { font-size: 26px; }
-.hero-proof small { font-size: 22px; }
-.hero-proof .proof-count { font-size: 44px; }
-.hero-scroll { font-size: 24px; }
-.hero h1 { font-size: clamp(64px, 6.5vw, 105px) !important; line-height: 1.15; }
+.eyebrow { font-size: 16px; letter-spacing: 0.5px; }
+.hero-lede { font-size: 21px !important; line-height: 1.6; max-width: 640px; }
+.hero-proof { font-size: 16.5px; }
+.hero-proof strong { font-size: 18px; }
+.hero-proof small { font-size: 15px; }
+.hero-proof .proof-count { font-size: 30px; }
+.hero-scroll { font-size: 16px; }
+.hero h1 { font-size: clamp(44px, 5.2vw, 72px) !important; line-height: 1.18; }
 
 /* Section Headings */
-.section-heading h2, .learn-copy h2, .shops-card h2 { font-size: 56px !important; }
-.section-heading p { font-size: 30px !important; }
-.eyebrow.muted { font-size: 24px; letter-spacing: 0.8px; }
+.section-heading h2, .learn-copy h2, .shops-card h2 { font-size: 38px !important; }
+.section-heading p { font-size: 20px !important; }
+.eyebrow.muted { font-size: 16px; letter-spacing: 0.6px; }
 
 /* Category Bento */
-.category-card b { font-size: 32px !important; }
-.category-card small { font-size: 26px !important; }
-.category-index { font-size: 24px; }
+.category-card b { font-size: 21px !important; }
+.category-card small { font-size: 17px !important; }
+.category-index { font-size: 16px; }
 
 /* Catalog Tools & Filters */
-.catalog-count { font-size: 26px; }
-.catalog-count #result-count { font-size: 48px; }
-.search input { font-size: 28px !important; }
-.search kbd { font-size: 22px; }
-.filter-pill { font-size: 26px !important; padding: 14px 26px; border-radius: 14px; }
-.sort-wrap { font-size: 26px; }
-.sort-wrap select { font-size: 26px !important; padding: 14px 38px 14px 22px; }
+.catalog-count { font-size: 18px; }
+.catalog-count #result-count { font-size: 32px; }
+.search input { font-size: 19px !important; }
+.search kbd { font-size: 15px; }
+.filter-pill { font-size: 17px !important; padding: 9px 18px; border-radius: 10px; }
+.sort-wrap { font-size: 17.5px; }
+.sort-wrap select { font-size: 17.5px !important; padding: 10px 30px 10px 16px; }
 
 /* Product Cards in Grid */
-.product-kind { font-size: 22px !important; letter-spacing: 0.8px; font-weight: 700; }
-.product-info h3 { font-size: 34px !important; line-height: 1.25; font-weight: 700; }
-.product-info p { font-size: 26px !important; line-height: 1.45; }
-.product-tags span { font-size: 22px !important; padding: 6px 14px; font-weight: 600; }
-.visual-badge { font-size: 20px !important; padding: 6px 14px; }
-.price-info small { font-size: 20px !important; }
-.price-info strong { font-size: 32px !important; font-weight: 700; }
-.compare-check { font-size: 24px !important; }
-.detail-link { font-size: 26px !important; font-weight: 700; }
+.product-kind { font-size: 15px !important; letter-spacing: 0.6px; font-weight: 700; }
+.product-info h3 { font-size: 23px !important; line-height: 1.3; font-weight: 700; }
+.product-info p { font-size: 17.5px !important; line-height: 1.5; }
+.product-tags span { font-size: 15px !important; padding: 4px 10px; font-weight: 600; }
+.visual-badge { font-size: 14px !important; padding: 4px 10px; }
+.price-info small { font-size: 14px !important; }
+.price-info strong { font-size: 22px !important; font-weight: 700; }
+.compare-check { font-size: 16px !important; }
+.detail-link { font-size: 17.5px !important; font-weight: 700; }
 
 /* 3D Coverflow Cards */
-.coverflow-card-name { font-size: 32px !important; }
-.coverflow-card-sub { font-size: 24px !important; }
-.coverflow-card-price { font-size: 30px !important; }
-.coverflow-badge { font-size: 22px !important; }
-.spotlight-title { font-size: 48px !important; }
-.spotlight-blurb { font-size: 30px !important; }
-.spotlight-chip { font-size: 26px !important; }
-.spotlight-price { font-size: 38px !important; }
-.spotlight-detail-btn, .spotlight-cart-btn { font-size: 28px !important; padding: 16px 30px; }
+.coverflow-card-name { font-size: 22px !important; }
+.coverflow-card-sub { font-size: 16.5px !important; }
+.coverflow-card-price { font-size: 20px !important; }
+.coverflow-badge { font-size: 15px !important; }
+.spotlight-title { font-size: 34px !important; }
+.spotlight-blurb { font-size: 20px !important; }
+.spotlight-chip { font-size: 17px !important; }
+.spotlight-price { font-size: 26px !important; }
+.spotlight-detail-btn, .spotlight-cart-btn { font-size: 18.5px !important; padding: 11px 22px; }
 
 /* Learn Section */
-.learn-copy p { font-size: 30px !important; line-height: 1.6; }
-.path-step small { font-size: 22px !important; }
-.path-step h3 { font-size: 28px !important; }
-.path-step p { font-size: 24px !important; }
-.step-icon { font-size: 22px; width: 50px; height: 50px; }
+.learn-copy p { font-size: 20px !important; line-height: 1.6; }
+.path-step small { font-size: 15px !important; }
+.path-step h3 { font-size: 19.5px !important; }
+.path-step p { font-size: 16.5px !important; }
+.step-icon { font-size: 16px; width: 38px; height: 38px; }
 
 /* Project Section */
-.project-time { font-size: 22px !important; }
-.project-card h3 { font-size: 32px !important; }
-.project-card p { font-size: 26px !important; line-height: 1.5; }
-.bom-label { font-size: 22px !important; }
-.bom-items span { font-size: 24px !important; padding: 6px 14px; }
-.project-card .text-link { font-size: 26px !important; }
+.project-time { font-size: 15px !important; }
+.project-card h3 { font-size: 22px !important; }
+.project-card p { font-size: 17.5px !important; line-height: 1.55; }
+.bom-label { font-size: 15px !important; }
+.bom-items span { font-size: 16px !important; padding: 4px 10px; }
+.project-card .text-link { font-size: 17.5px !important; }
 
 /* Shops Section */
-.shops-card>div:first-child p { font-size: 28px !important; }
-.shop-link b { font-size: 28px !important; }
-.shop-link small { font-size: 22px !important; }
-.shop-note { font-size: 24px !important; }
+.shops-card>div:first-child p { font-size: 19px !important; }
+.shop-link b { font-size: 19px !important; }
+.shop-link small { font-size: 15px !important; }
+.shop-note { font-size: 16.5px !important; }
 
 /* ==========================================================================
-   Comprehensive Details Typography Scale (300% on all detail & modal views)
+   Comprehensive Details Typography Scale (Balanced reading size across modals)
    ========================================================================== */
 
 /* 1. Product Detail Modal & Summary Pane */
 .detail-dialog {
-  max-width: min(1280px, calc(100% - 24px)) !important;
-  padding: 40px 36px !important;
+  max-width: min(1080px, calc(100% - 24px)) !important;
+  padding: 28px 26px !important;
 }
 
 .detail-layout {
-  grid-template-columns: 320px 1fr !important;
-  gap: 36px !important;
+  grid-template-columns: 280px 1fr !important;
+  gap: 26px !important;
 }
 
 .detail-summary-pane .eyebrow {
-  font-size: 24px !important;
+  font-size: 16px !important;
 }
 
 .detail-layout h2 {
-  font-size: 58px !important;
-  line-height: 1.2 !important;
+  font-size: 38px !important;
+  line-height: 1.25 !important;
 }
 
 .detail-layout p,
 .detail-blurb {
-  font-size: 32px !important;
-  line-height: 1.5 !important;
+  font-size: 21px !important;
+  line-height: 1.55 !important;
 }
 
 .detail-chips span {
-  font-size: 28px !important;
-  padding: 8px 18px !important;
+  font-size: 18px !important;
+  padding: 6px 14px !important;
 }
 
 .detail-uses {
-  font-size: 30px !important;
+  font-size: 20px !important;
   line-height: 1.55 !important;
-  padding: 18px 26px !important;
+  padding: 14px 20px !important;
 }
 
 .detail-uses .uses-label {
-  font-size: 31px !important;
+  font-size: 21px !important;
 }
 
 .spec-row small {
-  font-size: 28px !important;
+  font-size: 17.5px !important;
 }
 
 .spec-row b {
-  font-size: 36px !important;
+  font-size: 24px !important;
 }
 
 .detail-shop a {
-  font-size: 28px !important;
-  padding: 16px 26px !important;
+  font-size: 18.5px !important;
+  padding: 11px 18px !important;
 }
 
 .detail-add-cart-btn {
-  font-size: 30px !important;
-  padding: 18px 32px !important;
+  font-size: 20px !important;
+  padding: 12px 22px !important;
 }
 
 .detail-tab-btn {
-  font-size: 30px !important;
-  padding: 18px 28px !important;
+  font-size: 20px !important;
+  padding: 12px 20px !important;
 }
 
 .section-title {
-  font-size: 34px !important;
+  font-size: 23px !important;
 }
 
 .features-list li {
-  font-size: 28px !important;
+  font-size: 19px !important;
   line-height: 1.55 !important;
 }
 
 .feat-bullet {
-  font-size: 30px !important;
+  font-size: 20px !important;
 }
 
 .principle-desc {
-  font-size: 29px !important;
+  font-size: 19.5px !important;
   line-height: 1.6 !important;
 }
 
 .wiring-table th {
-  font-size: 29px !important;
-  padding: 18px 22px !important;
+  font-size: 19.5px !important;
+  padding: 12px 16px !important;
 }
 
 .wiring-table td {
-  font-size: 28px !important;
-  padding: 18px 22px !important;
+  font-size: 18.5px !important;
+  padding: 12px 16px !important;
 }
 
 .pin-badge,
 .mcu-badge {
-  font-size: 26px !important;
-  padding: 6px 16px !important;
+  font-size: 17px !important;
+  padding: 4px 12px !important;
 }
 
 .wiring-notice,
 .wiring-notice p {
-  font-size: 28px !important;
+  font-size: 18.5px !important;
 }
 
 .wiring-notice strong {
-  font-size: 30px !important;
+  font-size: 20px !important;
 }
 
 .lib-header strong {
-  font-size: 30px !important;
+  font-size: 20px !important;
 }
 
 .lib-tag {
-  font-size: 24px !important;
+  font-size: 16px !important;
 }
 
 .lib-guide {
-  font-size: 27px !important;
+  font-size: 18px !important;
 }
 
 .conf-pin-tag,
 .conf-pin-tag code {
-  font-size: 26px !important;
+  font-size: 17px !important;
 }
 
 .copy-code-btn {
-  font-size: 26px !important;
-  padding: 14px 24px !important;
+  font-size: 17.5px !important;
+  padding: 9px 16px !important;
 }
 
 .code-tip {
-  font-size: 27px !important;
+  font-size: 18px !important;
 }
 
 .code-pre {
-  font-size: 26px !important;
+  font-size: 17.5px !important;
   line-height: 1.55 !important;
 }
 
 .code-explanation {
-  font-size: 27px !important;
+  font-size: 18px !important;
 }
 
 /* 2. Compare Tray & Dialog */
 .compare-tray b {
-  font-size: 32px !important;
+  font-size: 21px !important;
 }
 
 .compare-tray small {
-  font-size: 26px !important;
+  font-size: 17px !important;
 }
 
 .compare-chip {
-  font-size: 28px !important;
-  padding: 10px 18px !important;
+  font-size: 18.5px !important;
+  padding: 6px 12px !important;
 }
 
 .compare-dialog h2 {
-  font-size: 52px !important;
+  font-size: 36px !important;
 }
 
 .compare-dialog .eyebrow {
-  font-size: 26px !important;
+  font-size: 17px !important;
 }
 
 .compare-table {
-  font-size: 28px !important;
+  font-size: 18.5px !important;
 }
 
 .compare-table th {
-  font-size: 30px !important;
-  padding: 18px 22px !important;
+  font-size: 20px !important;
+  padding: 12px 16px !important;
 }
 
 .compare-table td {
-  font-size: 28px !important;
-  padding: 18px 22px !important;
+  font-size: 18.5px !important;
+  padding: 12px 16px !important;
 }
 
 .compare-table small {
-  font-size: 24px !important;
+  font-size: 16px !important;
 }
 
 .compare-empty {
-  font-size: 28px !important;
+  font-size: 18.5px !important;
 }
 
 /* 3. Lesson & Simulator Dialog */
 .lesson-pill {
-  font-size: 28px !important;
-  padding: 16px 26px !important;
+  font-size: 18.5px !important;
+  padding: 11px 18px !important;
 }
 
 .lesson-pill .pill-num {
-  font-size: 22px !important;
+  font-size: 15px !important;
 }
 
 .lesson-meta-tag {
-  font-size: 22px !important;
-  padding: 6px 16px !important;
+  font-size: 15px !important;
+  padding: 4px 10px !important;
 }
 
 .lesson-hero-header h2 {
-  font-size: 52px !important;
+  font-size: 36px !important;
 }
 
 .lesson-lead {
-  font-size: 28px !important;
+  font-size: 19px !important;
 }
 
 .sim-title-wrap h4 {
-  font-size: 32px !important;
+  font-size: 21px !important;
 }
 
 .sim-badge {
-  font-size: 20px !important;
+  font-size: 14px !important;
 }
 
 .lesson-guide-card h3 {
-  font-size: 32px !important;
+  font-size: 21px !important;
 }
 
 .lesson-guide-text {
-  font-size: 28px !important;
+  font-size: 19px !important;
   line-height: 1.55 !important;
 }
 
 .lesson-step-item {
-  font-size: 28px !important;
+  font-size: 19px !important;
 }
 
 .lesson-step-content p {
-  font-size: 26px !important;
+  font-size: 17.5px !important;
 }
 
 .lesson-quiz-wrap h4 {
-  font-size: 32px !important;
+  font-size: 21px !important;
 }
 
 .quiz-question {
-  font-size: 30px !important;
+  font-size: 20px !important;
 }
 
 .quiz-option {
-  font-size: 28px !important;
+  font-size: 18.5px !important;
 }
 
 /* 4. Cart Drawer & Checkout Dialog */
 .cart-header-title h2 {
-  font-size: 38px !important;
+  font-size: 26px !important;
 }
 
 .cart-count-pill {
-  font-size: 24px !important;
+  font-size: 16px !important;
 }
 
 .cart-clear-btn {
-  font-size: 24px !important;
+  font-size: 16px !important;
 }
 
 .cart-shipping-banner {
-  font-size: 26px !important;
+  font-size: 17.5px !important;
 }
 
 .cart-item-title {
-  font-size: 30px !important;
+  font-size: 20px !important;
 }
 
 .cart-item-chip {
-  font-size: 24px !important;
+  font-size: 16px !important;
 }
 
 .cart-item-price {
-  font-size: 30px !important;
+  font-size: 20px !important;
 }
 
 .cart-subtotal-row {
-  font-size: 28px !important;
+  font-size: 18.5px !important;
 }
 
 .cart-total-row {
-  font-size: 38px !important;
+  font-size: 26px !important;
 }
 
 .checkout-btn {
-  font-size: 32px !important;
-  padding: 20px 32px !important;
+  font-size: 21px !important;
+  padding: 13px 22px !important;
 }
 
 .checkout-modal h2 {
-  font-size: 48px !important;
+  font-size: 32px !important;
 }
 
 .checkout-field label {
-  font-size: 26px !important;
+  font-size: 17.5px !important;
 }
 
 .checkout-field input,
 .checkout-field select {
-  font-size: 28px !important;
+  font-size: 18.5px !important;
 }
 
 .checkout-submit-btn {
-  font-size: 32px !important;
+  font-size: 21px !important;
 }
 
 /* 5. Auth Modal */
 .auth-modal-card h2 {
-  font-size: 48px !important;
+  font-size: 32px !important;
 }
 
 .auth-field label {
-  font-size: 26px !important;
+  font-size: 17.5px !important;
 }
 
 .auth-field input {
-  font-size: 28px !important;
+  font-size: 18.5px !important;
 }
 
 .auth-submit {
-  font-size: 30px !important;
+  font-size: 20px !important;
 }
 
 .auth-switch {
-  font-size: 26px !important;
+  font-size: 17.5px !important;
 }
 
 .auth-google-btn {
-  font-size: 28px !important;
+  font-size: 18.5px !important;
 }
 
 /* Footer */
-.footer-top>p { font-size: 26px !important; }
-.back-top { font-size: 26px !important; }
-.footer-bottom { font-size: 22px !important; }
+.footer-top>p { font-size: 17.5px !important; }
+.back-top { font-size: 17.5px !important; }
+.footer-bottom { font-size: 15.5px !important; }
 
 /* Mobile responsiveness */
 @media (max-width: 650px) {
   html {
-    font-size: 22px;
+    font-size: 16px;
   }
   .stream-corridor {
     height: 190px;

@@ -5,9 +5,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
-  <meta name="theme-color" content="#f2f4f8">
-  <meta name="description" content="Lucky Hub — เกมเดิมพันจำลองเพื่อความบันเทิง (ไม่มีเงินจริง): สล็อต แข่งม้า บิงโก และ Plinko">
-  <title>Lucky Hub — บันเทิงจำลอง (ไม่มีเงินจริง)</title>
+  <meta name="theme-color" content="#0a0a18">
+  <meta name="description" content="IOT888 Lucky Hub — เกมเดิมพันจำลองเพื่อความบันเทิง (ไม่มีเงินจริง): สล็อตอุปกรณ์ IoT แข่งม้า บิงโก และ Plinko">
+  <title>Lucky Hub — IOT888 (เกมจำลอง ไม่มีเงินจริง)</title>
   <link rel="preload" href="fonts/PrintAble4U-Regular.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="fonts/PrintAble4U-Bold.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,99 +18,71 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="theme.css">
   <link rel="stylesheet" href="lucky.css">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%233F72AF'/><text x='50' y='68' font-size='50' font-weight='bold' fill='%23ffffff' text-anchor='middle'>io</text></svg>\">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%2300f0ff'/><text x='50' y='68' font-size='50' font-weight='bold' fill='%2306040f' text-anchor='middle'>88</text></svg>\">
   <script>
     // Apply the stored theme before first paint (same bootstrap as the home page).
     (function () {
       try {
         var saved = localStorage.getItem('iothub-theme');
         document.documentElement.dataset.theme =
-          (saved === 'light' || saved === 'dark') ? saved
-            : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      } catch (e) { /* storage blocked — fall through to the light default */ }
+          (saved === 'light') ? 'light' : 'dark'; // cyberpunk build: dark is the default
+      } catch (e) { document.documentElement.dataset.theme = 'dark'; }
     })();
   </script>
 </head>
 
-<body>
+<body data-lucky>
   <header class="topbar glass">
-    <a class="brand" href="index.html" aria-label="กลับหน้าหลัก"><span class="brand-mark">io</span><span>lucky<span
-          class="brand-light">hub</span><small>Betting Simulator · ไม่มีเงินจริง</small></span></a>
+    <a class="brand" href="index.html" aria-label="กลับหน้าหลัก IOT888"><span class="brand-mark">io</span><span>lucky<span
+          class="brand-light">hub</span><small>IOT888 · ไม่มีเงินจริง</small></span></a>
     <div class="nav-actions">
       <span class="lucky-credit neu" id="credit-pill" aria-live="polite">🪙 <b id="credit-value">1,000</b> <small>เครดิต</small></span>
-      <button class="language neu" id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark theme"><svg class="ui-svg theme-icon-moon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg><svg class="ui-svg theme-icon-sun" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg></button>
       <button class="language neu" id="lucky-reset" type="button" title="เติมเครดิตกลับเป็น 1,000">รีเซ็ต</button>
     </div>
   </header>
 
   <main class="lucky-main">
     <section class="lucky-hero">
-      <h1>🎰 Lucky Hub</h1>
-      <p>เกมเดิมพัน<b>จำลอง</b>เพื่อความบันเทิงเท่านั้น — เครดิตเป็นตัวเลขสมมติ <b>ไม่มีเงินจริง ไม่มีรางวัลจริง</b>
-        (เข้ามาด้วยคีย์ลัด: กดโลโก้หน้าแรก 3 ครั้งติดกัน)</p>
+      <h1 class="cyber-title" data-text="LUCKY HUB">LUCKY HUB</h1>
+      <p>อาร์เคดเดิมพัน<b>จำลอง</b>ของ IOT888 — เครดิตเป็นตัวเลขสมมติ <b>ไม่มีเงินจริง ไม่มีรางวัลจริง</b><br>
+        <small>(เข้ามาด้วยคีย์ลัด: กดโลโก้หน้าแรก 3 ครั้งติดกัน)</small></p>
     </section>
 
     <div class="lucky-grid">
-
-      <!-- ============ SLOT MACHINE ============ -->
-      <section class="lucky-card" id="game-slot" aria-label="สล็อตแมชชีนจำลอง">
-        <h2>🎰 สล็อตแมชชีน</h2>
-        <p class="lucky-sub">ลงทุน 50 ต่อเกม · สามอันตรง ×20 · คู่ ×3</p>
-        <div class="slot-window">
-          <div class="slot-reel" id="slot-r0"><span class="slot-face">🍒</span></div>
-          <div class="slot-reel" id="slot-r1"><span class="slot-face">🍋</span></div>
-          <div class="slot-reel" id="slot-r2"><span class="slot-face">🔔</span></div>
-        </div>
-        <div class="lucky-row">
-          <button class="button button-dark lucky-play" id="slot-btn" type="button">หมุน (50)</button>
-          <span class="lucky-out" id="slot-out">—</span>
-        </div>
-      </section>
-
-      <!-- ============ HORSE RACE ============ -->
-      <section class="lucky-card" id="game-race" aria-label="แข่งม้าจำลอง">
-        <h2>🐎 แข่งม้า</h2>
-        <p class="lucky-sub">เลือกม้าแล้วลง 100 · อัตราจ่ายตามตัวเลข</p>
-        <div class="race-pick" id="race-pick" role="radiogroup" aria-label="เลือกม้า"></div>
-        <div class="race-track" id="race-track" aria-hidden="true"></div>
-        <div class="lucky-row">
-          <button class="button button-dark lucky-play" id="race-btn" type="button">เริ่มแข่ง (100)</button>
-          <span class="lucky-out" id="race-out">—</span>
-        </div>
-      </section>
-
-      <!-- ============ BINGO ============ -->
-      <section class="lucky-card" id="game-bingo" aria-label="สลากบิงโกจำลอง">
-        <h2>🎱 บิงโก</h2>
-        <p class="lucky-sub">ซื้อการ์ดฟรี · เจาะสลาก 75/ครั้ง · 1 เส้น ×3 · 2 เส้น ×8 · บิงโก ×30</p>
-        <div class="bingo-card" id="bingo-card" aria-label="การ์ดบิงโก 5 คูณ 5"></div>
-        <div class="lucky-row">
-          <button class="button button-dark lucky-play" id="bingo-btn" type="button">เจาะสลาก (75)</button>
-          <button class="button lucky-ghost" id="bingo-new" type="button">การ์ดใหม่ (ฟรี)</button>
-          <span class="lucky-out" id="bingo-out">—</span>
-        </div>
-      </section>
-
-      <!-- ============ PLINKO ============ -->
-      <section class="lucky-card" id="game-plinko" aria-label="เกมบลิ้งจำลอง">
-        <h2>🪙 Plinko (เกมบลิ้ง)</h2>
-        <p class="lucky-sub">โยนเหรียญลูกละ 40 · ถังซ้าย→ขวา: ×0 ×1 ×2 ×5 ×10</p>
-        <canvas id="plinko-canvas" width="560" height="420" aria-label="กระดาน Plinko"></canvas>
-        <div class="lucky-row">
-          <button class="button button-dark lucky-play" id="plinko-btn" type="button">โยนเหรียญ (40)</button>
-          <span class="lucky-out" id="plinko-out">—</span>
-        </div>
-      </section>
-
+      <a class="lucky-card game-card" href="game-slot.html">
+        <span class="game-glyph">🎰</span>
+        <h2>IOT SLOT</h2>
+        <p>สล็อตหมุน<b>โมเดลอุปกรณ์ IoT</b> — บอร์ด เซนเซอร์ รีเลย์ เรียง 3 ตัวตรงชนะแจ็คพอต ×20</p>
+        <span class="game-go">เข้าเล่น →</span>
+      </a>
+      <a class="lucky-card game-card" href="game-race.html">
+        <span class="game-glyph">🐎</span>
+        <h2>CYBER DERBY</h2>
+        <p>แข่งม้าจำลอง 4 ตัว — เลือกม้าถูกตัวรับตามอัตรา สูงสุด ×10</p>
+        <span class="game-go">เข้าเล่น →</span>
+      </a>
+      <a class="lucky-card game-card" href="game-bingo.html">
+        <span class="game-glyph">🎱</span>
+        <h2>NEON BINGO</h2>
+        <p>สลากบิงโก 5×5 พร้อมดาวกลางฟรี — 1 เส้น ×3 · 2 เส้น ×8 · เต็มการ์ด ×30</p>
+        <span class="game-go">เข้าเล่น →</span>
+      </a>
+      <a class="lucky-card game-card" href="game-plinko.html">
+        <span class="game-glyph">🪙</span>
+        <h2>PLINKO 888</h2>
+        <p>เกมบลิ้งจำลอง — โยนเหรียญทะลุหมุดสู่ถังคูณ สูงสุด ×5</p>
+        <span class="game-go">เข้าเล่น →</span>
+      </a>
     </div>
 
     <p class="lucky-foot">🔒 หน้านี้เป็นเกมจำลอง 100% ไม่มีการชำระเงิน ไม่มีการเดิมพันจริง และไม่เก็บข้อมูลใดๆ
-      · <a href="index.html">กลับหน้าหลัก</a></p>
+      · <a href="index.html">กลับหน้าหลัก IOT888</a></p>
   </main>
 
   <div class="lucky-toast" id="lucky-toast" role="status" aria-live="polite" hidden></div>
 
   <script src="theme.js"></script>
+  <script src="board-art.js"></script>
   <script src="lucky-game.js"></script>
 </body>
 
