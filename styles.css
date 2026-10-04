@@ -172,14 +172,39 @@ body{background:radial-gradient(ellipse at 10% 8%,rgba(249,247,247,.78),transpar
 .hero-title-secondary{font-size:clamp(22px,3.7vw,48px);line-height:1.24}
 .headline-accent{display:inline-block;max-width:100%;white-space:nowrap;vertical-align:baseline}
 
-/* ===== Start Intro button: full-screen gate before the cinematic ===== */
-#startIntro{position:fixed;inset:0;z-index:99;display:flex;align-items:center;justify-content:center;border:0;margin:0;padding:0;cursor:pointer;font:inherit;font-size:clamp(18px,2.8vw,28px);font-weight:700;letter-spacing:1.2px;color:#F9F7F7;background:radial-gradient(ellipse at 50% 42%,#2b5488 0%,#1c3b67 55%,#112D4E 100%);transition:opacity .45s ease}
+/* ===== Start Intro gate: pearl "stardust" button + twinkling sky + drifting IoT device fleet ===== */
+#startIntro{position:fixed;inset:0;z-index:99;display:flex;align-items:center;justify-content:center;border:0;margin:0;padding:0;cursor:pointer;outline:none;background:radial-gradient(ellipse at 50% 42%,#2b5488 0%,#1c3b67 55%,#112D4E 100%);transition:opacity .45s ease}
 #startIntro::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(63,114,175,.22),transparent 65%);pointer-events:none}
-#startIntro::after{content:'▶  Start Intro';display:flex;align-items:center;justify-content:center;width:clamp(200px,40vw,320px);height:clamp(64px,9vw,84px);border-radius:999px;background:linear-gradient(135deg,#3F72AF 0%,#2b5488 100%);box-shadow:0 0 40px rgba(63,114,175,.55),0 0 80px rgba(63,114,175,.25),inset 0 1px 0 rgba(255,255,255,.18);animation:startIntro-pulse 2.4s ease-in-out infinite;pointer-events:none;font:inherit;font-size:inherit;font-weight:inherit;letter-spacing:inherit;color:inherit}
-#startIntro:hover::after{background:linear-gradient(135deg,#4a82c0 0%,#3565a0 100%);box-shadow:0 0 56px rgba(63,114,175,.7),0 0 100px rgba(63,114,175,.35),inset 0 1px 0 rgba(255,255,255,.24);transform:scale(1.06)}
-#startIntro:active::after{transform:scale(.97)}
 #startIntro[hidden]{display:none}
-@keyframes startIntro-pulse{0%,100%{box-shadow:0 0 40px rgba(63,114,175,.55),0 0 80px rgba(63,114,175,.25),inset 0 1px 0 rgba(255,255,255,.18)}50%{box-shadow:0 0 56px rgba(63,114,175,.72),0 0 110px rgba(63,114,175,.38),inset 0 1px 0 rgba(255,255,255,.22)}}
+/* --- sky: nebula orbs + twinkling stars --- */
+.gate-sky{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.gate-orb{position:absolute;left:var(--gx,50%);top:var(--gy,50%);width:34vmax;height:34vmax;transform:scale(var(--gs,1));border-radius:50%;background:radial-gradient(circle,rgba(99,158,227,.16) 0%,rgba(99,158,227,0) 70%)}
+.gate-star{position:absolute;left:var(--x,50%);top:var(--y,50%);width:3px;height:3px;margin:-1.5px;border-radius:50%;background:#dce9f8;box-shadow:0 0 6px 1px rgba(219,233,248,.8);opacity:0;animation:gate-twinkle 3.2s ease-in-out infinite;animation-delay:var(--d,0s)}
+.gate-star-big{width:5px;height:5px;margin:-2.5px;background:#fff;box-shadow:0 0 10px 2px rgba(191,219,254,.9);animation-duration:2.6s}
+@keyframes gate-twinkle{0%,100%{opacity:0;transform:scale(.6)}50%{opacity:.9;transform:scale(1)}}
+/* --- drifting IoT device fleet (SVG injected by intro.js) --- */
+.gate-fleet{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.gate-device{position:absolute;left:var(--gd-x,50%);top:var(--gd-y,50%);width:clamp(130px,16vw,215px);opacity:.5;filter:drop-shadow(0 14px 22px rgba(7,20,38,.45));transform:translate(-50%,-50%) scale(var(--gd-s,1)) rotate(var(--gd-rot,0deg));animation:gate-float var(--gd-dur,12s) ease-in-out infinite;animation-delay:var(--gd-delay,0s);will-change:transform}
+.gate-device svg{display:block;width:100%;height:auto}
+@keyframes gate-float{0%,100%{translate:0 0;transform:translate(-50%,-50%) scale(var(--gd-s,1)) rotate(var(--gd-rot,0deg))}50%{translate:0 var(--gd-amp,-14px);transform:translate(-50%,-50%) scale(var(--gd-s,1)) rotate(var(--gd-rot,0deg))}}
+/* --- pearl CTA: glass shading, hover star swap, tactile press --- */
+.gate-halo{position:absolute;width:clamp(320px,52vw,480px);height:clamp(320px,52vw,480px);border-radius:50%;background:radial-gradient(circle,rgba(63,114,175,.34) 0%,rgba(63,114,175,0) 62%);pointer-events:none}
+.gate-btn{position:relative;display:flex;align-items:center;justify-content:center;width:clamp(210px,40vw,330px);height:clamp(68px,9vw,88px);border-radius:999px;background:linear-gradient(180deg,#4f83c2 0%,#2f5d99 58%,#274f85 100%);box-shadow:inset 0 5px 14px rgba(255,255,255,.34),inset 0 -7px 16px rgba(150,196,255,.5),inset 0 -2px 5px rgba(9,24,48,.65),0 10px 24px rgba(7,19,40,.5),0 26px 60px rgba(4,12,28,.45);transition:transform .2s ease,box-shadow .2s ease}
+.gate-dome{position:absolute;left:8%;right:8%;top:10%;height:46%;border-radius:999px 999px 44px 44px;background:linear-gradient(180deg,rgba(216,235,255,.4) 0%,rgba(216,235,255,0) 100%);opacity:.9;transition:all .3s ease;pointer-events:none}
+.gate-streak{position:absolute;left:-15%;right:-15%;top:-96%;bottom:30%;border-radius:50%;background:rgba(173,209,247,.14);transition:transform .3s ease;pointer-events:none}
+#startIntro:hover .gate-btn{box-shadow:inset 0 5px 11px rgba(214,233,255,.42),inset 0 -7px 16px rgba(158,201,255,.72),inset 0 -2px 5px rgba(9,24,48,.6),0 12px 28px rgba(7,19,40,.55),0 30px 70px rgba(4,12,28,.5);transform:translateY(-2px)}
+#startIntro:hover .gate-streak{transform:translateY(6%)}
+#startIntro:hover .gate-dome{opacity:.5;transform:translateY(7%)}
+#startIntro:active .gate-btn{transform:translateY(4px) scale(.99);box-shadow:inset 0 6px 12px rgba(9,24,48,.5),inset 0 -4px 10px rgba(158,201,255,.5),0 6px 14px rgba(7,19,40,.45)}
+.gate-label{display:flex;align-items:center;gap:12px;font-size:clamp(18px,2.8vw,28px);font-weight:700;letter-spacing:1.2px;color:#F9F7F7;text-shadow:0 2px 8px rgba(9,24,48,.5);transition:transform .2s ease}
+.st2{display:none}
+#startIntro:hover .st1{display:none}
+#startIntro:hover .st2{display:inline-block}
+#startIntro:hover .gate-label{transform:translateY(-4%)}
+#startIntro:focus-visible .gate-btn{box-shadow:inset 0 5px 14px rgba(255,255,255,.34),inset 0 -7px 16px rgba(150,196,255,.5),inset 0 -2px 5px rgba(9,24,48,.65),0 10px 24px rgba(7,19,40,.5),0 26px 60px rgba(4,12,28,.45),0 0 0 3px rgba(249,247,247,.55),0 0 0 6px rgba(63,114,175,.55)}
+#startIntro.gate-out{opacity:0;pointer-events:none}
+@media (max-width:640px){.gate-device{width:clamp(96px,26vw,140px)}.gate-device:nth-child(n+6){display:none}}
+@media (prefers-reduced-motion: reduce){.gate-star,.gate-device{animation:none}.gate-star{opacity:.75}}
 
 /* ===== Opening cinematic (intro.js): full-screen overlay, flash, captions, skip ===== */
 body.intro-playing{overflow:hidden}

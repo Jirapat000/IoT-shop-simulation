@@ -1034,8 +1034,8 @@ function playStreamIntroSequence(){
 }
 
 function renderHardwareStream(){
-  const leftRails=[$('#stream-rail-left'),$('#catalog-stream-rail-left')].filter(Boolean);
-  const rightRails=[$('#stream-rail-right'),$('#catalog-stream-rail-right')].filter(Boolean);
+  const leftRails=[$('#catalog-stream-rail-left')].filter(Boolean);
+  const rightRails=[$('#catalog-stream-rail-right')].filter(Boolean);
   if(!leftRails.length&&!rightRails.length)return;
   const evens=products.filter((_,i)=>i%2===0);
   const odds=products.filter((_,i)=>i%2!==0);

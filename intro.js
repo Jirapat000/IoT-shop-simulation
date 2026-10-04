@@ -137,16 +137,35 @@
   const canPlay = !!overlay && !reduced && hasWebGL();
   const startBtn = $('startIntro');
 
+  // Gate decorations: fill the drifting-device fleet with the same SVG art used across the site,
+  // plus a single teardown for the gate's animated layers (runs on every exit path).
+  const gateDevices = startBtn ? startBtn.querySelectorAll('.gate-device') : [];
+  function gateFillDevices() {
+    if (!startBtn || startBtn.dataset.gateFilled) return;
+    const types = ['board', 'esp32', 'nano', 'ultra', 'relay', 'servo', 'esp', 'sensor'];
+    gateDevices.forEach((el, i) => { el.innerHTML = window.boardSvg ? window.boardSvg(types[i % types.length]) : ''; });
+    startBtn.dataset.gateFilled = '1';
+  }
+  function gateCleanup() {
+    gateDevices.forEach(el => { el.innerHTML = ''; });
+    if (startBtn) delete startBtn.dataset.gateFilled;
+  }
+
   // ?intro=0 or no capabilities → skip intro entirely
   if (!canPlay || want === '0') {
     document.body.classList.add('intro-done');
     if (startBtn) startBtn.hidden = true;
+    gateCleanup();
     return;
   }
 
   // Shared bootstrap: called once to actually begin the intro
   function beginIntro() {
-    if (startBtn) startBtn.hidden = true;
+    if (startBtn) {
+      // Fade the gate away gracefully, then remove its animated layers entirely.
+      startBtn.classList.add('gate-out');
+      setTimeout(() => { startBtn.hidden = true; startBtn.classList.remove('gate-out'); gateCleanup(); }, 480);
+    }
     document.body.classList.add('intro-playing');
     overlay.hidden = false;
     // Keep keyboard focus out of the page hidden behind the overlay.
@@ -172,10 +191,12 @@
   // ?intro=1 → auto-play immediately; otherwise show start button and wait
   if (want === '1') {
     if (startBtn) startBtn.hidden = true;
+    gateCleanup();
   } else {
     // Show the start button and wait for click
     if (startBtn) {
       startBtn.hidden = false;
+      gateFillDevices();
       startBtn.addEventListener('click', () => { beginIntro(); }, { once: true });
     }
     // Don't auto-play — return here and wait for the button
