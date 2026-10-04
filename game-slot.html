@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="th">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0a0a18">
+  <title>IOT SLOT — Lucky Hub IOT888</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="theme.css">
+  <link rel="stylesheet" href="lucky.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%2300f0ff'/><text x='50' y='68' font-size='50' font-weight='bold' fill='%2306040f' text-anchor='middle'>88</text></svg>\">
+  <script>
+    (function () { try { document.documentElement.dataset.theme = 'dark'; } catch (e) { } })();
+  </script>
+</head>
+
+<body data-lucky data-game="slot">
+  <header class="topbar glass">
+    <a class="brand" href="index.html" aria-label="กลับหน้าหลัก IOT888"><span class="brand-mark">io</span><span>lucky<span
+          class="brand-light">hub</span><small>IOT888 · ไม่มีเงินจริง</small></span></a>
+    <div class="nav-actions">
+      <span class="lucky-credit neu" id="credit-pill" aria-live="polite"><svg class="coin-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.2"/></svg> <b id="credit-value">1,000</b> <small>เครดิต</small></span>
+      <button class="language neu" id="lucky-reset" type="button" title="เติมเครดิตกลับเป็น 1,000">รีเซ็ต</button>
+    </div>
+  </header>
+
+  <main class="lucky-main">
+    <div class="game-panel">
+      <div class="game-top">
+        <a class="game-back" href="lucky.html">← ล็อบบี้</a>
+        <span class="lucky-cost">10–500 ต่อรอบ</span>
+      </div>
+      <h1 class="cyber-title" data-text="IOT SLOT">IOT SLOT</h1>
+      <p class="lucky-sub">โมเดลอุปกรณ์ IoT · 3 ตรง <b>×35</b> · คู่ <b>×2</b></p>
+
+      <div class="bet-row"><span class="bet-label">เดิมพัน</span><div class="bet-pick" id="slot-bets"></div><span class="bet-total" id="slot-total"></span></div>
+      <div class="bet-row"><span class="bet-label">จำนวนรอบ</span><div class="bet-pick" id="slot-rounds"></div></div>
+
+      <div class="slot-window">
+        <div class="slot-reel" id="slot-r0"><span class="slot-face"></span></div>
+        <div class="slot-reel" id="slot-r1"><span class="slot-face"></span></div>
+        <div class="slot-reel" id="slot-r2"><span class="slot-face"></span></div>
+      </div>
+      <div class="slot-pay"><span>เรียง 3 ตัวตรง <b>×35</b></span><span>คู่ <b>×2</b></span></div>
+
+      <div class="lucky-row">
+        <button class="lucky-play" id="slot-btn" type="button">หมุน (50)</button>
+        <span class="lucky-out" id="slot-out">—</span>
+      </div>
+    </div>
+  </main>
+
+  <div class="lucky-toast" id="lucky-toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="theme.js"></script>
+  <script src="lucky-devices.js"></script>
+  <script src="lucky-game.js"></script>
+</body>
+
+</html>
