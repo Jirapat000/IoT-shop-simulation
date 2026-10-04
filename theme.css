@@ -4354,83 +4354,130 @@ body.intro-playing .floating-cart-pill,
 }
 
 /* ==========================================================================
-   GLOBAL FONT SCALING & READABILITY (PrintAble4U)
+   GLOBAL FONT SCALING & READABILITY (TH Sarabun New / Sarabun)
    ========================================================================== */
+:root,
+body,
+button,
+input,
+select,
+textarea,
+dialog,
+table,
+th,
+td,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+a,
+small,
+strong,
+b,
+label {
+  font-family: 'TH Sarabun New', 'TH Sarabun PSK', 'Sarabun', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+code,
+pre,
+kbd,
+.pin-badge,
+.mcu-badge,
+.conf-pin-tag code,
+.lib-header strong {
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;
+}
+
 html {
-  font-size: 16px;
+  font-size: 19px;
 }
 
 body {
-  font-size: 16px;
-  line-height: 1.7;
+  font-size: 19px;
+  line-height: 1.6;
 }
 
 /* Topbar & Nav */
-.brand { font-size: 22px; }
-.brand small { font-size: 11px; letter-spacing: 1.2px; }
-.nav-links a, .text-link { font-size: 15px; font-weight: 600; }
-.language { font-size: 13.5px; }
-.button, .nav-cta { font-size: 14px; }
+.brand { font-size: 25px; }
+.brand small { font-size: 13.5px; letter-spacing: 1px; }
+.nav-links a, .text-link { font-size: 18px; font-weight: 600; }
+.language { font-size: 16.5px; }
+.button, .nav-cta { font-size: 17.5px; font-weight: 700; }
 
 /* Hero */
-.eyebrow { font-size: 13px; letter-spacing: 0.4px; }
-.hero-lede { font-size: 17px; line-height: 1.85; max-width: 480px; }
-.hero-proof { font-size: 13px; }
-.hero-proof strong { font-size: 14px; }
-.hero-proof small { font-size: 12px; }
-.hero-proof .proof-count { font-size: 24px; }
-.hero-scroll { font-size: 13px; }
+.eyebrow { font-size: 16px; letter-spacing: 0.5px; }
+.hero-lede { font-size: 21px; line-height: 1.7; max-width: 500px; }
+.hero-proof { font-size: 16px; }
+.hero-proof strong { font-size: 17px; }
+.hero-proof small { font-size: 14.5px; }
+.hero-proof .proof-count { font-size: 28px; }
+.hero-scroll { font-size: 16px; }
 
 /* Section Headings */
-.section-heading h2, .learn-copy h2, .shops-card h2 { font-size: 32px; }
-.section-heading p { font-size: 15px; }
-.eyebrow.muted { font-size: 12.5px; letter-spacing: 1px; }
+.section-heading h2, .learn-copy h2, .shops-card h2 { font-size: 38px; }
+.section-heading p { font-size: 19px; }
+.eyebrow.muted { font-size: 16px; letter-spacing: 0.8px; }
 
 /* Category Bento */
-.category-card b { font-size: 16px; }
-.category-card small { font-size: 13px; }
-.category-index { font-size: 13px; }
+.category-card b { font-size: 20px; }
+.category-card small { font-size: 16.5px; }
+.category-index { font-size: 16px; }
 
 /* Catalog Tools & Filters */
-.catalog-count { font-size: 14px; }
-.catalog-count #result-count { font-size: 24px; }
-.search input { font-size: 15px; }
-.search kbd { font-size: 11.5px; }
-.filter-pill { font-size: 13.5px; padding: 9px 15px; }
-.sort-wrap { font-size: 13.5px; }
-.sort-wrap select { font-size: 13.5px; }
+.catalog-count { font-size: 17.5px; }
+.catalog-count #result-count { font-size: 30px; }
+.search input { font-size: 18px; }
+.search kbd { font-size: 14.5px; }
+.filter-pill { font-size: 17px; padding: 10px 18px; }
+.sort-wrap { font-size: 17px; }
+.sort-wrap select { font-size: 17px; }
 
 /* Product Cards in Grid */
-.product-kind { font-size: 12px; letter-spacing: 0.8px; font-weight: 700; }
-.product-info h3 { font-size: 17px; line-height: 1.4; }
-.product-info p { font-size: 14px; line-height: 1.6; }
-.product-tags span { font-size: 12px; padding: 4px 8px; }
-.visual-badge { font-size: 12px; padding: 4px 8px; }
-.price-info small { font-size: 11px; }
-.price-info strong { font-size: 16px; }
-.compare-check { font-size: 13px; }
-.detail-link { font-size: 13.5px; }
+.product-kind { font-size: 15px; letter-spacing: 0.8px; font-weight: 700; }
+.product-info h3 { font-size: 21px; line-height: 1.35; font-weight: 700; }
+.product-info p { font-size: 17.5px; line-height: 1.55; }
+.product-tags span { font-size: 15.5px; padding: 4px 10px; font-weight: 600; }
+.visual-badge { font-size: 14.5px; padding: 4px 10px; }
+.price-info small { font-size: 14px; }
+.price-info strong { font-size: 21px; font-weight: 700; }
+.compare-check { font-size: 16px; }
+.detail-link { font-size: 17px; font-weight: 700; }
+
+/* 3D Coverflow Cards */
+.coverflow-card-name { font-size: 21px; }
+.coverflow-card-sub { font-size: 17px; }
+.coverflow-card-price { font-size: 20px; }
+.coverflow-badge { font-size: 15px; }
+.spotlight-title { font-size: 34px; }
+.spotlight-blurb { font-size: 20px; }
+.spotlight-chip { font-size: 18px; }
+.spotlight-price { font-size: 26px; }
+.spotlight-detail-btn, .spotlight-cart-btn { font-size: 19px; }
 
 /* Learn Section */
-.learn-copy p { font-size: 16px; }
-.path-step small { font-size: 12px; }
-.path-step h3 { font-size: 16px; }
-.path-step p { font-size: 13.5px; }
-.step-icon { font-size: 13px; }
+.learn-copy p { font-size: 20px; line-height: 1.65; }
+.path-step small { font-size: 15px; }
+.path-step h3 { font-size: 20px; font-weight: 700; }
+.path-step p { font-size: 17px; }
+.step-icon { font-size: 16px; }
 
 /* Project Section */
-.project-time { font-size: 12px; }
-.project-card h3 { font-size: 17px; }
-.project-card p { font-size: 14px; }
-.bom-label { font-size: 12px; }
-.bom-items span { font-size: 12.5px; padding: 5px 9px; }
-.project-card .text-link { font-size: 13px; }
+.project-time { font-size: 15.5px; }
+.project-card h3 { font-size: 22px; font-weight: 700; }
+.project-card p { font-size: 17.5px; line-height: 1.6; }
+.bom-label { font-size: 15px; }
+.bom-items span { font-size: 16px; padding: 5px 11px; }
+.project-card .text-link { font-size: 17px; font-weight: 700; }
 
 /* Shops Section */
-.shops-card>div:first-child p { font-size: 14.5px; }
-.shop-link b { font-size: 14px; }
-.shop-link small { font-size: 12px; }
-.shop-note { font-size: 12.5px; }
+.shops-card>div:first-child p { font-size: 19px; }
+.shop-link b { font-size: 19px; }
+.shop-link small { font-size: 15.5px; }
+.shop-note { font-size: 16px; }
 
 /* ==========================================================================
    Comprehensive Details Typography Scale (+60% on all detail & modal views)
@@ -4753,14 +4800,14 @@ body {
 }
 
 /* Footer */
-.footer-top>p { font-size: 13.5px; }
-.back-top { font-size: 13.5px; }
-.footer-bottom { font-size: 12px; }
+.footer-top>p { font-size: 17.5px; }
+.back-top { font-size: 17.5px; }
+.footer-bottom { font-size: 15.5px; }
 
 /* Mobile responsiveness */
 @media (max-width: 650px) {
   html {
-    font-size: 15px;
+    font-size: 17px;
   }
   .stream-corridor {
     height: 190px;
