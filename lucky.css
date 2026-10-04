@@ -1,0 +1,62 @@
+/* Lucky Hub — simulated betting page (no real money). Shares the site tokens,
+   so it follows the light/dark theme automatically. */
+
+.lucky-main{max-width:1200px;margin:0 auto;padding:clamp(72px,9vw,110px) clamp(16px,4vw,32px) 48px}
+.lucky-hero{text-align:center;margin-bottom:clamp(20px,3vw,34px)}
+.lucky-hero h1{font-size:clamp(30px,4.5vw,52px);letter-spacing:.5px;margin:0 0 10px}
+.lucky-hero p{max-width:640px;margin:0 auto;color:var(--ink);opacity:.85;font-size:clamp(14px,1.6vw,16px)}
+.lucky-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(14px,2vw,22px)}
+.lucky-card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:clamp(16px,2vw,24px);box-shadow:var(--shadow-sm)}
+.lucky-card h2{margin:0 0 4px;font-size:clamp(18px,2vw,22px)}
+.lucky-sub{margin:0 0 14px;color:var(--ink);opacity:.65;font-size:13px}
+.lucky-row{display:flex;align-items:center;gap:12px;margin-top:14px;flex-wrap:wrap}
+.lucky-play{min-width:130px}
+.lucky-ghost{background:var(--tint)}
+.lucky-out{font-weight:700;color:var(--ink);min-height:1.4em}
+.lucky-out.win{color:#1d9a6c}
+.lucky-out.lose{color:#c94f4f}
+.lucky-credit{display:inline-flex;align-items:center;gap:6px;font-weight:700}
+.lucky-credit small{opacity:.65;font-weight:500}
+
+/* ---- slot ---- */
+.slot-window{display:flex;gap:10px;justify-content:center;background:var(--tint);border:1px solid var(--line);border-radius:16px;padding:16px}
+.slot-reel{width:74px;height:74px;border-radius:12px;background:var(--card);border:1px solid var(--line);display:grid;place-items:center;overflow:hidden;position:relative}
+.slot-face{font-size:40px;line-height:1;will-change:transform,opacity}
+.slot-reel.spinning .slot-face{animation:slot-blur .09s linear infinite}
+@keyframes slot-blur{0%{transform:translateY(-16%);opacity:.4}50%{transform:translateY(0);opacity:1}100%{transform:translateY(16%);opacity:.4}}
+.slot-reel.bounce .slot-face{animation:slot-pop .45s ease}
+@keyframes slot-pop{0%{transform:scale(.7)}55%{transform:scale(1.15)}100%{transform:scale(1)}}
+
+/* ---- horse race ---- */
+.race-pick{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.race-horse{border:1px solid var(--line);background:var(--tint);border-radius:999px;padding:7px 14px;font-weight:700;cursor:pointer;color:var(--ink)}
+.race-horse.on{background:var(--ink);color:var(--card);border-color:var(--ink)}
+.race-track{position:relative;height:118px;border:1px solid var(--line);border-radius:14px;background:var(--tint);overflow:hidden}
+.race-lane{position:absolute;left:0;right:0;height:29px;display:flex;align-items:center}
+.race-lane::after{content:'';position:absolute;right:10px;top:50%;width:2px;height:20px;transform:translateY(-50%);background:var(--line-strong)}
+.race-horse-sprite{position:absolute;left:8px;font-size:20px;transition:left 80ms linear;will-change:left}
+.race-horse-sprite.win{filter:drop-shadow(0 0 6px rgba(29,154,108,.9))}
+
+/* ---- bingo ---- */
+.bingo-card{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;max-width:380px}
+.bingo-cell{aspect-ratio:1;display:grid;place-items:center;border-radius:10px;background:var(--tint);border:1px solid var(--line);font-weight:700;font-size:clamp(12px,1.4vw,15px);color:var(--ink);transition:background .2s,transform .2s}
+.bingo-cell.head{background:var(--ink);color:var(--card)}
+.bingo-cell.hit{background:#1d9a6c;border-color:#1d9a6c;color:#fff;transform:scale(1.04)}
+.bingo-cell[disabled]{opacity:.45}
+
+/* ---- plinko ---- */
+#plinko-canvas{width:100%;height:auto;display:block;border-radius:14px;border:1px solid var(--line);background:var(--tint)}
+
+/* ---- toast ---- */
+.lucky-toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--ink);color:var(--card);padding:10px 18px;border-radius:999px;font-weight:700;z-index:60;box-shadow:var(--shadow-sm);animation:lucky-toast-in .25s ease}
+@keyframes lucky-toast-in{from{opacity:0;transform:translateX(-50%) translateY(8px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+
+@media (max-width:640px){
+  .slot-reel{width:58px;height:58px}
+  .slot-face{font-size:30px}
+  .race-track{height:104px}
+  .race-lane{height:26px}
+}
+@media (prefers-reduced-motion: reduce){
+  .slot-reel.spinning .slot-face,.slot-reel.bounce .slot-face,.lucky-toast,.race-horse-sprite{animation:none!important;transition:none!important}
+}
