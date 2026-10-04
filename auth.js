@@ -22,6 +22,7 @@
   function initSupabase () {
     if (window.supabase && window.supabase.createClient) {
       sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      window.supabaseClient = sb;
     } else {
       setTimeout(initSupabase, 200);
     }
@@ -248,20 +249,20 @@
 
   /* Forgot password */
   $('auth-forgot-btn')?.addEventListener('click', () => {
-    showMsg('กรุณากรอกอีเมล แล้วติดต่อเจ้าหน้าที่หรือใช้ลิงก์รีเซ็ตผ่าน Supabase', 'success');
+    showMsg('ระบุอีเมลเพื่อรับลิงก์รีเซ็ตรหัสผ่านทางอีเมล', 'success');
   });
 
   /* Google Sign In */
   async function handleGoogleLogin () {
-    if (!sb) return showMsg('กำลังโหลดระบบ Supabase กรุณารอสักครู่…');
+    if (!sb) return showMsg('กำลังโหลดระบบ Supabase...');
     if (!googleBtn) return;
 
     const originalContent = googleBtn.innerHTML;
     try {
       googleBtn.disabled = true;
       googleBtn.innerHTML = `
-        <span class="auth-google-icon">⏳</span>
-        <span>กำลังเชื่อมต่อกับ Google…</span>
+        <span class="auth-google-icon"><svg class="ui-svg spinner-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg></span>
+        <span>กำลังเชื่อมต่อ Google...</span>
       `;
       clearMsg();
 
@@ -321,20 +322,20 @@
   /* ─── Unified Form Submit (Sign In or Sign Up) ─────────── */
   authForm?.addEventListener('submit', async e => {
     e.preventDefault();
-    if (!sb) return showMsg('กำลังโหลดระบบ กรุณารอสักครู่…');
+    if (!sb) return showMsg('กำลังโหลดระบบ...');
     if (isCoolingDown()) return;
 
     const email    = inputEmail?.value.trim();
     const password = inputPassword?.value;
     const username = inputUsername?.value.trim();
 
-    if (!email || !password) return showMsg('กรุณากรอกอีเมลและรหัสผ่าน');
+    if (!email || !password) return showMsg('ระบุอีเมลและรหัสผ่าน');
 
     const originalLabel = isSignUpMode ? 'Sign Up' : 'Sign In';
 
     if (isSignUpMode) {
       /* ─── SIGN UP ────────────────────────── */
-      if (!username) return showMsg('กรุณากรอกชื่อผู้ใช้ (Username)');
+      if (!username) return showMsg('ระบุชื่อผู้ใช้ (Username)');
       if (password.length < 6) return showMsg('รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร');
 
       try {
@@ -350,12 +351,12 @@
 
         if (error) {
           if (error.status === 429 || error.message?.toLowerCase().includes('rate')) {
-            showMsg('⏳ สมัครสมาชิกบ่อยเกินไป Supabase จำกัด 3 ครั้ง/ชั่วโมง\nกรุณารอสักครู่แล้วลองใหม่', 'error');
+            showMsg('ส่งคำขอบ่อยเกินไป • รอสักครู่แล้วลองใหม่', 'error');
             startCooldown(120, submitBtn, originalLabel);
             return;
           }
           if (error.message?.includes('already registered')) {
-            showMsg('อีเมลนี้มีบัญชีอยู่แล้ว กรุณาเข้าสู่ระบบแทน', 'error');
+            showMsg('อีเมลนี้ลงทะเบียนแล้ว • สลับเป็นเข้าสู่ระบบ', 'error');
             return;
           }
           return showMsg(error.message);
@@ -372,15 +373,15 @@
 
         const needsConfirm = !data.session;
         if (needsConfirm) {
-          showMsg('📧 ส่งอีเมลยืนยันไปที่ ' + email + ' แล้ว กรุณาตรวจสอบอีเมลก่อนเข้าสู่ระบบ', 'success');
+          showMsg('ส่งอีเมลยืนยันไปยัง ' + email + ' แล้ว • ตรวจสอบกล่องข้อความเพื่อยืนยัน', 'success');
           setTimeout(closeModal, 3500);
         } else {
-          showMsg('🎉 สมัครสมาชิกสำเร็จ! บันทึกข้อมูลลงตาราง IoT888 แล้ว', 'success');
+          showMsg('สมัครสมาชิกสำเร็จ • บันทึกข้อมูลเรียบร้อย', 'success');
           await refreshUI(data.user);
           setTimeout(closeModal, 1200);
         }
       } catch (err) {
-        showMsg(err.message || 'เกิดข้อผิดพลาดในการสมัครสมาชิก');
+        showMsg(err.message || 'ไม่สามารถสมัครสมาชิกได้');
       } finally {
         if (!isCoolingDown()) {
           submitBtn.disabled = false;
@@ -398,7 +399,7 @@
         const { data, error } = await sb.auth.signInWithPassword({ email, password });
         if (error) {
           if (error.status === 429 || error.message?.toLowerCase().includes('rate')) {
-            showMsg('⏳ ลองเข้าสู่ระบบบ่อยเกินไป กรุณารอสักครู่แล้วลองใหม่', 'error');
+            showMsg('เข้าสู่ระบบบ่อยเกินไป • รอสักครู่แล้วลองใหม่', 'error');
             startCooldown(60, submitBtn, originalLabel);
             return;
           }
@@ -415,7 +416,7 @@
           last_login : new Date().toISOString()
         }, { onConflict: 'user_id', ignoreDuplicates: false });
 
-        showMsg('✅ เข้าสู่ระบบสำเร็จ!', 'success');
+        showMsg('เข้าสู่ระบบสำเร็จ', 'success');
         await refreshUI(data.user);
         setTimeout(closeModal, 900);
       } catch (err) {

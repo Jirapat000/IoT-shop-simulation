@@ -1,0 +1,81 @@
+{
+  "id": "relay-4ch",
+  "name": "4-Channel 5V Relay",
+  "category": "modules",
+  "chip": "Electromechanical",
+  "voltage": "5V",
+  "pins": "4 relay channels",
+  "wireless": "—",
+  "difficulty": "intermediate",
+  "tags": ["Relay", "4 Channel", "Module"],
+  "visual": "lilac",
+  "type": "relay",
+  "shop": "cybertice",
+  "slug": "4-channel-5v-relay",
+  "price": 85,
+  "blurb": {
+    "th": "ควบคุมอุปกรณ์ไฟฟ้าผ่านไมโครคอนโทรลเลอร์ แยกสัญญาณควบคุมกับโหลด",
+    "en": "Switch electrical loads from a microcontroller with optically isolated inputs."
+  },
+  "uses": {
+    "th": "เหมาะสำหรับ: ระบบสมาร์ทโฮม, สั่งเปิด-ปิดไฟ 220V, ควบคุมปั๊มน้ำรดต้นไม้, ควบคุมพัดลมและเครื่องใช้ไฟฟ้า",
+    "en": "Great for: smart home mains switching, 220V AC light control, automated irrigation pumps, appliance automation."
+  },
+  "features": {
+    "th": [
+      "สวิตช์รีเลย์ไฟฟ้า 4 ช่องอิสระ ควบคุมเครื่องใช้ไฟฟ้า AC หรือโหลดกระแสตรง DC",
+      "พิกัดหน้าสัมผัสรองรับไฟบ้าน AC 250V/10A หรือ DC 30V/10A สูงสุดต่อช่อง",
+      "มีวงจร Optocoupler (Photocoupler) แยกทางไฟฟ้าระหว่างฝั่งควบคุมกับโหลด ป้องกันไฟย้อนเพื่อความปลอดภัยสูงสุด",
+      "มีหลอดไฟ LED แสดงสถานะการทำงานเปิด-ปิดแยกอิสระในแต่ละช่อง",
+      "ทำงานแบบ Active LOW (ส่งสัญญาณดิจิทัล LOW หรือ 0V เพื่อสั่งให้รีเลย์สับสวิตช์ทำงาน)",
+      "มีขั้วต่อแบบขันน็อต (Screw Terminal) ชนิด COM (Common), NO (Normally Open) และ NC (Normally Closed)"
+    ],
+    "en": [
+      "4 independent electromechanical relays for AC mains or DC power switching",
+      "Contact rating: AC 250V / 10A or DC 30V / 10A per channel",
+      "Optical isolation (Optocoupler) protects microcontroller from inductive spikes and voltage surges",
+      "Independent status indicator LEDs for each relay channel",
+      "Active LOW trigger logic (driving pin LOW engages the relay)",
+      "Heavy-duty screw terminal blocks with COM, NO, and NC contacts"
+    ]
+  },
+  "workingPrinciple": {
+    "th": "ทำหน้าที่เป็นสวิตช์ไฟฟ้าที่สั่งการด้วยแม่เหล็กไฟฟ้า: เมื่อไมโครคอนโทรลเลอร์สั่งสัญญาณ LOW ไปยังขา IN กระแสจะไหลผ่านไดโอดเปล่งแสงภายใน Optocoupler ทำให้โฟโต้ทรานซิสเตอร์นำกระแสและป้อนไฟเข้าขดลวดแม่เหล็กไฟฟ้า เกิดแรงดูดแผ่นหน้าสัมผัสภายในตัวรีเลย์ให้ย้ายจากขั้ว NC (Normally Closed) ไปแตะขั้ว NO (Normally Open) ทำให้วงจรไฟฟ้าต่อถึงกันและเปิดเครื่องใช้ไฟฟ้าทำงาน",
+    "en": "Functions as an optically isolated electromagnetic switch. Setting a control input pin LOW energizes the internal optocoupler and coil. The magnetic field draws the internal mechanical armature from the NC contact over to the NO contact, completing the high-voltage load circuit safely."
+  },
+  "wiring": {
+    "th": [
+      { "pin": "ฝั่งควบคุม: ขา VCC", "connectTo": "ขา 5V ของบอร์ด", "note": "จ่ายไฟเลี้ยง 5V ให้ขดลวดรีเลย์" },
+      { "pin": "ฝั่งควบคุม: ขา GND", "connectTo": "ขา GND ของบอร์ด", "note": "ต่อเข้ากราวด์ร่วมของระบบ" },
+      { "pin": "ฝั่งควบคุม: ขา IN1–IN4", "connectTo": "ขาดิจิทัล เช่น D4, D5, D6, D7", "note": "สั่งงานด้วยสัญญาณดิจิทัล (LOW = เปิด, HIGH = ปิด)" },
+      { "pin": "ฝั่งโหลด: ขั้ว COM", "connectTo": "สายไฟหลัก (Line 220V หรือ +12V)", "note": "สายไฟขั้วจ่ายมาจากแหล่งจ่ายไฟภายนอก" },
+      { "pin": "ฝั่งโหลด: ขั้ว NO", "connectTo": "สายต่อเข้าอุปกรณ์ไฟฟ้า", "note": "ต่อสายไปยังเครื่องใช้ไฟฟ้า (ไฟจะติดเมื่อสั่งเปิด)" }
+    ],
+    "en": [
+      { "pin": "Control: VCC Pin", "connectTo": "MCU 5V", "note": "Powers relay coils and optocouplers" },
+      { "pin": "Control: GND Pin", "connectTo": "MCU GND", "note": "Common control ground" },
+      { "pin": "Control: IN1–IN4 Pins", "connectTo": "MCU Digital Pins (e.g. D4, D5, D6, D7)", "note": "Trigger pins (LOW = relay energized, HIGH = off)" },
+      { "pin": "Load: COM Terminal", "connectTo": "Mains Line or DC Source", "note": "Hot wire from incoming power feed" },
+      { "pin": "Load: NO Terminal", "connectTo": "Appliance / Load input", "note": "Connects power to the appliance when switched ON" }
+    ]
+  },
+  "libraries": [
+    {
+      "name": "Standard Digital I/O (Built-in)",
+      "installGuide": {
+        "th": "ไม่ต้องติดตั้ง Library เพิ่มเติม ใช้คำสั่ง pinMode() และ digitalWrite() ของ Arduino ได้ทันที",
+        "en": "No extra libraries needed; uses standard built-in digitalWrite() and pinMode() calls."
+      },
+      "isBuiltIn": true
+    }
+  ],
+  "sampleCode": {
+    "language": "cpp",
+    "configurablePin": "CH1_PIN, CH2_PIN, CH3_PIN, CH4_PIN",
+    "explanation": {
+      "th": "โค้ดควบคุมรีเลย์ 4 ช่องแบบ Active LOW โดยเริ่มโปรแกรมจะปิดรีเลย์ทุกช่องเพื่อความปลอดภัย จากนั้นสั่งเปิด-ปิดสลับทีละช่อง พร้อมแสดงสถานะออกทาง Serial Monitor",
+      "en": "Controls a 4-channel active-LOW relay board. Safely initializes all relays to OFF in setup(), then cycles through switching each channel with Serial feedback."
+    },
+    "code": "// ==========================================\n// 4-Channel 5V Relay: ควบคุมเปิด-ปิดรีเลย์ 4 ช่อง (Active LOW)\n// แก้ไขหมายเลขขา CH1_PIN ถึง CH4_PIN ด้านล่างได้ทันที\n// ==========================================\n#define CH1_PIN 4   // ขาควบคุมรีเลย์ช่อง 1\n#define CH2_PIN 5   // ขาควบคุมรีเลย์ช่อง 2\n#define CH3_PIN 6   // ขาควบคุมรีเลย์ช่อง 3\n#define CH4_PIN 7   // ขาควบคุมรีเลย์ช่อง 4\n\n// นิยามสถานะสำหรับ Active LOW ให้อ่านโค้ดเข้าใจง่าย\n#define RELAY_ON  LOW   // สั่งเปิดรีเลย์ด้วยสัญญาณ LOW\n#define RELAY_OFF HIGH  // สั่งปิดรีเลย์ด้วยสัญญาณ HIGH\n\nvoid setup() {\n  Serial.begin(9600);\n\n  // กำหนดขาควบคุมทุกช่องให้เป็น Output\n  pinMode(CH1_PIN, OUTPUT);\n  pinMode(CH2_PIN, OUTPUT);\n  pinMode(CH3_PIN, OUTPUT);\n  pinMode(CH4_PIN, OUTPUT);\n\n  // เริ่มต้นปิดรีเลย์ทุกช่องไว้ก่อนเพื่อความปลอดภัย\n  digitalWrite(CH1_PIN, RELAY_OFF);\n  digitalWrite(CH2_PIN, RELAY_OFF);\n  digitalWrite(CH3_PIN, RELAY_OFF);\n  digitalWrite(CH4_PIN, RELAY_OFF);\n\n  Serial.println(\"4-Channel Relay Initialized (All Relays OFF)\");\n}\n\nvoid loop() {\n  // ตัวอย่าง: เปิดรีเลย์ช่อง 1 นาน 2 วินาที แล้วปิด\n  Serial.println(\"Relay CH1 -> ON\");\n  digitalWrite(CH1_PIN, RELAY_ON);\n  delay(2000);\n  digitalWrite(CH1_PIN, RELAY_OFF);\n  Serial.println(\"Relay CH1 -> OFF\");\n\n  // สลับมาเปิดรีเลย์ช่อง 2 นาน 2 วินาที แล้วปิด\n  Serial.println(\"Relay CH2 -> ON\");\n  digitalWrite(CH2_PIN, RELAY_ON);\n  delay(2000);\n  digitalWrite(CH2_PIN, RELAY_OFF);\n  Serial.println(\"Relay CH2 -> OFF\");\n\n  delay(1000); // พัก 1 วินาทีก่อนวนรอบใหม่\n}"
+  }
+}

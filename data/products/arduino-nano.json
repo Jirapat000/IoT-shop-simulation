@@ -7,17 +7,73 @@
   "pins": "14 digital · 8 analog",
   "wireless": "—",
   "difficulty": "beginner",
-  "tags": ["Arduino","Compact","USB"],
+  "tags": ["Arduino", "Compact", "USB"],
   "visual": "blue",
   "type": "nano",
   "shop": "allnewstep",
   "slug": "arduino-nano",
+  "price": 85,
   "blurb": {
     "th": "พลัง Arduino ในขนาดกะทัดรัด เสียบลงเบรดบอร์ดได้ เหมาะกับโปรเจกต์พื้นที่จำกัด",
     "en": "Arduino power in a compact, breadboard-friendly size for space-conscious projects."
   },
   "uses": {
-    "th": "เหมาะสำหรับ: โปรเจกต์ขนาดเล็ก, งานสวมใส่, ต้นแบบ",
-    "en": "Great for: compact builds, wearables, and prototypes."
+    "th": "เหมาะสำหรับ: โปรเจกต์ขนาดเล็ก, งานสวมใส่, หุ่นยนต์ขนาดเล็ก, วงจรบนเบรดบอร์ด",
+    "en": "Great for: compact builds, wearables, mini robotics, breadboard prototyping."
+  },
+  "features": {
+    "th": [
+      "ชิปประมวลผล ATmega328P ความเร็ว 16 MHz ขนาดกะทัดรัด (18 x 45 มม.)",
+      "ขาเสียบแบบ DIP เสียบลง Breadboard ได้แน่นหนาและเป็นระเบียบ",
+      "ขา Digital I/O 14 ขา (PWM 6 ขา: D3, D5, D6, D9, D10, D11)",
+      "ขา Analog Input 8 ขา (A0–A7) ซึ่งมากกว่า Arduino Uno 2 ขา",
+      "แรงดันไฟฟ้าทำงาน 5V (รับไฟเข้าทาง VIN ได้ 7–12V)",
+      "มีชิปแปลง USB-UART (CH340 หรือ FT232) พร้อมพอร์ต Mini-USB / Type-C"
+    ],
+    "en": [
+      "ATmega328P MCU at 16 MHz in an ultra-compact breadboard format (18 x 45 mm)",
+      "DIP pin arrangement snaps securely into standard breadboards",
+      "14 Digital I/O pins (6 PWM channels: D3, D5, D6, D9, D10, D11)",
+      "8 Analog inputs (A0–A7), offering 2 additional analog channels over Uno",
+      "5V logic level; VIN pin supports 7–12V DC input",
+      "Onboard USB-UART interface (CH340/FT232) with Mini-USB or Type-C port"
+    ]
+  },
+  "workingPrinciple": {
+    "th": "โครงสร้างและการทำงานเหมือน Arduino Uno ทุกประการด้วยชิปไมโครคอนโทรลเลอร์ตัวเดียวกัน แต่ถูกย่อขนาดและจัดเรียงขาให้สามารถเสียบลงแผ่นทดลองเบรดบอร์ดได้สะดวก เหมาะสำหรับการประกอบชิ้นงานจริงหรือติดตั้งในกล่องขนาดกะทัดรัด",
+    "en": "Operates with the same ATmega328P architecture as the Uno, but miniaturized into a dual-in-line package designed to plug cleanly into breadboards and space-constrained enclosures."
+  },
+  "wiring": {
+    "th": [
+      { "pin": "ขา D13", "connectTo": "LED บนตัวบอร์ด", "note": "ไฟ LED สีเขียว/น้ำเงินประจำบอร์ด" },
+      { "pin": "ขา A0", "connectTo": "เซ็นเซอร์ Analog", "note": "ต่อเข้าเซ็นเซอร์แสง LDR หรือตัวต้านทานปรับค่าได้ (Potentiometer)" },
+      { "pin": "ขา D9", "connectTo": "LED ภายนอก (PWM)", "note": "ต่อขาบวก LED ผ่านตัวต้านทาน 220Ω แล้วลง GND" },
+      { "pin": "ขา 5V / GND", "connectTo": "รางไฟ Breadboard", "note": "จ่ายไฟเลี้ยง 5V เข้าแผงทดลอง" }
+    ],
+    "en": [
+      { "pin": "Pin D13", "connectTo": "Built-in LED", "note": "Onboard status LED" },
+      { "pin": "Pin A0", "connectTo": "Analog sensor", "note": "Connect to LDR light sensor or potentiometer" },
+      { "pin": "Pin D9", "connectTo": "External LED (PWM)", "note": "Connect LED anode via 220Ω resistor, cathode to GND" },
+      { "pin": "5V / GND", "connectTo": "Breadboard power rails", "note": "Supplies regulated 5V power" }
+    ]
+  },
+  "libraries": [
+    {
+      "name": "Arduino AVR Boards (Built-in)",
+      "installGuide": {
+        "th": "มีพร้อมใน Arduino IDE ทันที (เลือกบอร์ด: Arduino Nano และ Processor: ATmega328P)",
+        "en": "Pre-installed in Arduino IDE; select Tools -> Board -> Arduino Nano."
+      },
+      "isBuiltIn": true
+    }
+  ],
+  "sampleCode": {
+    "language": "cpp",
+    "configurablePin": "ANALOG_PIN, PWM_LED_PIN",
+    "explanation": {
+      "th": "โค้ดอ่านค่าสัญญาณ Analog (0-1023) จากขา A0 แล้วแปลงค่าเพื่อหรี่ไฟ LED แบบ PWM ที่ขา D9 อย่างนุ่มนวล พร้อมส่งค่าดูผ่าน Serial Monitor",
+      "en": "Reads analog input (0-1023) on pin A0 and maps the value to adjust PWM LED brightness on pin D9 smoothly, outputting telemetry via Serial."
+    },
+    "code": "// ==========================================\n// Arduino Nano: อ่านค่าเซ็นเซอร์ Analog (A0) และปรับไฟหรี่ PWM (D9)\n// เปลี่ยนหมายเลขขาด้านล่างตามวงจรของคุณได้ทันที\n// ==========================================\n#define ANALOG_PIN   A0  // ขารับค่า Analog (0-1023) เช่น LDR หรือ Potentiometer\n#define PWM_LED_PIN  9   // ขาขับหลอด LED แบบ PWM (D3, D5, D6, D9, D10, D11)\n\nvoid setup() {\n  pinMode(PWM_LED_PIN, OUTPUT);\n  Serial.begin(9600);\n  Serial.println(\"Arduino Nano Analog & PWM Demo\");\n}\n\nvoid loop() {\n  int sensorVal = analogRead(ANALOG_PIN);          // อ่านค่า 0 - 1023\n  int brightness = map(sensorVal, 0, 1023, 0, 255); // ปรับสเกลเป็น 0 - 255 สำหรับ PWM\n  \n  analogWrite(PWM_LED_PIN, brightness);           // ปรับความสว่างของ LED\n  \n  Serial.print(\"Sensor: \");\n  Serial.print(sensorVal);\n  Serial.print(\" | Brightness: \");\n  Serial.println(brightness);\n  \n  delay(100); // อัปเดตทุก 0.1 วินาที\n}"
   }
 }

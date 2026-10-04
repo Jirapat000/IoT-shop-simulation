@@ -7,17 +7,73 @@
   "pins": "14 digital · 6 analog",
   "wireless": "—",
   "difficulty": "beginner",
-  "tags": ["Arduino","USB","Beginner"],
+  "tags": ["Arduino", "USB", "Beginner"],
   "visual": "green",
   "type": "board",
   "shop": "cybertice",
   "slug": "arduino-uno-r3",
+  "price": 150,
   "blurb": {
     "th": "บอร์ดยอดนิยมสำหรับเริ่มต้น เรียนรู้วงจรและทดลองไอเดียได้อย่างง่ายดาย",
     "en": "The classic starter board. Learn circuits and bring your first ideas to life."
   },
   "uses": {
-    "th": "เหมาะสำหรับ: เรียนรู้พื้นฐาน, ควบคุม LED, อ่านค่าเซ็นเซอร์",
-    "en": "Great for: learning the basics, controlling LEDs, reading sensors."
+    "th": "เหมาะสำหรับ: เรียนรู้พื้นฐาน, ควบคุม LED, อ่านค่าเซ็นเซอร์, อุปกรณ์ต้นแบบ",
+    "en": "Great for: learning the basics, controlling LEDs, reading sensors, prototyping."
+  },
+  "features": {
+    "th": [
+      "ชิปประมวลผล ATmega328P ความเร็ว 16 MHz สถาปัตยกรรม 8-bit AVR",
+      "ขา Digital I/O 14 ขา (เป็นขา PWM ได้ 6 ขา: ขา 3, 5, 6, 9, 10, 11)",
+      "ขา Analog Input 6 ขา (A0–A5) ความละเอียด 10 บิต (0–1023)",
+      "แรงดันไฟฟ้าทำงาน 5V รองรับไฟเข้าผ่านแจ็ค DC 7–12V หรือสาย USB",
+      "หน่วยความจำ Flash 32 KB, SRAM 2 KB, EEPROM 1 KB",
+      "มีไฟ LED ในตัวที่ขา D13 สะดวกต่อการเขียนโค้ดทดสอบเบื้องต้น"
+    ],
+    "en": [
+      "ATmega328P microcontroller running at 16 MHz (8-bit AVR)",
+      "14 Digital I/O pins (6 PWM outputs: D3, D5, D6, D9, D10, D11)",
+      "6 Analog inputs (A0–A5) with 10-bit resolution (0–1023)",
+      "5V operating voltage; accepts 7–12V DC via barrel jack or USB",
+      "32 KB Flash memory, 2 KB SRAM, 1 KB EEPROM",
+      "Built-in test LED connected to pin D13"
+    ]
+  },
+  "workingPrinciple": {
+    "th": "ทำงานเป็นสมองกลควบคุมระบบ โดยประมวลผลคำสั่งตามโค้ดภาษา C/C++ ที่เราอัปโหลดลงไป วนรอบลูป (void loop) รับสัญญาณดิจิทัลหรือแอนะล็อกจากเซ็นเซอร์ผ่านขา Input ประมวลผลทางตรรกะ แล้วสั่งการไปยังขา Output เช่น สั่งเปิด-ปิดไฟ ขับมอเตอร์ หรือส่งข้อมูลผ่าน Serial Monitor",
+    "en": "Acts as the central microcontroller brain, executing user C/C++ instructions sequentially in a loop. It samples analog/digital inputs from sensors, processes control logic, and drives outputs such as LEDs, motors, or serial data communication."
+  },
+  "wiring": {
+    "th": [
+      { "pin": "พอร์ต USB-B", "connectTo": "คอมพิวเตอร์", "note": "จ่ายไฟ 5V และใช้อัปโหลดโปรแกรม" },
+      { "pin": "ขา D13", "connectTo": "LED บนบอร์ด", "note": "หรือต่อ LED ภายนอก: ขาบวก -> R 220Ω -> ขา 13, ขาลบ -> GND" },
+      { "pin": "ขา D2", "connectTo": "สวิตช์ปุ่มกด", "note": "ต่อขาหนึ่งของสวิตช์เข้า D2 อีกขาลง GND (เปิด INPUT_PULLUP)" },
+      { "pin": "ขา 5V / GND", "connectTo": "อุปกรณ์ภายนอก", "note": "จ่ายไฟเลี้ยงให้เซ็นเซอร์และโมดูลต่างๆ" }
+    ],
+    "en": [
+      { "pin": "USB-B Port", "connectTo": "Computer USB", "note": "Provides 5V power and uploads code" },
+      { "pin": "Pin D13", "connectTo": "Built-in LED", "note": "External LED: Anode -> 220Ω -> D13, Cathode -> GND" },
+      { "pin": "Pin D2", "connectTo": "Push button switch", "note": "One switch lead to D2, other to GND (use INPUT_PULLUP)" },
+      { "pin": "5V / GND", "connectTo": "External sensors", "note": "Power supply rails for components" }
+    ]
+  },
+  "libraries": [
+    {
+      "name": "Arduino Core (Built-in)",
+      "installGuide": {
+        "th": "ติดตั้งมาพร้อมกับ Arduino IDE แล้ว ไม่จำเป็นต้องลง Library เพิ่มเติม",
+        "en": "Included with Arduino IDE; no additional installation needed."
+      },
+      "isBuiltIn": true
+    }
+  ],
+  "sampleCode": {
+    "language": "cpp",
+    "configurablePin": "LED_PIN, BUTTON_PIN",
+    "explanation": {
+      "th": "โค้ดทดสอบไฟกะพริบและอ่านค่าปุ่มกด โดยเปิดใช้งานตัวต้านทาน Pull-up ภายในบอร์ด ทำให้ไม่ต้องต่อตัวต้านทานภายนอกเพิ่ม พร้อมส่งข้อความสถานะแจ้งเตือนผ่าน Serial Monitor",
+      "en": "Demonstrates LED blink and button reading using the internal pull-up resistor (no external resistor needed) with Serial Monitor status output."
+    },
+    "code": "// ==========================================\n// Arduino Uno R3: ไฟกะพริบ + สวิตช์ปุ่มกด + Serial Monitor\n// เพียงเปลี่ยนหมายเลขขาด้านล่างก็ใช้งานได้ทันที\n// ==========================================\n#define LED_PIN    13    // ขาควบคุม LED (มี LED ในตัวที่ขา 13)\n#define BUTTON_PIN 2     // ขาต่อสวิตช์ปุ่มกด (ต่อขาหนึ่งเข้า D2 อีกขาลง GND)\n\nvoid setup() {\n  pinMode(LED_PIN, OUTPUT);          // ตั้งขา LED เป็น Output\n  pinMode(BUTTON_PIN, INPUT_PULLUP); // ใช้งาน Pull-up ภายในบอร์ด\n  Serial.begin(9600);                // เปิด Serial Monitor ที่ความเร็ว 9600 baud\n  Serial.println(\"Arduino Uno R3 is ready!\");\n}\n\nvoid loop() {\n  int buttonState = digitalRead(BUTTON_PIN);\n  \n  if (buttonState == LOW) { // เมื่อกดปุ่ม (สัญญานต่อลง GND)\n    digitalWrite(LED_PIN, HIGH); // เปิดไฟ LED\n    Serial.println(\"Button Pressed -> LED ON\");\n  } else {\n    digitalWrite(LED_PIN, LOW);  // ปิดไฟ LED\n  }\n  delay(100); // หน่วงเวลาเล็กน้อยเพื่อเสถียรภาพ\n}"
   }
 }

@@ -7,17 +7,83 @@
   "pins": "34 GPIO",
   "wireless": "Wi-Fi · Bluetooth",
   "difficulty": "beginner",
-  "tags": ["Wi-Fi","Bluetooth","Popular"],
+  "tags": ["Wi-Fi", "Bluetooth", "Popular"],
   "visual": "green",
   "type": "esp32",
   "shop": "cybertice",
   "slug": "esp32-devkit-v1",
+  "price": 165,
   "blurb": {
     "th": "บอร์ดครบเครื่องพร้อม Wi-Fi และ Bluetooth ในตัว เหมาะกับโปรเจกต์ IoT หลากหลายรูปแบบ",
     "en": "A versatile development board with built-in Wi-Fi and Bluetooth for connected projects."
   },
   "uses": {
-    "th": "เหมาะสำหรับ: สมาร์ทโฮม, IoT, เชื่อมต่ออินเทอร์เน็ต",
-    "en": "Great for: smart home builds, IoT, and internet-connected projects."
+    "th": "เหมาะสำหรับ: สมาร์ทโฮม, ระบบ IoT, การเชื่อมต่อ Cloud, Web Server, Bluetooth Beacon",
+    "en": "Great for: smart home builds, IoT cloud logging, local web servers, Bluetooth beacons."
+  },
+  "features": {
+    "th": [
+      "ชิปประมวลผลดูอัลคอร์ 32-bit Xtensa LX6 ความเร็วสูงสุด 240 MHz",
+      "Wi-Fi 802.11 b/g/n (2.4 GHz) และ Bluetooth v4.2 BR/EDR + BLE ในตัว",
+      "ขา GPIO 30–36 ขา รองรับ ADC 12-bit, DAC, PWM, I2C, SPI, UART, Capacitive Touch",
+      "หน่วยความจำ Flash 4 MB (32 Mbit) และ SRAM 520 KB",
+      "แรงดันไฟฟ้าทำงาน 3.3V Logic (รับไฟเข้า 5V ผ่าน Micro-USB หรือขา VIN)",
+      "รองรับการเขียนโปรแกรมทั้ง Arduino C/C++, MicroPython และ ESP-IDF"
+    ],
+    "en": [
+      "Dual-core 32-bit Xtensa LX6 microprocessor clocked up to 240 MHz",
+      "Integrated Wi-Fi 802.11 b/g/n (2.4 GHz) and Bluetooth 4.2 / BLE",
+      "30–36 GPIO pins with 12-bit ADC, DAC, hardware PWM, I2C, SPI, UART, and capacitive touch",
+      "4 MB onboard SPI Flash and 520 KB internal SRAM",
+      "3.3V logic level (5V power input via Micro-USB or VIN pin)",
+      "Fully compatible with Arduino IDE, MicroPython, and ESP-IDF"
+    ]
+  },
+  "workingPrinciple": {
+    "th": "เป็นบอร์ดประมวลผลความเร็วสูงที่มีภาครับ-ส่งสัญญาณวิทยุ Wi-Fi และ Bluetooth ในตัว สามารถต่อเราเตอร์เพื่อส่งข้อมูลขึ้น Cloud Platform (เช่น Blynk, Firebase, MQTT) หรือทำตัวเป็น Web Server ปล่อยหน้าเว็บให้มือถือสั่งเปิดปิดอุปกรณ์ไฟฟ้าได้ทันที",
+    "en": "Combines a fast dual-core processor with integrated 2.4 GHz Wi-Fi and Bluetooth RF transceivers. It connects to Wi-Fi networks to exchange telemetry with IoT clouds or runs an embedded HTTP server enabling direct control from mobile web browsers."
+  },
+  "wiring": {
+    "th": [
+      { "pin": "พอร์ต Micro-USB / VIN", "connectTo": "สาย USB หรือไฟ 5V", "note": "จ่ายไฟเลี้ยงเข้าบอร์ด (มีวงจรแปลงไฟเป็น 3.3V บนตัวบอร์ด)" },
+      { "pin": "ขา GPIO 2", "connectTo": "LED สีน้ำเงินบนบอร์ด", "note": "ไฟ LED สถานะประจำตัวบอร์ด" },
+      { "pin": "ขา GPIO 21 (SDA)", "connectTo": "อุปกรณ์ I2C (SDA)", "note": "บัสสื่อสาร I2C ขาสัญญาณข้อมูล" },
+      { "pin": "ขา GPIO 22 (SCL)", "connectTo": "อุปกรณ์ I2C (SCL)", "note": "บัสสื่อสาร I2C ขาสัญญาณนาฬิกา" },
+      { "pin": "ขา 3V3 / GND", "connectTo": "เซ็นเซอร์ภายนอก", "note": "คำเตือน: ขา GPIO รับไฟได้สูงสุด 3.3V ห้ามป้อนไฟ 5V ตรงเข้าขา" }
+    ],
+    "en": [
+      { "pin": "Micro-USB / VIN", "connectTo": "USB 5V power", "note": "Powers the board; onboard regulator steps down to 3.3V" },
+      { "pin": "GPIO 2", "connectTo": "Onboard blue LED", "note": "Built-in status indicator LED" },
+      { "pin": "GPIO 21 (SDA)", "connectTo": "I2C Sensor SDA", "note": "Default hardware I2C data line" },
+      { "pin": "GPIO 22 (SCL)", "connectTo": "I2C Sensor SCL", "note": "Default hardware I2C clock line" },
+      { "pin": "3V3 / GND", "connectTo": "External sensors", "note": "Caution: GPIOs are 3.3V only. Never connect 5V directly to GPIOs" }
+    ]
+  },
+  "libraries": [
+    {
+      "name": "esp32 by Espressif Systems",
+      "installGuide": {
+        "th": "ติดตั้งบอร์ดผ่าน Boards Manager ใน Arduino IDE โดยค้นหา 'esp32' โดย Espressif Systems",
+        "en": "Install ESP32 board package in Arduino IDE via Boards Manager -> search 'esp32'."
+      },
+      "isBuiltIn": true
+    },
+    {
+      "name": "WiFi.h (Built-in)",
+      "installGuide": {
+        "th": "มีพร้อมอยู่ในตัวทันทีเมื่อเลือกบอร์ดเป็น ESP32 ไม่ต้องติดตั้งเพิ่ม",
+        "en": "Included automatically in the ESP32 board platform; no separate install needed."
+      },
+      "isBuiltIn": true
+    }
+  ],
+  "sampleCode": {
+    "language": "cpp",
+    "configurablePin": "LED_PIN, ssid, password",
+    "explanation": {
+      "th": "โค้ดเชื่อมต่อระบบ Wi-Fi บ้าน โดยจะกะพริบไฟ LED สีน้ำเงินบนบอร์ดขณะกำลังเชื่อมต่อ และติดค้างเมื่อต่อสำเร็จ พร้อมแสดง IP Address ที่ได้รับลงบน Serial Monitor (115200 baud)",
+      "en": "Connects to a Wi-Fi network, blinks the onboard blue LED while searching, and turns it solid ON once connected while printing the assigned IP address to Serial."
+    },
+    "code": "// ==========================================\n// ESP32: เชื่อมต่อ Wi-Fi และส่งสถานะผ่าน Serial Monitor\n// เปลี่ยนชื่อ Wi-Fi, รหัสผ่าน และหมายเลขขา LED_PIN ด้านล่างได้ทันที\n// ==========================================\n#include <WiFi.h>\n\n#define LED_PIN 2   // ขา Onboard LED สีน้ำเงินของบอร์ด ESP32 DevKit (GPIO 2)\n\nconst char* ssid     = \"YOUR_WIFI_NAME\";     // ระบุชื่อ Wi-Fi ของคุณ\nconst char* password = \"YOUR_WIFI_PASSWORD\"; // ระบุรหัสผ่าน Wi-Fi ของคุณ\n\nvoid setup() {\n  Serial.begin(115200); // ESP32 นิยมใช้ Baud rate 115200\n  pinMode(LED_PIN, OUTPUT);\n  digitalWrite(LED_PIN, LOW);\n\n  Serial.println(\"\\n--- ESP32 Connecting to Wi-Fi ---\");\n  Serial.print(\"Connecting to SSID: \");\n  Serial.println(ssid);\n\n  WiFi.mode(WIFI_STA); // ตั้งโหมดเป็น Wi-Fi Station\n  WiFi.begin(ssid, password);\n\n  while (WiFi.status() != WL_CONNECTED) {\n    delay(500);\n    Serial.print(\".\");\n    digitalWrite(LED_PIN, !digitalRead(LED_PIN)); // สลับไฟกะพริบระหว่างรอ\n  }\n\n  digitalWrite(LED_PIN, HIGH); // ติดค้างเมื่อต่อสำเร็จ\n  Serial.println(\"\\n>>> Wi-Fi Connected Successfully! <<<\");\n  Serial.print(\"ESP32 IP Address: \");\n  Serial.println(WiFi.localIP());\n  Serial.print(\"Signal Strength (RSSI): \");\n  Serial.print(WiFi.RSSI());\n  Serial.println(\" dBm\");\n}\n\nvoid loop() {\n  // เชื่อมต่ออินเทอร์เน็ตแล้ว พร้อมส่งข้อมูลไปยัง Cloud หรือ MQTT ต่อไป\n  delay(10000);\n}"
   }
 }

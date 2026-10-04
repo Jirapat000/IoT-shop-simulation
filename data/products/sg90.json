@@ -1,0 +1,85 @@
+{
+  "id": "sg90",
+  "name": "SG90 Micro Servo",
+  "category": "modules",
+  "chip": "Micro servo",
+  "voltage": "4.8–6V",
+  "pins": "PWM control",
+  "wireless": "—",
+  "difficulty": "beginner",
+  "tags": ["Servo", "Motor", "PWM"],
+  "visual": "peach",
+  "type": "servo",
+  "shop": "allnewstep",
+  "slug": "sg90-micro-servo",
+  "price": 42,
+  "blurb": {
+    "th": "เซอร์โวมอเตอร์ขนาดจิ๋ว ปรับมุมได้ เหมาะกับแขนกลและกลไกขนาดเล็ก",
+    "en": "A tiny positional servo for small mechanisms, moving parts, and robot arms."
+  },
+  "uses": {
+    "th": "เหมาะสำหรับ: แขนกลหุ่นยนต์, กลไกเปิด-ปิดฝาถังขยะอัจฉริยะ, สลักประตูดิจิทัล, ระบบหันกล้อง Pan-Tilt",
+    "en": "Great for: robot arms, smart trash bin lids, smart door locks, pan-tilt camera mounts."
+  },
+  "features": {
+    "th": [
+      "มอเตอร์เซอร์โวขนาดกะทัดรัด น้ำหนักเบาเพียง 9 กรัม ให้แรงบิดสูงเทียบกับขนาด",
+      "หมุนกำหนดตำแหน่งองศาได้อย่างแม่นยำตั้งแต่ 0° ถึง 180°",
+      "แรงบิดสูง (Stall Torque): 1.8 kg·cm (ที่แรงดันไฟฟ้า 4.8V)",
+      "ความเร็วในการหมุน: 0.10 วินาที / 60 องศา (ที่แรงดันไฟฟ้า 4.8V)",
+      "แรงดันไฟฟ้าทำงาน 4.8V ถึง 6.0V DC (กินกระแสประมาณ 100-250 mA และสูงสุด 500 mA ขณะล็อกค้าง)",
+      "ควบคุมตำแหน่งด้วยสัญญาณพัลส์ PWM มาตรฐาน (ความถี่ 50 Hz, คาบเวลา 20 ms)"
+    ],
+    "en": [
+      "Compact and lightweight 9g micro positional servo motor with high torque-to-weight ratio",
+      "Precise positional rotation from 0° to 180°",
+      "Stall torque: 1.8 kg·cm (at 4.8V DC)",
+      "Operating speed: 0.10 seconds per 60 degrees (at 4.8V DC)",
+      "Operating voltage: 4.8V to 6.0V DC (active current 100-250 mA, stall current up to 500 mA)",
+      "Standard 50 Hz PWM positional control interface (20 ms period)"
+    ]
+  },
+  "workingPrinciple": {
+    "th": "ภายในประกอบด้วยมอเตอร์ DC ขนาดเล็ก, ชุดเฟืองทดรอบ, โพเทนชิโอมิเตอร์ (ตัวต้านทานปรับค่าตามมุมแกนหมุน) และวงจรเปรียบเทียบสัญญาณ เมื่อได้รับสัญญาณพัลส์ PWM (ความกว้างพัลส์ระหว่าง 1 ms ถึง 2 ms) วงจรควบคุมจะเปรียบเทียบค่าสัญญาณเป้าหมายกับตำแหน่งจริงจากโพเทนชิโอมิเตอร์ และขับมอเตอร์หมุนจนได้มุมที่ถูกต้องก่อนหยุดและล็อกตำแหน่งไว้",
+    "en": "Integrates a DC motor, miniature reduction gear train, internal position-sensing potentiometer, and control circuit. The pulse width of an incoming 50 Hz PWM signal (between 1.0 ms and 2.0 ms) sets the target angle. An internal comparator runs the motor until the potentiometer position matches the command, locking the shaft firmly in place."
+  },
+  "wiring": {
+    "th": [
+      { "pin": "สายสีส้ม / เหลือง (Signal)", "connectTo": "ขา PWM เช่น D9 หรือ GPIO 13", "note": "สายรับสัญญาณควบคุมพัลส์ PWM" },
+      { "pin": "สายสีแดง (VCC / Power)", "connectTo": "ไฟเลี้ยง 5V", "note": "หากใช้เซอร์โวหลายตัว แนะนำต่อไฟ 5V แยกจากภายนอกเพื่อป้องกันไฟตก" },
+      { "pin": "สายสีน้ำตาล (GND / Ground)", "connectTo": "ขา GND ของบอร์ด", "note": "ต่อลงกราวด์ร่วมของระบบ" }
+    ],
+    "en": [
+      { "pin": "Orange / Yellow Wire (Signal)", "connectTo": "MCU PWM pin (e.g. D9 or GPIO 13)", "note": "PWM control signal input" },
+      { "pin": "Red Wire (VCC)", "connectTo": "5V DC power", "note": "Power feed (use dedicated external 5V supply if powering multiple servos)" },
+      { "pin": "Brown Wire (GND)", "connectTo": "MCU GND", "note": "Common system ground reference" }
+    ]
+  },
+  "libraries": [
+    {
+      "name": "Servo.h (Built-in สำหรับ Arduino)",
+      "installGuide": {
+        "th": "ติดตั้งมาพร้อมกับ Arduino IDE แล้ว ไม่ต้องลงเพิ่ม",
+        "en": "Included natively with standard Arduino AVR boards."
+      },
+      "isBuiltIn": true
+    },
+    {
+      "name": "ESP32Servo (สำหรับบอร์ด ESP32)",
+      "installGuide": {
+        "th": "หากใช้บอร์ด ESP32 ให้ค้นหา 'ESP32Servo' ใน Library Manager แล้วกดติดตั้ง",
+        "en": "For ESP32 boards, install 'ESP32Servo' via Arduino Library Manager."
+      },
+      "isBuiltIn": false
+    }
+  ],
+  "sampleCode": {
+    "language": "cpp",
+    "configurablePin": "SERVO_PIN",
+    "explanation": {
+      "th": "โค้ดควบคุมเซอร์โวมอเตอร์ให้หมุนกวาดมุมจาก 0 องศาไป 180 องศา และหมุนกลับมาที่ 0 องศาอย่างนุ่มนวล โดยใช้ Library Servo.h มาตรฐานของ Arduino",
+      "en": "Sweeps the servo arm back and forth between 0° and 180° in smooth 1-degree steps using Arduino's native Servo.h library."
+    },
+    "code": "// ==========================================\n// SG90 Micro Servo: ควบคุมการหมุนกวาดมุม 0 - 180 องศา\n// เปลี่ยนหมายเลขขา SERVO_PIN ด้านล่างได้ทันที\n// ==========================================\n#include <Servo.h>\n\n#define SERVO_PIN 9   // กำหนดขา PWM ที่ต่อกับสายสัญญาณสีส้มของเซอร์โว (เช่น ขา 9)\n\nServo myServo;        // สร้างอ็อบเจกต์สำหรับสั่งการเซอร์โว\n\nvoid setup() {\n  Serial.begin(9600);\n  myServo.attach(SERVO_PIN); // เชื่อมต่อขาควบคุมเข้ากับเซอร์โว\n  Serial.println(\"SG90 Servo Initialized! Starting 0 - 180 degree sweep...\");\n}\n\nvoid loop() {\n  // หมุนจาก 0 ไปยัง 180 องศา ทีละ 1 องศา\n  Serial.println(\"Moving: 0 -> 180 deg\");\n  for (int angle = 0; angle <= 180; angle += 1) {\n    myServo.write(angle); // สั่งให้เซอร์โวหมุนไปยังมุมที่กำหนด\n    delay(15);            // หน่วงเวลา 15ms เพื่อให้การเคลื่อนที่นุ่มนวล\n  }\n  delay(500); // พักครึ่งวินาทีที่มุม 180 องศา\n\n  // หมุนกลับจาก 180 ไปยัง 0 องศา\n  Serial.println(\"Moving: 180 -> 0 deg\");\n  for (int angle = 180; angle >= 0; angle -= 1) {\n    myServo.write(angle);\n    delay(15);\n  }\n  delay(500); // พักครึ่งวินาทีที่มุม 0 องศา\n}"
+  }
+}

@@ -15,6 +15,7 @@
     rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="theme.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%233F72AF'/><text x='50' y='68' font-size='50' font-weight='bold' fill='%23ffffff' text-anchor='middle'>io</text></svg>">
   <script>
     // Apply the stored theme before first paint so the page never flashes light first.
     (function () {
@@ -49,7 +50,7 @@
       <a href="#products" data-i18n="nav.explore">สำรวจอุปกรณ์</a><a href="#learn"
         data-i18n="nav.learn">เริ่มเรียนรู้</a><a href="#shops" data-i18n="nav.shops">ร้านค้า</a>
     </nav>
-    <div class="nav-actions"><button class="language neu auth-nav-btn" id="auth-btn" type="button" aria-label="เข้าสู่ระบบ"><span>🔑</span> <span>เข้าสู่ระบบ</span></button><button class="language neu" id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark theme"><span class="theme-icon-moon" aria-hidden="true">☾</span><span class="theme-icon-sun" aria-hidden="true">☀</span></button><button class="language neu" id="bgm-toggle" type="button" aria-pressed="false" aria-label="เปิดเพลงประกอบ">♫ <span>BGM</span></button><button class="language neu" id="lang-toggle" aria-label="Switch language">TH
+    <div class="nav-actions"><button class="language neu auth-nav-btn" id="auth-btn" type="button" aria-label="เข้าสู่ระบบ"><span class="auth-btn-icon"><svg class="ui-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span> <span>เข้าสู่ระบบ</span></button><button class="language neu cart-nav-btn" id="cart-btn" type="button" aria-label="ตะกร้าสินค้า"><span class="cart-btn-icon"><svg class="ui-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span> <span>ตะกร้า</span><span class="cart-badge" id="cart-badge" hidden>0</span></button><button class="language neu" id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark theme"><span class="theme-icon-moon" aria-hidden="true">☾</span><span class="theme-icon-sun" aria-hidden="true">☀</span></button><button class="language neu" id="bgm-toggle" type="button" aria-pressed="false" aria-label="เปิดเพลงประกอบ">♫ <span>BGM</span></button><button class="language neu" id="lang-toggle" aria-label="Switch language">TH
         <span>·</span> EN</button><a class="button button-dark nav-cta" href="#products"><span
           data-i18n="nav.cta">เลือกบอร์ดของคุณ</span><span>↗</span></a><button class="menu-toggle neu" id="menu-toggle"
         aria-label="Open menu">☰</button></div>
@@ -154,26 +155,26 @@
               data-i18n="learn.kicker">เส้นทางสำหรับมือใหม่</span></span>
           <h2 data-i18n-html="learn.title">ทุกโปรเจกต์เจ๋ง ๆ<br>เริ่มจาก<strong>ก้าวแรก</strong></h2>
           <p data-i18n="learn.body">ไม่เคยเขียนโค้ดก็เริ่มได้ เราเรียงลำดับบทเรียนให้คุณค่อย ๆ สนุกไปกับอุปกรณ์ IoT
-            ทีละขั้น</p><a class="button button-dark" href="#products"><span
-              data-i18n="learn.action">เริ่มเรียนรู้</span><span>↗</span></a>
+            ทีละขั้น</p><button class="button button-dark" type="button" id="start-learn-btn"><span
+              data-i18n="learn.action">เริ่มเรียนรู้</span><span>↗</span></button>
         </div>
         <div class="learning-path">
           <div class="path-line"></div>
-          <article class="path-step">
+          <article class="path-step interactive-step" data-lesson="1" role="button" tabindex="0" aria-label="เปิดบทเรียนและโปรเจกต์จำลอง: ทำ LED ให้กะพริบ">
             <div class="step-icon step-one">01</div>
             <div><small data-i18n="learn.step1tag">บทเรียนที่ 01 · 15 นาที</small>
               <h3 data-i18n="learn.step1">ทำ LED ให้กะพริบ</h3>
               <p data-i18n="learn.step1body">โค้ดแรกบน Arduino Uno</p>
             </div><span class="step-arrow">↗</span>
           </article>
-          <article class="path-step">
+          <article class="path-step interactive-step" data-lesson="2" role="button" tabindex="0" aria-label="เปิดบทเรียนและโปรเจกต์จำลอง: อ่านค่าจากเซ็นเซอร์">
             <div class="step-icon step-two">02</div>
             <div><small data-i18n="learn.step2tag">บทเรียนที่ 02 · 25 นาที</small>
               <h3 data-i18n="learn.step2">อ่านค่าจากเซ็นเซอร์</h3>
               <p data-i18n="learn.step2body">รู้จักอุณหภูมิและความชื้น</p>
             </div><span class="step-arrow">↗</span>
           </article>
-          <article class="path-step">
+          <article class="path-step interactive-step" data-lesson="3" role="button" tabindex="0" aria-label="เปิดบทเรียนและโปรเจกต์จำลอง: ส่งข้อมูลผ่าน Wi-Fi">
             <div class="step-icon step-three">03</div>
             <div><small data-i18n="learn.step3tag">บทเรียนที่ 03 · 40 นาที</small>
               <h3 data-i18n="learn.step3">ส่งข้อมูลผ่าน Wi-Fi</h3>
@@ -227,6 +228,10 @@
       class="eyebrow muted" data-i18n="compare.kicker">เปรียบเทียบอุปกรณ์</span>
     <h2 data-i18n="compare.title">เลือกอุปกรณ์ที่ใช่สำหรับคุณ</h2>
     <div class="compare-table-wrap" id="compare-table"></div>
+  </dialog>
+  <dialog class="lesson-dialog" id="lesson-dialog">
+    <button class="dialog-close" aria-label="Close">×</button>
+    <div id="lesson-content"></div>
   </dialog>
 
   <!-- Supabase Auth Modal (IoT888 - sign-in-card-2 / OnlyPipe style) -->
@@ -345,10 +350,10 @@
         <button type="button" class="buddy-icon-button" id="buddy-close" aria-label="ปิดเมนู">×</button></header>
       <p class="buddy-panel-message" id="buddy-panel-message">พร้อมช่วยสำรวจอุปกรณ์และบทเรียนไปด้วยกันครับ</p>
       <nav class="buddy-actions" aria-label="ตัวเลือกผู้ช่วย">
-        <button type="button" data-buddy-action="recommend">💡 แนะนำหน้านี้</button>
-        <button type="button" data-buddy-action="explain">📖 อธิบาย</button>
-        <button type="button" data-buddy-action="howto">🔧 วิธีใช้งาน</button>
-        <button type="button" data-buddy-action="products">🛒 ดูอุปกรณ์</button>
+        <button type="button" data-buddy-action="recommend"><svg class="ui-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg> <span>แนะนำหน้านี้</span></button>
+        <button type="button" data-buddy-action="explain"><svg class="ui-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> <span>อธิบาย</span></button>
+        <button type="button" data-buddy-action="howto"><svg class="ui-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> <span>วิธีใช้งาน</span></button>
+        <button type="button" data-buddy-action="products"><svg class="ui-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg> <span>ดูอุปกรณ์</span></button>
       </nav><button type="button" id="buddy-hide" class="buddy-hide">ซ่อนผู้ช่วย</button>
     </section>
     <div class="buddy-tip" id="buddy-tip" role="status" aria-live="polite" hidden><span class="buddy-tip-state">✦</span><span id="buddy-tip-text"></span><button type="button" id="buddy-tip-close" aria-label="ปิดข้อความ">×</button></div>
@@ -356,7 +361,7 @@
       <img src="assets/iot-buddy.png" alt="หุ่นยนต์ผู้ช่วย IoT Buddy" draggable="false"><span class="buddy-avatar-spark">✦</span>
     </button>
   </aside>
-  <button type="button" class="buddy-restore" id="buddy-restore" aria-label="แสดง IoT Buddy" hidden>🤖</button>
+  <button type="button" class="buddy-restore" id="buddy-restore" aria-label="แสดง IoT Buddy" hidden><svg class="ui-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="12" x="3" y="6" rx="2"/><path d="M9 18v2"/><path d="M15 18v2"/><line x1="8" y1="12" x2="8.01" y2="12"/><line x1="16" y1="12" x2="16.01" y2="12"/><path d="M12 2v4"/></svg></button>
   <script src="app.js"></script>
   <script src="board-art.js"></script>
   <script src="hero-board.js"></script>
@@ -367,6 +372,8 @@
   <script src="intro.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="auth.js"></script>
+  <script src="learn-simulation.js"></script>
+  <script src="cart.js"></script>
 </body>
 
 </html>

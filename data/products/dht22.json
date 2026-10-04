@@ -1,0 +1,85 @@
+{
+  "id": "dht22",
+  "name": "DHT22 Sensor",
+  "category": "sensors",
+  "chip": "AM2302",
+  "voltage": "3.3–5V",
+  "pins": "1 data",
+  "wireless": "—",
+  "difficulty": "beginner",
+  "tags": ["Temperature", "Humidity", "Sensor"],
+  "visual": "yellow",
+  "type": "sensor",
+  "shop": "cybertice",
+  "slug": "dht22",
+  "price": 115,
+  "blurb": {
+    "th": "เซ็นเซอร์วัดอุณหภูมิและความชื้นแบบดิจิทัล อ่านค่าง่าย ใช้งานสะดวก",
+    "en": "A digital temperature and humidity sensor that is simple to wire and read."
+  },
+  "uses": {
+    "th": "เหมาะสำหรับ: สถานีตรวจอากาศ, ตู้เพาะชำ/ปลูกต้นไม้, ตู้ฟักไข่, ระบบติดตามสภาพอากาศในห้อง",
+    "en": "Great for: weather stations, greenhouse monitoring, incubators, room climate control."
+  },
+  "features": {
+    "th": [
+      "วัดได้ทั้งอุณหภูมิและความชื้นสัมพัทธ์ในอากาศพร้อมกัน ด้วยสัญญาณดิจิทัลคาลิเบรตจากโรงงาน",
+      "ช่วงวัดอุณหภูมิ: -40°C ถึง +80°C (ความแม่นยำสูง ±0.5°C)",
+      "ช่วงวัดความชื้น: 0% ถึง 100% RH (ความแม่นยำ ±2–5% RH)",
+      "อัตราการอ่านค่า: ทุก 2 วินาที (Sampling Rate 0.5 Hz)",
+      "แรงดันไฟฟ้าทำงาน: 3.3V ถึง 5.5V DC (กินกระแสต่ำมากเพียง 1–1.5 mA ขณะทำงาน)",
+      "ส่งข้อมูลผ่านสายสัญญาณดิจิทัลเพียงเส้นเดียว (Single-bus) เดินสายระยะไกลได้ถึง 20 เมตร"
+    ],
+    "en": [
+      "Simultaneous digital temperature and relative humidity measurement with factory calibration",
+      "Temperature range: -40°C to +80°C (high precision ±0.5°C accuracy)",
+      "Humidity range: 0% to 100% RH (±2–5% RH accuracy)",
+      "Sampling frequency: 0.5 Hz (new reading every 2 seconds)",
+      "Operating voltage: 3.3V to 5.5V DC (ultra-low current draw 1–1.5 mA)",
+      "Single-bus digital signal line allows wire runs up to 20 meters"
+    ]
+  },
+  "workingPrinciple": {
+    "th": "ภายในประกอบด้วยตัวตรวจวัดความชื้นชนิดเก็บประจุ (Capacitive Humidity Sensor) และเทอร์มิสเตอร์วัดอุณหภูมิ (NTC) ควบคุมโดยชิปประมวลผลขนาด 8 บิต เมื่อไมโครคอนโทรลเลอร์ส่งสัญญาณกระตุ้น ตัวเซ็นเซอร์จะส่งชุดข้อมูลดิจิทัลขนาด 40 บิต (16 บิตความชื้น + 16 บิตอุณหภูมิ + 8 บิต Checksum ตรวจสอบความถูกต้อง) กลับมาอย่างแม่นยำ",
+    "en": "Combines a capacitive humidity sensing element and an NTC temperature thermistor with an internal 8-bit MCU. In response to a start signal from the host, the sensor transmits a 40-bit digital train comprising 16 bits of humidity, 16 bits of temperature, and an 8-bit error-checking checksum."
+  },
+  "wiring": {
+    "th": [
+      { "pin": "ขา VCC / +", "connectTo": "ขา 3.3V หรือ 5V ของบอร์ด", "note": "จ่ายไฟเลี้ยงให้เซ็นเซอร์ (3.3V สำหรับ ESP32 / 5V สำหรับ Arduino)" },
+      { "pin": "ขา DATA / OUT", "connectTo": "ขาดิจิทัล เช่น ขา 4 หรือ D4", "note": "หากเป็นเซ็นเซอร์ 4 ขาเปล่า ให้ต่อ R 10kΩ คั่นระหว่าง VCC กับ DATA (โมดูล 3 ขามีในตัวแล้ว)" },
+      { "pin": "ขา GND / -", "connectTo": "ขา GND ของบอร์ด", "note": "ต่อเข้ากราวด์ร่วมของระบบ" }
+    ],
+    "en": [
+      { "pin": "Pin VCC / +", "connectTo": "MCU 3.3V or 5V pin", "note": "Power supply (3.3V for ESP32/ESP8266, 5V for Arduino Uno/Nano)" },
+      { "pin": "Pin DATA / OUT", "connectTo": "MCU Digital Pin (e.g. Pin 4)", "note": "Bare 4-pin sensors require a 10kΩ pull-up to VCC; 3-pin modules have it onboard" },
+      { "pin": "Pin GND / -", "connectTo": "MCU GND", "note": "Common ground connection" }
+    ]
+  },
+  "libraries": [
+    {
+      "name": "DHT sensor library by Adafruit",
+      "installGuide": {
+        "th": "เปิด Library Manager ใน Arduino IDE ค้นหา 'DHT sensor library' โดย Adafruit แล้วกด Install",
+        "en": "Search 'DHT sensor library' by Adafruit in Arduino Library Manager and click Install."
+      },
+      "isBuiltIn": false
+    },
+    {
+      "name": "Adafruit Unified Sensor",
+      "installGuide": {
+        "th": "ติดตั้งอัตโนมัติเมื่อกด Install All ตอนลง DHT sensor library",
+        "en": "Installed automatically as a dependency alongside Adafruit DHT library."
+      },
+      "isBuiltIn": false
+    }
+  ],
+  "sampleCode": {
+    "language": "cpp",
+    "configurablePin": "DHTPIN, DHTTYPE",
+    "explanation": {
+      "th": "โค้ดอ่านค่าความชื้นสัมพัทธ์ (%) และอุณหภูมิ (°C) จากเซ็นเซอร์ DHT22 ทุกๆ 2 วินาที มีระบบตรวจสอบความถูกต้องของข้อมูล (isnan) และแสดงผลออกทาง Serial Monitor",
+      "en": "Reads relative humidity (%) and temperature (°C) every 2 seconds, validates against read errors with isnan(), and prints clean formatted telemetry to the Serial Monitor."
+    },
+    "code": "// ==========================================\n// DHT22 (AM2302): เซ็นเซอร์วัดอุณหภูมิและความชื้น\n// ติดตั้ง Library: 'DHT sensor library' โดย Adafruit ใน Library Manager\n// แก้ไขหมายเลขขา DHTPIN ด้านล่างตามวงจรของคุณได้ทันที\n// ==========================================\n#include <DHT.h>\n\n#define DHTPIN   4        // กำหนดขาที่ต่อกับขา DATA ของเซ็นเซอร์ (เช่น ขา 4 หรือ D4)\n#define DHTTYPE  DHT22    // ระบุรุ่นเซ็นเซอร์เป็น DHT22 (AM2302)\n\nDHT dht(DHTPIN, DHTTYPE);\n\nvoid setup() {\n  Serial.begin(9600);\n  Serial.println(\"--- DHT22 Sensor Starting ---\");\n  dht.begin(); // เริ่มต้นการทำงานของเซ็นเซอร์\n}\n\nvoid loop() {\n  // DHT22 ต้องการเวลาอ่านค่าห่างกันอย่างน้อย 2 วินาที\n  delay(2000);\n\n  float humidity = dht.readHumidity();       // อ่านค่าความชื้นสัมพัทธ์ (%)\n  float temperature = dht.readTemperature(); // อ่านค่าอุณหภูมิเซลเซียส (°C)\n\n  // ตรวจสอบว่าอ่านค่าสำเร็จหรือไม่\n  if (isnan(humidity) || isnan(temperature)) {\n    Serial.println(\"Warning: อ่านค่าจาก DHT22 ไม่สำเร็จ! กรุณาตรวจสายไฟและขา DATA\");\n    return;\n  }\n\n  Serial.print(\"ความชื้น: \");\n  Serial.print(humidity, 1);\n  Serial.print(\" %RH\\t| อุณหภูมิ: \");\n  Serial.print(temperature, 1);\n  Serial.println(\" *C\");\n}"
+  }
+}

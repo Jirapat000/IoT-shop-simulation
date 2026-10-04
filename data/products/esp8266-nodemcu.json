@@ -7,17 +7,83 @@
   "pins": "11 GPIO",
   "wireless": "Wi-Fi 2.4 GHz",
   "difficulty": "beginner",
-  "tags": ["Wi-Fi","IoT","USB"],
+  "tags": ["Wi-Fi", "IoT", "USB"],
   "visual": "blue",
   "type": "esp",
   "shop": "allnewstep",
   "slug": "esp8266-nodemcu",
+  "price": 95,
   "blurb": {
     "th": "บอร์ด Wi-Fi ขนาดกะทัดรัดสำหรับทดลองสร้างอุปกรณ์เชื่อมต่ออินเทอร์เน็ต",
     "en": "A compact Wi-Fi board for experimenting with connected devices."
   },
   "uses": {
-    "th": "เหมาะสำหรับ: เซ็นเซอร์ Wi-Fi, เว็บเซิร์ฟเวอร์ขนาดเล็ก",
-    "en": "Great for: Wi-Fi sensors and small web servers."
+    "th": "เหมาะสำหรับ: เซ็นเซอร์ Wi-Fi, สวิตช์อัจฉริยะ, แจ้งเตือน Line Notify, Web Server จิ๋ว",
+    "en": "Great for: Wi-Fi sensors, smart switches, Line Notify alerts, small web servers."
+  },
+  "features": {
+    "th": [
+      "ชิปประมวลผล 32-bit Tensilica L106 ความเร็ว 80/160 MHz",
+      "มีโมดูล Wi-Fi 2.4 GHz ในตัว (รองรับโหมด Station, SoftAP และ Station+SoftAP)",
+      "ขา GPIO 11 ขา รองรับ PWM, I2C, SPI พร้อมขา Analog ADC 1 ช่อง (A0 รับแรงดัน 0-3.3V)",
+      "หน่วยความจำ Flash 4 MB (รองรับระบบไฟล์ LittleFS/SPIFFS)",
+      "แรงดันไฟฟ้าตรรกะ 3.3V Logic (จ่ายไฟ 5V ผ่าน Micro-USB หรือขา VIN)",
+      "ราคาประหยัด คุ้มค่าที่สุดสำหรับผู้เริ่มต้นศึกษาด้าน IoT"
+    ],
+    "en": [
+      "32-bit Tensilica L106 RISC CPU running at 80/160 MHz",
+      "Integrated 802.11 b/g/n 2.4 GHz Wi-Fi transceiver with PCB antenna",
+      "11 GPIO pins with PWM, I2C, SPI, plus 1 analog input pin (A0, 0-3.3V)",
+      "4 MB onboard SPI Flash memory supporting LittleFS/SPIFFS file systems",
+      "3.3V logic level (5V DC power via Micro-USB or VIN pin)",
+      "Highly affordable and practical for starting IoT and home automation projects"
+    ]
+  },
+  "workingPrinciple": {
+    "th": "เป็นบอร์ดไมโครคอนโทรลเลอร์ขนาดเล็กราคาประหยัดที่รวมตัวประมวลผลและระบบเชื่อมต่อเครือข่าย Wi-Fi ไว้บนชิปเดียว เหมาะสำหรับทำหน้าที่เป็นโหนดตรวจจับ (Sensor Node) คอยอ่านค่าสภาพแวดล้อมแล้วส่งขึ้นระบบคลาวด์ หรือทำหน้าที่เป็นสวิตช์รับคำสั่งเปิด-ปิดไฟผ่านเครือข่ายอินเทอร์เน็ต",
+    "en": "Functions as a budget-friendly wireless microcontroller node. It connects to 2.4 GHz Wi-Fi networks to sample local sensor readings, transmit events to online services, or listen for remote HTTP/MQTT toggle commands."
+  },
+  "wiring": {
+    "th": [
+      { "pin": "พอร์ต Micro-USB / VIN", "connectTo": "สาย USB หรือไฟ 5V", "note": "จ่ายไฟเลี้ยง 5V เข้าสู่บอร์ด" },
+      { "pin": "ขา D1 (GPIO 5) / D2 (GPIO 4)", "connectTo": "รีเลย์ หรือ เซ็นเซอร์", "note": "ขา Digital I/O อเนกประสงค์ หรือใช้เป็น I2C SCL/SDA" },
+      { "pin": "ขา D4 (GPIO 2)", "connectTo": "LED สีน้ำเงินบนบอร์ด", "note": "ไฟ LED สถานะประจำตัวบอร์ด (ทำงานแบบ Active LOW: ส่ง LOW ไฟจะติด)" },
+      { "pin": "ขา A0", "connectTo": "เซ็นเซอร์ Analog", "note": "ขารับค่าแรงดันแอนะล็อก 0–3.3V (แปลงเป็น 0–1023)" },
+      { "pin": "ขา 3V3 / GND", "connectTo": "อุปกรณ์ภายนอก", "note": "คำเตือน: ขา GPIO รับไฟได้สูงสุด 3.3V เท่านั้น ห้ามต่อไฟ 5V ตรงเข้าขา" }
+    ],
+    "en": [
+      { "pin": "Micro-USB / VIN", "connectTo": "USB or 5V source", "note": "Supplies 5V DC power" },
+      { "pin": "Pin D1 (GPIO 5) / D2 (GPIO 4)", "connectTo": "Relay or Sensor", "note": "General digital I/O or default I2C SCL/SDA bus" },
+      { "pin": "Pin D4 (GPIO 2)", "connectTo": "Onboard blue LED", "note": "Built-in LED (Active LOW: LOW=ON, HIGH=OFF)" },
+      { "pin": "Pin A0", "connectTo": "Analog Sensor", "note": "Single analog input channel (0–3.3V)" },
+      { "pin": "3V3 / GND", "connectTo": "Sensors", "note": "Caution: GPIO logic is 3.3V max. Do not supply 5V directly to pins" }
+    ]
+  },
+  "libraries": [
+    {
+      "name": "esp8266 by ESP8266 Community",
+      "installGuide": {
+        "th": "ติดตั้งบอร์ดผ่าน Boards Manager ใน Arduino IDE โดยค้นหา 'esp8266'",
+        "en": "Install ESP8266 board definitions via Arduino Boards Manager."
+      },
+      "isBuiltIn": true
+    },
+    {
+      "name": "ESP8266WiFi.h (Built-in)",
+      "installGuide": {
+        "th": "มาพร้อมกับชุดบอร์ด ESP8266 ทันที ไม่ต้องติดตั้งเพิ่มเติม",
+        "en": "Pre-installed with the ESP8266 board core."
+      },
+      "isBuiltIn": true
+    }
+  ],
+  "sampleCode": {
+    "language": "cpp",
+    "configurablePin": "OUTPUT_PIN, ONBOARD_LED, ssid, password",
+    "explanation": {
+      "th": "โค้ดเชื่อมต่อ Wi-Fi และสั่งกะพริบไฟทดสอบที่ขา D1 พร้อมแสดงสถานะการเชื่อมต่อและ IP Address บน Serial Monitor (ความเร็ว 115200 baud)",
+      "en": "Connects NodeMCU to Wi-Fi, prints the acquired local IP to Serial, and tests digital switching on pin D1 every 2 seconds."
+    },
+    "code": "// ==========================================\n// ESP8266 NodeMCU: เชื่อมต่อ Wi-Fi และเปิด-ปิดขา D1\n// แก้ไขชื่อ Wi-Fi, รหัสผ่าน และเลขขา OUTPUT_PIN ด้านล่างได้ทันที\n// ==========================================\n#include <ESP8266WiFi.h>\n\n#define OUTPUT_PIN  D1   // ขาควบคุมโหลดหรือรีเลย์ (เช่น ขา D1 หรือ D2)\n#define ONBOARD_LED D4   // LED บนบอร์ด NodeMCU (Active LOW: LOW=ติด, HIGH=ดับ)\n\nconst char* ssid     = \"YOUR_WIFI_NAME\";     // ใส่ชื่อ Wi-Fi ของคุณ\nconst char* password = \"YOUR_WIFI_PASSWORD\"; // ใส่รหัสผ่าน Wi-Fi ของคุณ\n\nvoid setup() {\n  Serial.begin(115200);\n  pinMode(OUTPUT_PIN, OUTPUT);\n  pinMode(ONBOARD_LED, OUTPUT);\n  digitalWrite(OUTPUT_PIN, LOW);\n  digitalWrite(ONBOARD_LED, HIGH); // ปิด LED ก่อน\n\n  Serial.println(\"\\n--- NodeMCU Wi-Fi Initializing ---\");\n  Serial.print(\"Connecting to: \");\n  Serial.println(ssid);\n\n  WiFi.mode(WIFI_STA);\n  WiFi.begin(ssid, password);\n\n  while (WiFi.status() != WL_CONNECTED) {\n    delay(400);\n    Serial.print(\".\");\n    digitalWrite(ONBOARD_LED, !digitalRead(ONBOARD_LED)); // กะพริบไฟขณะรอต่อ\n  }\n\n  digitalWrite(ONBOARD_LED, LOW); // ติดค้างเมื่อต่อ Wi-Fi สำเร็จ\n  Serial.println(\"\\n>>> NodeMCU Connected! <<<\");\n  Serial.print(\"IP Address: \");\n  Serial.println(WiFi.localIP());\n}\n\nvoid loop() {\n  // กะพริบทดสอบขา OUTPUT_PIN ทุกๆ 2 วินาที\n  digitalWrite(OUTPUT_PIN, HIGH);\n  delay(2000);\n  digitalWrite(OUTPUT_PIN, LOW);\n  delay(2000);\n}"
   }
 }

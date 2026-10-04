@@ -1,0 +1,86 @@
+{
+  "id": "hc-sr04",
+  "name": "HC-SR04 Ultrasonic",
+  "category": "sensors",
+  "chip": "Ultrasonic",
+  "voltage": "5V",
+  "pins": "2 digital",
+  "wireless": "—",
+  "difficulty": "beginner",
+  "tags": ["Distance", "Ultrasonic", "Sensor"],
+  "visual": "aqua",
+  "type": "ultra",
+  "shop": "allnewstep",
+  "slug": "hc-sr04",
+  "price": 45,
+  "blurb": {
+    "th": "วัดระยะทางด้วยคลื่นอัลตราโซนิก เหมาะกับหุ่นยนต์และระบบตรวจจับวัตถุ",
+    "en": "Measure distance with ultrasonic sound waves for robots and object detection."
+  },
+  "uses": {
+    "th": "เหมาะสำหรับ: หุ่นยนต์หลบสิ่งกีดขวาง, ระบบวัดระดับน้ำในถัง, ระบบเซ็นเซอร์ถอยจอดรถ, เครื่องวัดความสูง",
+    "en": "Great for: obstacle-avoiding robots, liquid tank level measurement, parking sensors, height measurement."
+  },
+  "features": {
+    "th": [
+      "วัดระยะทางแบบไม่สัมผัสด้วยคลื่นเสียงอัลตราโซนิกความถี่ 40 kHz",
+      "ระยะการวัด: 2 ซม. ถึง 400 ซม. (2 cm – 4 m)",
+      "ความแม่นยำสูง ละเอียดได้ถึง 0.3 ซม.",
+      "มุมตรวจจับของคลื่นเสียง: ไม่เกิน 15 องศา ให้ลำคลื่นที่ตรงจุด",
+      "แรงดันไฟฟ้าทำงาน 5V DC (กระแสไฟฟ้าสแตนด์บาย < 2 mA, ขณะทำงาน 15 mA)",
+      "เชื่อมต่อแบบ 2 ขาดิจิทัล (Trigger สั่งยิงคลื่นเสียง และ Echo วัดเวลาคลื่นสะท้อน)"
+    ],
+    "en": [
+      "Non-contact distance measurement via 40 kHz ultrasonic acoustic waves",
+      "Measurement range: 2 cm to 400 cm (accuracy down to 0.3 cm)",
+      "Narrow beam angle of approx. 15 degrees minimizes side reflections",
+      "Operating voltage: 5V DC (working current ~15 mA, standby < 2 mA)",
+      "Simple 2-pin interface (Trigger input pulse and Echo return pulse)"
+    ]
+  },
+  "workingPrinciple": {
+    "th": "ทำงานเลียนแบบระบบหาตำแหน่งวัตถุด้วยเสียงสะท้อน (Echolocation) เหมือนค้างคาว: ไมโครคอนโทรลเลอร์ส่งสัญญาณพัลส์ HIGH นาน 10µs เข้าขา Trig โมดูลจะยิงคลื่นเสียงความถี่ 40 kHz ออกไป 8 ลูกคลื่น เมื่อคลื่นชนวัตถุและสะท้อนกลับมา ขา Echo จะส่งสัญญาณ HIGH ออกมา โดยระยะเวลาที่ขา Echo เป็น HIGH คือเวลาเดินทางไปและกลับ จากนั้นคำนวณ: ระยะทาง (ซม.) = (เวลาเดินทาง µs × 0.0343) ÷ 2",
+    "en": "Mimics bat echolocation: the controller pulses the Trig pin HIGH for 10 microseconds. The module fires an 8-pulse 40 kHz ultrasonic burst. When the sonic wave bounces off an obstruction back to the receiver, the Echo pin outputs a HIGH pulse proportional to round-trip travel time. Distance in cm is calculated as: (duration_in_us * 0.0343) / 2."
+  },
+  "wiring": {
+    "th": [
+      { "pin": "ขา VCC", "connectTo": "ขา 5V ของบอร์ด", "note": "จ่ายไฟเลี้ยง 5V เข้าโมดูล" },
+      { "pin": "ขา Trig", "connectTo": "ขาดิจิทัล Output เช่น D9", "note": "ส่งสัญญาณพัลส์ 10µs เพื่อสั่งยิงคลื่นเสียง" },
+      { "pin": "ขา Echo", "connectTo": "ขาดิจิทัล Input เช่น D10", "note": "รับสัญญาณเวลาคลื่นสะท้อน (หากต่อกับ ESP32 3.3V ควรต่อผ่าน R แบ่งแรงดัน 1k/2kΩ)" },
+      { "pin": "ขา GND", "connectTo": "ขา GND ของบอร์ด", "note": "ต่อลงกราวด์ร่วมของระบบ" }
+    ],
+    "en": [
+      { "pin": "VCC Pin", "connectTo": "MCU 5V", "note": "Powers the ultrasonic transceiver (5V DC)" },
+      { "pin": "Trig Pin", "connectTo": "MCU Digital Pin (e.g. D9)", "note": "Digital output: sends 10µs HIGH trigger pulse" },
+      { "pin": "Echo Pin", "connectTo": "MCU Digital Pin (e.g. D10)", "note": "Digital input: pulse width timing (use resistor divider for 3.3V MCUs)" },
+      { "pin": "GND Pin", "connectTo": "MCU GND", "note": "Common circuit ground" }
+    ]
+  },
+  "libraries": [
+    {
+      "name": "Standard Arduino Core (Built-in)",
+      "installGuide": {
+        "th": "ไม่ต้องติดตั้ง Library เพิ่มเติม สามารถใช้ฟังก์ชัน pulseIn() ของ Arduino ได้ทันที",
+        "en": "Built into standard Arduino core using the native pulseIn() function."
+      },
+      "isBuiltIn": true
+    },
+    {
+      "name": "NewPing (อุปกรณ์เสริม)",
+      "installGuide": {
+        "th": "ติดตั้งเสริมได้ผ่าน Library Manager สำหรับโปรเจกต์ที่ต้องการประสิทธิภาพและความเร็วยิ่งขึ้น",
+        "en": "Optional library for high-speed non-blocking ultrasonic pinging."
+      },
+      "isBuiltIn": false
+    }
+  ],
+  "sampleCode": {
+    "language": "cpp",
+    "configurablePin": "TRIG_PIN, ECHO_PIN",
+    "explanation": {
+      "th": "โค้ดยิงคลื่นอัลตราโซนิกและจับเวลาสะท้อนกลับด้วย pulseIn() แล้วคำนวณระยะทางเป็นเซนติเมตร โดยมีระบบตรวจจับกรณีวัตถุอยู่นอกระยะการวัด (> 400 ซม. หรือ < 2 ซม.)",
+      "en": "Emits an ultrasonic pulse, captures return transit time via pulseIn(), computes centimeters using speed of sound in air (343 m/s), and detects out-of-range scenarios."
+    },
+    "code": "// ==========================================\n// HC-SR04 Ultrasonic: เซ็นเซอร์วัดระยะทาง\n// เปลี่ยนหมายเลขขา TRIG_PIN และ ECHO_PIN ด้านล่างได้ทันที\n// ==========================================\n#define TRIG_PIN 9    // ขาส่งคำสั่งยิงคลื่นเสียง (Digital Output)\n#define ECHO_PIN 10   // ขารับสัญญาณคลื่นสะท้อน (Digital Input)\n\nvoid setup() {\n  Serial.begin(9600);\n  pinMode(TRIG_PIN, OUTPUT);\n  pinMode(ECHO_PIN, INPUT);\n  Serial.println(\"HC-SR04 Ultrasonic Sensor Ready!\");\n}\n\nvoid loop() {\n  // เคลียร์สัญญาณขา Trig ให้เป็น LOW ชั่วครู่\n  digitalWrite(TRIG_PIN, LOW);\n  delayMicroseconds(2);\n\n  // ส่งสัญญาณพัลส์ HIGH นาน 10 ไมโครวินาที เพื่อสั่งยิงคลื่นเสียง\n  digitalWrite(TRIG_PIN, HIGH);\n  delayMicroseconds(10);\n  digitalWrite(TRIG_PIN, LOW);\n\n  // จับเวลาที่ขา Echo เป็น HIGH (หน่วยเป็นไมโครวินาที) Timeout ที่ 30,000µs (~5 เมตร)\n  long duration = pulseIn(ECHO_PIN, HIGH, 30000);\n\n  if (duration == 0) {\n    Serial.println(\"อยู่นอกระยะตรวจจับ (เกิน 400 cm หรือไม่มีวัตถุ)\");\n  } else {\n    // ความเร็วเสียงในอากาศประมาณ 0.0343 ซม./ไมโครวินาที (หาร 2 เพราะไป-กลับ)\n    float distanceCm = (duration * 0.0343) / 2.0;\n    \n    Serial.print(\"ระยะทาง: \");\n    Serial.print(distanceCm, 1);\n    Serial.println(\" cm\");\n  }\n\n  delay(150); // รอ 150ms ก่อนวัดรอบถัดไป\n}"
+  }
+}
